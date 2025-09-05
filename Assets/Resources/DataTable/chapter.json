@@ -1,0 +1,148 @@
+{
+  "data":[
+    {
+      "chapter_no": 1,
+      "total_stages": 20,
+      "chapter_reward_gem": 10,
+      "chapter_reward_gold": 100
+    },
+    {
+      "chapter_no": 2,
+      "total_stages": 20,
+      "chapter_reward_gem": 20,
+      "chapter_reward_gold": 200
+    },
+    {
+      "chapter_no": 3,
+      "total_stages": 20,
+      "chapter_reward_gem": 30,
+      "chapter_reward_gold": 300
+    },
+    {
+      "chapter_no": 4,
+      "total_stages": 20,
+      "chapter_reward_gem": 40,
+      "chapter_reward_gold": 400
+    },
+    {
+      "chapter_no": 5,
+      "total_stages": 20,
+      "chapter_reward_gem": 50,
+      "chapter_reward_gold": 500
+    },
+    {
+      "chapter_no": 6,
+      "total_stages": 20,
+      "chapter_reward_gem": 60,
+      "chapter_reward_gold": 600
+    },
+    {
+      "chapter_no": 7,
+      "total_stages": 20,
+      "chapter_reward_gem": 70,
+      "chapter_reward_gold": 700
+    },
+    {
+      "chapter_no": 8,
+      "total_stages": 20,
+      "chapter_reward_gem": 80,
+      "chapter_reward_gold": 800
+    },
+    {
+      "chapter_no": 9,
+      "total_stages": 20,
+      "chapter_reward_gem": 90,
+      "chapter_reward_gold": 900
+    },
+    {
+      "chapter_no": 10,
+      "total_stages": 20,
+      "chapter_reward_gem": 100,
+      "chapter_reward_gold": 1000
+    },
+    {
+      "chapter_no": 11,
+      "total_stages": 20,
+      "chapter_reward_gem": 110,
+      "chapter_reward_gold": 1100
+    },
+    {
+      "chapter_no": 12,
+      "total_stages": 20,
+      "chapter_reward_gem": 120,
+      "chapter_reward_gold": 1200
+    },
+    {
+      "chapter_no": 13,
+      "total_stages": 20,
+      "chapter_reward_gem": 130,
+      "chapter_reward_gold": 1300
+    },
+    {
+      "chapter_no": 14,
+      "total_stages": 20,
+      "chapter_reward_gem": 140,
+      "chapter_reward_gold": 1400
+    },
+    {
+      "chapter_no": 15,
+      "total_stages": 20,
+      "chapter_reward_gem": 150,
+      "chapter_reward_gold": 1500
+    },
+    {
+      "chapter_no": 16,
+      "total_stages": 20,
+      "chapter_reward_gem": 160,
+      "chapter_reward_gold": 1600
+    },
+    {
+      "chapter_no": 17,
+      "total_stages": 20,
+      "chapter_reward_gem": 170,
+      "chapter_reward_gold": 1700
+    },
+    {
+      "chapter_no": 18,
+      "total_stages": 20,
+      "chapter_reward_gem": 180,
+      "chapter_reward_gold": 1800
+    },
+    {
+      "chapter_no": 19,
+      "total_stages": 20,
+      "chapter_reward_gem": 190,
+      "chapter_reward_gold": 1900
+    },
+    {
+      "chapter_no": 20,
+      "total_stages": 20,
+      "chapter_reward_gem": 200,
+      "chapter_reward_gold": 2000
+    },
+    {
+      "chapter_no": 21,
+      "total_stages": 20,
+      "chapter_reward_gem": 210,
+      "chapter_reward_gold": 2100
+    },
+    {
+      "chapter_no": 22,
+      "total_stages": 20,
+      "chapter_reward_gem": 220,
+      "chapter_reward_gold": 2200
+    },
+    {
+      "chapter_no": 23,
+      "total_stages": 20,
+      "chapter_reward_gem": 230,
+      "chapter_reward_gold": 2300
+    },
+    {
+      "chapter_no": 24,
+      "total_stages": 20,
+      "chapter_reward_gem": 240,
+      "chapter_reward_gold": 2400
+    }
+  ]
+}
