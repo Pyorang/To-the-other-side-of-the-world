@@ -1,0 +1,196 @@
+{
+  "data": [
+    {
+      "ID": "DM_1",
+      "Name": "게임 접속하기",
+      "Description": "게임 접속하기",
+      "TargetValue": 1,
+      "RewardGold": 50,
+      "RelatedVariable": "TotalDayGameAccessed"
+    },
+    {
+      "ID": "DM_2",
+      "Name": "블록 100개 제거",
+      "Description": "블록 300개 제거",
+      "TargetValue": 300,
+      "RewardGold": 50,
+      "RelatedVariable": ""
+    },
+    {
+      "ID": "DM_3",
+      "Name": "10층 돌파",
+      "Description": "10층 돌파",
+      "TargetValue": 10,
+      "RewardGold": 50,
+      "RelatedVariable": ""
+    },
+    {
+      "ID": "DM_4",
+      "Name": "모든 일일퀘스트 클리어",
+      "Description": "모든 일일퀘스트 클리어",
+      "TargetValue": 3,
+      "RewardGold": 100,
+      "RelatedVariable": ""
+    },
+    {
+      "ID": "CM_1",
+      "Name": "신입 광부의 등장",
+      "Description": "출석 총 7일하기",
+      "TargetValue": 7,
+      "RewardGold": 500,
+      "RelatedVariable": "TotalDayGameAccessed"
+    },
+    {
+      "ID": "CM_2",
+      "Name": "두더지 인간",
+      "Description": "출석 총 30일하기",
+      "TargetValue": 30,
+      "RewardGold": 2000,
+      "RelatedVariable": "TotalDayGameAccessed"
+    },
+    {
+      "ID": "CM_3",
+      "Name": "개근상",
+      "Description": "출석 총 365일하기",
+      "TargetValue": 365,
+      "RewardGold": 5000,
+      "RelatedVariable": "TotalDayGameAccessed"
+    },
+    {
+      "ID": "CM_4",
+      "Name": "뉴비를 벗어난",
+      "Description": "한 판에 최고 10층 도달하기",
+      "TargetValue": 10,
+      "RewardGold": 100,
+      "RelatedVariable": "MaxStageReached"
+    },
+    {
+      "ID": "CM_5",
+      "Name": "이제 짬 좀 찼나?",
+      "Description": "한 판에 최고 50층 도달하기",
+      "TargetValue": 50,
+      "RewardGold": 500,
+      "RelatedVariable": "MaxStageReached"
+    },
+    {
+      "ID": "CM_6",
+      "Name": "어둡고 어두운..",
+      "Description": "한 판에 최고 150층 도달하기",
+      "TargetValue": 150,
+      "RewardGold": 1000,
+      "RelatedVariable": "MaxStageReached"
+    },
+    {
+      "ID": "CM_7",
+      "Name": "더 이상 혼자가 아니야!",
+      "Description": "캐릭터 2개 오픈하기",
+      "TargetValue": 2,
+      "RewardGold": 500,
+      "RelatedVariable": "TotalCharactersAcquired"
+    },
+    {
+      "ID": "CM_8",
+      "Name": "결속밴드 결성",
+      "Description": "캐릭터 4개 오픈하기",
+      "TargetValue": 4,
+      "RewardGold": 2000,
+      "RelatedVariable": "TotalCharactersAcquired"
+    },
+    {
+      "ID": "CM_9",
+      "Name": "폭탄 전문가",
+      "Description": "폭탄 블럭 누적 10개 파괴하기",
+      "TargetValue": 10,
+      "RewardGold": 500,
+      "RelatedVariable": "TotalBombBlocksDestroyed"
+    },
+    {
+      "ID": "CM_10",
+      "Name": "이건 좀 짜릿한데!",
+      "Description": "폭탄 블럭 누적 50개 파괴하기",
+      "TargetValue": 50,
+      "RewardGold": 1000,
+      "RelatedVariable": "TotalBombBlocksDestroyed"
+    },
+    {
+      "ID": "CM_11",
+      "Name": "예술은 폭발이다",
+      "Description": "폭탄 블럭 누적 100개 파괴하기",
+      "TargetValue": 100,
+      "RewardGold": 2000,
+      "RelatedVariable": "TotalBombBlocksDestroyed"
+    },
+    {
+      "ID": "CM_12",
+      "Name": "단단묵직",
+      "Description": "강화 블럭 누적 10개 파괴하기",
+      "TargetValue": 10,
+      "RewardGold": 500,
+      "RelatedVariable": "TotalEnhancedBlocksDestroyed"
+    },
+    {
+      "ID": "CM_13",
+      "Name": "팔이 아파..",
+      "Description": "강화 블럭 누적 50개 파괴하기",
+      "TargetValue": 50,
+      "RewardGold": 1000,
+      "RelatedVariable": "TotalEnhancedBlocksDestroyed"
+    },
+    {
+      "ID": "CM_14",
+      "Name": "기가드릴 브레이크",
+      "Description": "강화 블럭 누적 100개 파괴하기",
+      "TargetValue": 100,
+      "RewardGold": 2000,
+      "RelatedVariable": "TotalEnhancedBlocksDestroyed"
+    },
+    {
+      "ID": "CM_15",
+      "Name": "숙련된 광부",
+      "Description": "‘드워프’로 최고 200층 클리어",
+      "TargetValue": 200,
+      "RewardGold": 3000,
+      "RelatedVariable": "dwarf_200_floor_challenge"
+    },
+    {
+      "ID": "CM_16",
+      "Name": "과학이 아니라 마법이라고요!",
+      "Description": "‘대지 마법사’로 특수 블럭을 일반 블록을 변환 ",
+      "TargetValue": 1000,
+      "RewardGold": 3000,
+      "RelatedVariable": "earth_mage_block_conversion"
+    },
+    {
+      "ID": "CM_17",
+      "Name": "아픈건 싫으니까 방어력에 올인하려고 합니다.",
+      "Description": "‘테이머’로 한판에 보호막 8개 이상 소진하기",
+      "TargetValue": 8,
+      "RewardGold": 3000,
+      "RelatedVariable": "tamer_shield_consumption"
+    },
+    {
+      "ID": "CM_18",
+      "Name": "기초적인 임플란트?",
+      "Description": "‘고대 드워프’로 강화 블럭 파괴하기",
+      "TargetValue": 5000,
+      "RewardGold": 3000,
+      "RelatedVariable": "ancient_dwarf_block_destruction"
+    },
+    {
+      "ID": "CM_19",
+      "Name": "게임 그렇게 하는 거 아닌데..",
+      "Description": "10층 이내로 게임 오버",
+      "TargetValue": 5,
+      "RewardGold": 500,
+      "RelatedVariable": "low_stage_game_over"
+    },
+    {
+      "ID": "CM_20",
+      "Name": "잘못 눌렀나?",
+      "Description": "탭 한 번으로 한 층 클리어하기",
+      "TargetValue": 5,
+      "RewardGold": 2000,
+      "RelatedVariable": "one_tap_stage_clear"
+    }
+  ]
+}

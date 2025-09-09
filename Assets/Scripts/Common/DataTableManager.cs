@@ -1,4 +1,5 @@
 using System.IO;
+using System.Linq;
 using UnityEngine;
 
 public class DataTableManager : SingletonBehaviour<DataTableManager>
@@ -10,12 +11,26 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
     }
 
     // NOTE : GameData를 담아올 수 있는 컨테이너들 추가
+    private AchievementModel[] _achievments;
+    private CharacterModel[] _characters;
 
     protected override void Init()
     {
         base.Init();
 
         // NOTE: 컨테이너들에 GameData들 불러오기
+        _achievments = LoadDataFromJson<AchievementModel>("Achievement");
+        _characters = LoadDataFromJson<CharacterModel>("Character");
+    }
+
+    public AchievementModel GetAchievementData(string id)
+    {
+        return _achievments.Where(achievement => achievement.ID == id).FirstOrDefault();
+    }
+
+    public AchievementModel[] GetAllAchievementData()
+    {
+        return _achievments;
     }
 
     private const string DATA_PATH = "DataTable";

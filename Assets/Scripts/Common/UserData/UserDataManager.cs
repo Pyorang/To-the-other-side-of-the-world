@@ -14,6 +14,10 @@ public class UserDataManager : SingletonBehaviour<UserDataManager>
 
         ExistsSavedData = PlayerPrefs.GetInt(nameof(ExistsSavedData)) == 1;
         //NOTE : 데이터 종류를 UserDataList에 추가해야함.
+        UserDataList.Add(new UserSettingsData());
+        UserDataList.Add(new UserAchievementData());
+        UserDataList.Add(new UserCurrencyData());
+        UserDataList.Add(new UserCharacterData());
     }
 
     public void SetDefaultData()
