@@ -1,0 +1,36 @@
+{
+  "data": [
+    {
+      "ID": "CH_1",
+      "Name": "드워프",
+      "SkillName": "",
+      "SkillDescription": "",
+      "IsActive": false,
+      "Price": 0
+    },
+    {
+      "ID": "CH_2",
+      "Name": "대지의 마법사",
+      "SkillName": "원소 변경",
+      "SkillDescription": "현재 층의 모든 블록을 일반 블록으로 바꾼다.\n비활성된 상태에서 20층마다 재충전된다.",
+      "IsActive": true,
+      "Price": 5000
+    },
+    {
+      "ID": "CH_3",
+      "Name": "테이머",
+      "SkillName": "안전 전문가",
+      "SkillDescription": "가스 블록으로 생기는 피해를 1회 방어해준다. 이 효과는 30층 내려갈 때마다 재충전된다.",
+      "IsActive": false,
+      "Price": 30000
+    },
+    {
+      "ID": "CH_4",
+      "Name": "고대 드워프",
+      "SkillName": "선조의 지혜",
+      "SkillDescription": "강화 블록을 2번만에 뿌신다. 폭탄 블록에 의한 피해도 포함된다.",
+      "IsActive": false,
+      "Price": 100000
+    }
+  ]
+}
