@@ -9,6 +9,7 @@ public class BaseUIData
 public class BaseUI : MonoBehaviour
 {
     public Animation AnimOnOpen;
+    public Animator AnimOnOpenAnimator;
 
     private Action _actionOnShow;
     private Action _actionOnClose;
@@ -28,7 +29,7 @@ public class BaseUI : MonoBehaviour
         rectTransform.offsetMax = Vector3.zero;
     }
 
-    public virtual void SetDaata(BaseUIData data)
+    public virtual void SetData(BaseUIData data)
     {
         _actionOnShow = data.ActionOnShow;
         _actionOnClose = data.ActionOnClose;
@@ -38,7 +39,8 @@ public class BaseUI : MonoBehaviour
     {
         if(AnimOnOpen != null)
         {
-            AnimOnOpen.Play();
+            //AnimOnOpen.Play();
+            AnimOnOpenAnimator.Play("Entry");
         }
 
         _actionOnShow?.Invoke();
