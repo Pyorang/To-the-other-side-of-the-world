@@ -9,7 +9,6 @@ public class BaseUIData
 public class BaseUI : MonoBehaviour
 {
     public Animation AnimOnOpen;
-    public Animator AnimOnOpenAnimator;
 
     private Action _actionOnShow;
     private Action _actionOnClose;
@@ -39,8 +38,7 @@ public class BaseUI : MonoBehaviour
     {
         if(AnimOnOpen != null)
         {
-            //AnimOnOpen.Play();
-            AnimOnOpenAnimator.Play("Entry");
+            AnimOnOpen.Play();
         }
 
         _actionOnShow?.Invoke();

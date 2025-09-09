@@ -1318,8 +1318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7de99b6518cc338459eed2ceccd6618d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SettingsUI
-  AnimOnOpen: {fileID: 0}
-  AnimOnOpenAnimator: {fileID: 2034024003324644446}
+  AnimOnOpen: {fileID: 3990772416548397412}
 --- !u!1 &7571033064863277765
 GameObject:
   m_ObjectHideFlags: 0
@@ -1533,7 +1532,7 @@ GameObject:
   - component: {fileID: 6222872290522757491}
   - component: {fileID: 8156788097868489096}
   - component: {fileID: 5716225506177029431}
-  - component: {fileID: 2034024003324644446}
+  - component: {fileID: 3990772416548397412}
   m_Layer: 0
   m_Name: BackgroundShadow
   m_TagString: Untagged
@@ -1599,25 +1598,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.3
---- !u!95 &2034024003324644446
-Animator:
-  serializedVersion: 7
+--- !u!111 &3990772416548397412
+Animation:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9086316804975207259}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a36cb2e1580af5d409e95792c023be5c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
+  serializedVersion: 4
+  m_Animation: {fileID: 7400000, guid: d8f76d010c986f94c93cd3bca1acd853, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
   m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_UpdateMode: 0
+  m_CullingType: 0
