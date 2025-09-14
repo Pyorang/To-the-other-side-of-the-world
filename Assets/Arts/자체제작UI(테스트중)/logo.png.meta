@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1262e20908f02da49a807d8f52eeb77e
+guid: 535a031725d665e43acb3e3d037bbd82
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5245661144753772757
-    second: PINT3_01_0
+      213: -4320295261928297051
+    second: logo_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -72,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 32
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PINT3_01_0
+      name: logo_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 3
-        width: 24
-        height: 24
+        x: 0
+        y: 0
+        width: 500
+        height: 500
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5d81e19b4055cc840800000000000000
-      internalID: 5245661144753772757
+      spriteID: 5ade5f3695a3b04c0800000000000000
+      internalID: -4320295261928297051
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      PINT3_01_0: 5245661144753772757
+      logo_0: -4320295261928297051
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

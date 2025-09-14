@@ -7,7 +7,7 @@ public enum ESceneType
     Lobby,
     InGame
 }
-public class SceneLoader : MonoBehaviour
+public class SceneLoader : SingletonBehaviour<SceneLoader>
 {
     public void LoadScene(ESceneType sceneType)
     {
