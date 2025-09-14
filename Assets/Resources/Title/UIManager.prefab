@@ -403,8 +403,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aac3ded3b71666249864f2fc43fa163d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
-  CanvasTransform: {fileID: 0}
-  ClosedUITransform: {fileID: 0}
+  CanvasTransform: {fileID: 8160914137436330496}
+  ClosedUITransform: {fileID: 2462560051617178922}
 --- !u!1001 &4721598813761833620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -512,6 +512,10 @@ PrefabInstance:
     - target: {fileID: 5528140358557601180, guid: be6f8673ac0e14748bc4b0a1bd19d8e8, type: 3}
       propertyPath: m_Layer
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5528140358557601180, guid: be6f8673ac0e14748bc4b0a1bd19d8e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5822603638068833459, guid: be6f8673ac0e14748bc4b0a1bd19d8e8, type: 3}
       propertyPath: m_Layer

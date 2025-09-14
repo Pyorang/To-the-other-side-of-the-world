@@ -7,7 +7,7 @@ public class LobbyManager : SingletonBehaviour<LobbyManager>
 
     protected override void Init()
     {
-        IsDestroyOnLoad = false;
+        IsDestroyOnLoad = true;
         base.Init();
     }
 
@@ -21,6 +21,7 @@ public class LobbyManager : SingletonBehaviour<LobbyManager>
         }
 
         LobbyUIController.init();
+        UIManager.Instance.CurrencyUI.SetActive(true);
         //AudioManager.Instance.Play(AudioType.BGM, "lobby");
     }
 }
