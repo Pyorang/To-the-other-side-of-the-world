@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class LobbyUIController : MonoBehaviour
 {
-
+    public GameObject SceneLoader;
     public Transform CanvasTransform;
     public void init()
     {
@@ -51,12 +51,12 @@ public class LobbyUIController : MonoBehaviour
         Debug.Log($"{GetType()}::{nameof(OnClickSettingsButton)}");
 
         var uiData = new BaseUIData();
-        //UIManager.Instance.OpenUI<SettingsUI>(uiData);
+        UIManager.Instance.OpenUI<SettingsUI>(uiData);
     }
 
-    public void OnClickShopButton()
+    public void OnClickMissionShopButton()
     {
-        Debug.Log($"{GetType()}::{nameof(OnClickShopButton)}");
+        Debug.Log($"{GetType()}::{nameof(OnClickMissionShopButton)}");
         /*var ui = Resources.Load<BaseUI>("UI/ShopUI");
         var result = Instantiate(ui);
         result.gameObject.SetActive(true);
@@ -64,13 +64,12 @@ public class LobbyUIController : MonoBehaviour
         result.transform.SetSiblingIndex(CanvasTransform.childCount - 1);
         result.Init(CanvasTransform);*/
         var uiData = new BaseUIData();
-        //UIManager.Instance.OpenUI<ShopUI>(uiData);
+        UIManager.Instance.OpenUI<MissionShopUI>(uiData);
     }
 
     public void OnClickStartButton()
     {
-        //Logger.Log($"{GetType()}::{nameof(OnClickStartButton)}");
+        Debug.Log($"{GetType()}::{nameof(OnClickStartButton)}");
         //SceneLoader.Instance.LoadScene(ESceneType.InGame);
-
     }
 }
