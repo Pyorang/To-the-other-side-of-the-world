@@ -523,6 +523,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 173063994132372699, guid: 7fc7d203ff4036843995ce2b5cf8aeda, type: 3}
+      propertyPath: ClosedUITransform
+      value: 
+      objectReference: {fileID: 8196552367436776556}
     - target: {fileID: 950711725705758472, guid: 7fc7d203ff4036843995ce2b5cf8aeda, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -567,6 +571,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6874391563905090318, guid: 7fc7d203ff4036843995ce2b5cf8aeda, type: 3}
+      propertyPath: m_text
+      value: 111111+
+      objectReference: {fileID: 0}
+    - target: {fileID: 6874391563905090318, guid: 7fc7d203ff4036843995ce2b5cf8aeda, type: 3}
+      propertyPath: m_margin.x
+      value: 36.468117
+      objectReference: {fileID: 0}
+    - target: {fileID: 6874391563905090318, guid: 7fc7d203ff4036843995ce2b5cf8aeda, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7589837628295183109, guid: 7fc7d203ff4036843995ce2b5cf8aeda, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -35
+      objectReference: {fileID: 0}
     - target: {fileID: 9166767668283915872, guid: 7fc7d203ff4036843995ce2b5cf8aeda, type: 3}
       propertyPath: m_Name
       value: UIManager
@@ -576,6 +596,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fc7d203ff4036843995ce2b5cf8aeda, type: 3}
+--- !u!224 &8196552367436776556 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8160914137436330496, guid: 7fc7d203ff4036843995ce2b5cf8aeda, type: 3}
+  m_PrefabInstance: {fileID: 8196552367436776555}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8754205910942966539
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -587,6 +612,10 @@ PrefabInstance:
     - target: {fileID: 1121099734690058970, guid: 9bf3430922b8b49478b9d192460dbc35, type: 3}
       propertyPath: m_Name
       value: Title
+      objectReference: {fileID: 0}
+    - target: {fileID: 2780522893302319589, guid: 9bf3430922b8b49478b9d192460dbc35, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4894926046919401219, guid: 9bf3430922b8b49478b9d192460dbc35, type: 3}
       propertyPath: m_LocalPosition.x
