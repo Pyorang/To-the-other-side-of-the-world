@@ -2,16 +2,15 @@ using UnityEngine;
 
 public class LobbyUIController : MonoBehaviour
 {
-    public GameObject SceneLoader;
     public Transform CanvasTransform;
     public void init()
     {
-        //UIManager.Instance.CurrencyUI.SetActive(true);
+        UIManager.Instance.CurrencyUI.SetActive(true);
     }
 
     private void Update()
     {
-        //HandleInput();
+        HandleInput();
     }
 
     private void HandleInput()
@@ -20,21 +19,21 @@ public class LobbyUIController : MonoBehaviour
         {
             //AudioManager.Instance.Play(AudioType.SFX, "ui_button_click");
 
-        /*    var frontUI = UIManager.Instance.GetFrontUI();
+            var frontUI = UIManager.Instance.GetFrontUI();
             if (frontUI != null)
             {
                 frontUI.Close();
             }
             else
             {
-                ShowQuitConfirmUI();
-            }*/
+                //ShowQuitConfirmUI();
+            }
         }
     }
 
-    private void ShowQuitConfirmUI()
+    /*private void ShowQuitConfirmUI()
     {
-        /*var data = new ConfirmUIData()
+        var data = new ConfirmUIData()
         {
             ConfirmType = EConfirmType.OK_CANCEL,
             TitleText = "Quit",
@@ -43,8 +42,8 @@ public class LobbyUIController : MonoBehaviour
             CancleButtonText = "Cancle",
             ActionOnClickOKButton = () => Application.Quit()
         };
-        UIManager.Instance.OpenUI<ConfirmUI>(data);*/
-    }
+        UIManager.Instance.OpenUI<ConfirmUI>(data);
+    }*/
 
     public void OnClickSettingsButton()
     {
@@ -57,12 +56,7 @@ public class LobbyUIController : MonoBehaviour
     public void OnClickMissionShopButton()
     {
         Debug.Log($"{GetType()}::{nameof(OnClickMissionShopButton)}");
-        /*var ui = Resources.Load<BaseUI>("UI/ShopUI");
-        var result = Instantiate(ui);
-        result.gameObject.SetActive(true);
-        result.transform.SetParent(CanvasTransform);
-        result.transform.SetSiblingIndex(CanvasTransform.childCount - 1);
-        result.Init(CanvasTransform);*/
+
         var uiData = new BaseUIData();
         UIManager.Instance.OpenUI<MissionShopUI>(uiData);
     }
@@ -70,6 +64,6 @@ public class LobbyUIController : MonoBehaviour
     public void OnClickStartButton()
     {
         Debug.Log($"{GetType()}::{nameof(OnClickStartButton)}");
-        //SceneLoader.Instance.LoadScene(ESceneType.InGame);
+        SceneLoader.Instance.LoadScene(ESceneType.InGame);
     }
 }
