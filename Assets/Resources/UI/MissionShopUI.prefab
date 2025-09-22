@@ -2693,6 +2693,7 @@ GameObject:
   - component: {fileID: 3325364041937551101}
   - component: {fileID: 5152699668746158853}
   - component: {fileID: 3429543464112458314}
+  - component: {fileID: 7419681336700664053}
   m_Layer: 5
   m_Name: BackgroundShadow
   m_TagString: Untagged
@@ -2773,14 +2774,36 @@ Animation:
   m_GameObject: {fileID: 2937988245719667823}
   m_Enabled: 1
   serializedVersion: 4
-  m_Animation: {fileID: 7400000, guid: d8f76d010c986f94c93cd3bca1acd853, type: 2}
+  m_Animation: {fileID: 7400000, guid: 8ff381c5d9c3ab749b4b158c6ededf6d, type: 2}
   m_Animations:
-  - {fileID: 7400000, guid: d8f76d010c986f94c93cd3bca1acd853, type: 2}
+  - {fileID: 7400000, guid: 8ff381c5d9c3ab749b4b158c6ededf6d, type: 2}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_UpdateMode: 0
   m_CullingType: 0
+--- !u!95 &7419681336700664053
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2937988245719667823}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d8f06bad209da2141b07577b65e8e187, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3008941186154207644
 GameObject:
   m_ObjectHideFlags: 0

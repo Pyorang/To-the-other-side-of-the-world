@@ -38,7 +38,6 @@ public class BaseUI : MonoBehaviour
     {
         if (AnimOnOpen != null)
         {
-            Debug.Log("Animation is activated");
             AnimOnOpen.Play();
         }
         _actionOnShow?.Invoke();
