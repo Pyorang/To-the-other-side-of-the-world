@@ -22,6 +22,6 @@ public class LobbyManager : SingletonBehaviour<LobbyManager>
 
         LobbyUIController.init();
         UIManager.Instance.CurrencyUI.SetActive(true);
-        //AudioManager.Instance.Play(AudioType.BGM, "lobby");
+        AudioManager.Instance.Play(AudioType.BGM, "lobby");
     }
 }

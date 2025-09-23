@@ -55,6 +55,8 @@ public class AudioManager : SingletonBehaviour<AudioManager>
 
     public void SetPitch(AudioType audioType, float pitch) => _audioSources[(int)audioType].pitch = pitch;
 
+    public float GetVolume(AudioType audioType) => _audioSources[(int)audioType].volume;
+
     public void SetVolume(AudioType audioType, float volume) => _audioSources[(int)audioType].volume = volume;
 
     public void Pause(AudioType audioType) => _audioSources[(int)audioType].Pause();
@@ -87,10 +89,8 @@ public class AudioManager : SingletonBehaviour<AudioManager>
     {
         var userSettingsData = UserDataManager.Instance.GetUserData<UserSettingsData>();
         Debug.Assert(userSettingsData != null);
-        if (userSettingsData.IsSoundEnable == false)
-        {
-            Mute();
-        }
+        SetVolume(AudioType.BGM, userSettingsData.BGMvalue);
+        SetVolume(AudioType.SFX, userSettingsData.SFXvalue);
     }
 
     private const string AUDIO_PATH = "Audio";
