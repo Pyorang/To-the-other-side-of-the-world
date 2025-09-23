@@ -36,7 +36,6 @@ public class MissionShopUI : BaseUI
         // 상점에 필요한 캐릭터 데이터 불러오기
         //_characterModel = DataTableManager.Instance.GetAllChracterData();
 
-
     }
     public void OnClickShowDailyMissionUI()
     {

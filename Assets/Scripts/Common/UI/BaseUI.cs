@@ -36,11 +36,10 @@ public class BaseUI : MonoBehaviour
 
     public virtual void Show()
     {
-        if(AnimOnOpen != null)
+        if (AnimOnOpen != null)
         {
             AnimOnOpen.Play();
         }
-
         _actionOnShow?.Invoke();
         _actionOnShow = null;
     }
