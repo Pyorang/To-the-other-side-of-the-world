@@ -3,10 +3,13 @@ using UnityEngine;
 
 public class UserSettingsData : IUserData
 {
-    public bool IsSoundEnable { get; set; }
+    public float BGMvalue { get; set; }
+    public float SFXvalue { get; set; }
+
     public void SetDefaultData()
     {
-        IsSoundEnable = true;
+        BGMvalue = 0.5f;
+        SFXvalue = 0.5f;
     }
 
     public bool LoadData()
@@ -15,7 +18,8 @@ public class UserSettingsData : IUserData
 
         try
         {
-            IsSoundEnable = (PlayerPrefs.GetInt(nameof(IsSoundEnable)) == 1) ? true : false;
+            BGMvalue = (PlayerPrefs.GetFloat(nameof(BGMvalue)));
+            SFXvalue = (PlayerPrefs.GetFloat(nameof(SFXvalue)));
 
             result = true;
         }
@@ -31,7 +35,8 @@ public class UserSettingsData : IUserData
         bool result = false;
         try
         {
-            PlayerPrefs.SetInt(nameof(IsSoundEnable), IsSoundEnable ? 1 : 0);
+            PlayerPrefs.SetFloat(nameof(BGMvalue), AudioManager.Instance.GetVolume(AudioType.BGM));
+            PlayerPrefs.SetFloat(nameof(SFXvalue), AudioManager.Instance.GetVolume(AudioType.SFX));
             PlayerPrefs.Save();
 
             result = true;
