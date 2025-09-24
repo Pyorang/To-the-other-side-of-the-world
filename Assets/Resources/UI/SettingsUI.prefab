@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 4789854331707492265}
   - component: {fileID: 1125759950958446937}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Dimed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1561,7 +1561,7 @@ GameObject:
   - component: {fileID: 3990772416548397412}
   - component: {fileID: 757330642722111227}
   m_Layer: 5
-  m_Name: BackgroundShadow
+  m_Name: Background(Shadow)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

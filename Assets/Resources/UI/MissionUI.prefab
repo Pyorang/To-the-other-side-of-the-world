@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 672390595973254747}
   - component: {fileID: 1481597205259167932}
   m_Layer: 5
-  m_Name: MissionDetailText (1)
+  m_Name: MissionDetailText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 5853186308933942100}
   - component: {fileID: 1877635928073972767}
   m_Layer: 5
-  m_Name: MissionDetailText
+  m_Name: MissionDetailText(Shadow)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -405,7 +405,7 @@ GameObject:
   - component: {fileID: 7440564611373066759}
   - component: {fileID: 5167105925749796355}
   m_Layer: 5
-  m_Name: MissionImage
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -485,7 +485,7 @@ GameObject:
   - component: {fileID: 9011091752967095299}
   - component: {fileID: 4688337659000229491}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: RewardAmount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -659,7 +659,7 @@ GameObject:
   - component: {fileID: 9218997249604922222}
   - component: {fileID: 4302043040613630719}
   m_Layer: 5
-  m_Name: MissionNameText (1)
+  m_Name: MissionNameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -795,7 +795,7 @@ GameObject:
   - component: {fileID: 846011189779298976}
   - component: {fileID: 7154832106326084232}
   m_Layer: 5
-  m_Name: MissionNameText
+  m_Name: MissionNameText(Shadow)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
