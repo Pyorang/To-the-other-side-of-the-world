@@ -406,6 +406,7 @@ GameObject:
   - component: {fileID: 2782080522307308470}
   - component: {fileID: 5018296635158132233}
   - component: {fileID: 7294312887453145414}
+  - component: {fileID: 4261256209962070247}
   m_Layer: 5
   m_Name: BuyGoldBtn4
   m_TagString: Untagged
@@ -514,7 +515,35 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5018296635158132233}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4261256209962070247}
+        m_TargetAssemblyTypeName: BuyBtnOfGold, Assembly-CSharp
+        m_MethodName: OnClickBuyBtnOfGold
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4261256209962070247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690609575044225115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 284bd59eda3c651438e67bd383310551, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuyBtnOfGold
+  goldAmount: 3
+  goldAmountImage: {fileID: 5018296635158132233}
+  goldAmountText: {fileID: 6850081324359568110}
+  btnNum: 1500
 --- !u!1 &1839845571679527916
 GameObject:
   m_ObjectHideFlags: 0
@@ -1138,7 +1167,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6892665002287012933
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1781,7 +1810,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4751737715704109380
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1815,6 +1844,7 @@ GameObject:
   - component: {fileID: 232503220327162662}
   - component: {fileID: 6408524427033704400}
   - component: {fileID: 7208992854708835962}
+  - component: {fileID: 8537948080797372033}
   m_Layer: 5
   m_Name: BuyGoldBtn
   m_TagString: Untagged
@@ -1923,7 +1953,35 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6408524427033704400}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8537948080797372033}
+        m_TargetAssemblyTypeName: BuyBtnOfGold, Assembly-CSharp
+        m_MethodName: OnClickBuyBtnOfGold
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8537948080797372033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4376856913688845025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 284bd59eda3c651438e67bd383310551, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuyBtnOfGold
+  goldAmount: 100
+  goldAmountImage: {fileID: 6408524427033704400}
+  goldAmountText: {fileID: 5309872375556817121}
+  btnNum: 0
 --- !u!1 &4463543756645367948
 GameObject:
   m_ObjectHideFlags: 0
@@ -2287,6 +2345,7 @@ GameObject:
   - component: {fileID: 5693907813565018087}
   - component: {fileID: 4180210423992133900}
   - component: {fileID: 5266138182130149396}
+  - component: {fileID: 7909811580383679302}
   m_Layer: 5
   m_Name: BuyGoldBtn3
   m_TagString: Untagged
@@ -2395,7 +2454,35 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4180210423992133900}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7909811580383679302}
+        m_TargetAssemblyTypeName: BuyBtnOfGold, Assembly-CSharp
+        m_MethodName: OnClickBuyBtnOfGold
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7909811580383679302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4863144289799506347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 284bd59eda3c651438e67bd383310551, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuyBtnOfGold
+  goldAmount: 1000
+  goldAmountImage: {fileID: 4180210423992133900}
+  goldAmountText: {fileID: 683485831943975338}
+  btnNum: 2
 --- !u!1 &5176009388522590351
 GameObject:
   m_ObjectHideFlags: 0
@@ -2976,7 +3063,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &978287082437072833
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3014,6 +3101,7 @@ GameObject:
   - component: {fileID: 144670745189947305}
   - component: {fileID: 2963377627318720327}
   - component: {fileID: 6226823233746732678}
+  - component: {fileID: 2070190379251832351}
   m_Layer: 5
   m_Name: BuyGoldBtn2
   m_TagString: Untagged
@@ -3122,7 +3210,35 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2963377627318720327}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2070190379251832351}
+        m_TargetAssemblyTypeName: BuyBtnOfGold, Assembly-CSharp
+        m_MethodName: OnClickBuyBtnOfGold
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2070190379251832351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7911536598438081930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 284bd59eda3c651438e67bd383310551, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuyBtnOfGold
+  goldAmount: 500
+  goldAmountImage: {fileID: 2963377627318720327}
+  goldAmountText: {fileID: 4973965701860224872}
+  btnNum: 1
 --- !u!1 &7916172617338895990
 GameObject:
   m_ObjectHideFlags: 0

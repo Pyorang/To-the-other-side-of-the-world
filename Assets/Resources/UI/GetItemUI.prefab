@@ -122,7 +122,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 45070673995939682}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5855076276991978774}
+        m_TargetAssemblyTypeName: GetItemUI, Assembly-CSharp
+        m_MethodName: OnClickCloseButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6096923251091052096
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,6 +356,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8890740729698704367}
   - component: {fileID: 4738542706039181352}
+  - component: {fileID: 5855076276991978774}
   m_Layer: 5
   m_Name: GetItemUI
   m_TagString: Untagged
@@ -379,6 +392,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6324801446276001097}
   m_CullTransparentMesh: 1
+--- !u!114 &5855076276991978774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6324801446276001097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 705a6dc4977244b4f98890bd2b587be4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GetItemUI
+  AnimOnOpen: {fileID: 0}
+  ItemImage: {fileID: 8497074009573539778}
 --- !u!1 &8602505429861021313
 GameObject:
   m_ObjectHideFlags: 0

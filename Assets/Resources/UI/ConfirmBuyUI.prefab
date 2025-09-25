@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 798008472482167241}
+  - component: {fileID: 5854013918006497558}
   m_Layer: 5
   m_Name: ConfirmBuyUI
   m_TagString: Untagged
@@ -37,6 +38,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5854013918006497558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432118468734779174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44a6c6f35d653734fbdda100ee9a2258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ConfirmBuyUI
+  AnimOnOpen: {fileID: 0}
+  ConfirmText: {fileID: 1469704022372947493}
+  _confirmBuyUI: {fileID: 9171955035859212866}
+  _failBuyUI: {fileID: 5601418985136620380}
 --- !u!1 &656957001152744491
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,7 +203,7 @@ GameObject:
   - component: {fileID: 7461570867267957712}
   - component: {fileID: 8896340948477141136}
   m_Layer: 5
-  m_Name: ExitShopUIButton
+  m_Name: ExitConfirmUIButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -204,11 +221,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2737219171286030905}
+  m_Father: {fileID: 3815632272920242247}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 395, y: 295}
+  m_AnchoredPosition: {x: -15, y: 5}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &948271121367059264
@@ -293,10 +310,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
-        m_MethodName: Close
-        m_Mode: 6
+      - m_Target: {fileID: 5854013918006497558}
+        m_TargetAssemblyTypeName: ConfirmBuyUI, Assembly-CSharp
+        m_MethodName: OnClickCloseButton
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -476,6 +493,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4087442844201134207}
+  - {fileID: 4752909084095819268}
   m_Father: {fileID: 798008472482167241}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -952,7 +970,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4500722971546032571}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5854013918006497558}
+        m_TargetAssemblyTypeName: ConfirmBuyUI, Assembly-CSharp
+        m_MethodName: OnClickBuyBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3892760876923011021
 GameObject:
   m_ObjectHideFlags: 0
@@ -1441,7 +1471,6 @@ RectTransform:
   m_Children:
   - {fileID: 6744573332016079891}
   - {fileID: 8348174187416674219}
-  - {fileID: 4752909084095819268}
   - {fileID: 1090623653898773627}
   m_Father: {fileID: 4087442844201134207}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
