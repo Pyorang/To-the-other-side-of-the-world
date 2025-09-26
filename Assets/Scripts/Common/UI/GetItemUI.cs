@@ -10,8 +10,12 @@ public class GetItemUI : BaseUI
         base.SetData(data);
 
         ConfirmBuyUIData confirmBuyUIData = data as ConfirmBuyUIData;
-        BuyBtnOfGoldData buyBtnOfGoldData = confirmBuyUIData.BuyBtnOfGoldData;
+        /*BuyBtnOfGoldData buyBtnOfGoldData = confirmBuyUIData.BuyBtnOfGoldData;
         if (buyBtnOfGoldData != null && buyBtnOfGoldData.GoldAmountImage != null)
-            ItemImage.sprite = buyBtnOfGoldData.GoldAmountImage.sprite;
+            ItemImage.sprite = buyBtnOfGoldData.GoldAmountImage.sprite;*/
+        if (confirmBuyUIData != null && confirmBuyUIData.ItemImage != null)
+        {
+            ItemImage.sprite = confirmBuyUIData.ItemImage.sprite;
+        }
     }
 }

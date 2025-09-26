@@ -20,8 +20,8 @@ public class CharacterModel
 {
     public string ID;
     public string Name;
-    public int SkillName;
-    public int SkillDiscription;
+    public string SkillName;
+    public string SkillDescription;
     public bool IsActive;
     public int Price;
 }

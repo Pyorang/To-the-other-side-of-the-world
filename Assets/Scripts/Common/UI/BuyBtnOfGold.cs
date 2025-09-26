@@ -32,12 +32,15 @@ public class BuyBtnOfGold : MonoBehaviour
     {
         ConfirmBuyUIData data = new ConfirmBuyUIData()
         {
-            BuyBtnOfGoldData = new BuyBtnOfGoldData()
+            /*BuyBtnOfGoldData = new BuyBtnOfGoldData()
             {
                 GoldAmount = goldAmount,
                 GoldAmountText = goldAmountText.text,
                 GoldAmountImage = goldAmountImage
-            }
+            }*/
+            ItemImage = goldAmountImage,
+            ItemPrice = goldAmount,
+            IsGold = true
         };
         UIManager.Instance.OpenUI<ConfirmBuyUI>(data);
     }

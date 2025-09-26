@@ -33,6 +33,11 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
         return _achievments;
     }
 
+    public CharacterModel[] GetAllCharacterModelData()
+    {
+        return _characters;
+    }
+
     private const string DATA_PATH = "DataTable";
     private T[] LoadDataFromJson<T>(string filename)
     {
