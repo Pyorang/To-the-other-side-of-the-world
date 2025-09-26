@@ -1293,7 +1293,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "XXX\uB97C\n \uAD6C\uB9E4\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
+  m_text: "<color=red>5000</color> \uACE8\uB4DC\uB85C\n\uB300\uC9C0\uC758 \uB9C8\uBC95\uC0AC
+    \uCE90\uB9AD\uD130\uB97C \uAD6C\uB9E4\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bd7c4b1ff6cf67c4e801fdc9bc2ab6fb, type: 2}
   m_sharedMaterial: {fileID: -6123288259687879939, guid: bd7c4b1ff6cf67c4e801fdc9bc2ab6fb, type: 2}
@@ -1320,8 +1321,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70
-  m_fontSizeBase: 70
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

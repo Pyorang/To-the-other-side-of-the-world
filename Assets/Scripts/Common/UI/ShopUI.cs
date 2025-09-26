@@ -109,7 +109,7 @@ public class ShopUI : BaseUI
         pageText.text = currentPageIndex.ToString();
     }
 
-    private void UpdatePageData(int currentPageIndex)
+    public void UpdatePageData(int currentPageIndex)
     {
         
         int index = currentPageIndex * 2;
@@ -129,6 +129,9 @@ public class ShopUI : BaseUI
         leftSkillDetail.text = _characterModel[index].SkillDescription;
         rightSkillDetail.text = _characterModel[index + 1].SkillDescription;
 
+        leftCharacterBuyBtn.GetComponent<BuyBtnOfChar>().Char_Id = _characterModel[index].ID;
+        rightCharacterBuyBtn.GetComponent<BuyBtnOfChar>().Char_Id = _characterModel[index+1].ID;
+
         // 구매 버튼에 들어갈 색상, 텍스트 설정
         Color color = new Color(1, 1, 1, 0.3f);
         string leftText = "";
@@ -145,10 +148,14 @@ public class ShopUI : BaseUI
         // 보유중, 구매 완료 등의 표시를 하기 위한 코드
 
 
-        if (leftText == "선택중" || leftText == "보유중")
+        if (leftText == "선택중")
         {
             leftCharacterBuyBtn.interactable = false;
             leftCharacterBuyBtn.image.color = color;
+            leftSoldOutMarker.SetActive(true);
+        }
+        else if (leftText == "보유중")
+        {
             leftSoldOutMarker.SetActive(true);
         }
         else
@@ -159,10 +166,14 @@ public class ShopUI : BaseUI
         }
         leftCharacterPrice.text = leftText;
 
-        if (rightText == "선택중" || rightText == "보유중")
+        if (rightText == "선택중")
         {
             rightCharacterBuyBtn.interactable = false;
             rightCharacterBuyBtn.image.color = color;
+            rightSoldOutMarker.SetActive(true);
+        }
+        else if (rightText == "보유중")
+        {
             rightSoldOutMarker.SetActive(true);
         }
         else

@@ -33,6 +33,10 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
         return _achievments;
     }
 
+    public CharacterModel GetCharacterData(string id)
+    {
+        return _characters.Where(character => character.ID == id).FirstOrDefault();
+    }
     public CharacterModel[] GetAllCharacterModelData()
     {
         return _characters;

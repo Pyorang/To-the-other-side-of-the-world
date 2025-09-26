@@ -24,7 +24,7 @@ public class BuyBtnOfGold : MonoBehaviour
     
     public void UpdateData()
     {
-        // 각 버튼 마다 구매할 골드 양이 변경되면 ui에 업데이트 하는 함수
+        // 각 버튼 마다 구매할 골드 양을 개발자가 변경하면 ui에 업데이트 하는 함수
         // GoldAmount = GameData.Instance.GetBuyBtnOfGoldNum(BtnNum);
 
     }
@@ -32,15 +32,12 @@ public class BuyBtnOfGold : MonoBehaviour
     {
         ConfirmBuyUIData data = new ConfirmBuyUIData()
         {
-            /*BuyBtnOfGoldData = new BuyBtnOfGoldData()
+            BuyBtnOfGoldData = new BuyBtnOfGoldData()
             {
                 GoldAmount = goldAmount,
                 GoldAmountText = goldAmountText.text,
                 GoldAmountImage = goldAmountImage
-            }*/
-            ItemImage = goldAmountImage,
-            ItemPrice = goldAmount,
-            IsGold = true
+            }
         };
         UIManager.Instance.OpenUI<ConfirmBuyUI>(data);
     }

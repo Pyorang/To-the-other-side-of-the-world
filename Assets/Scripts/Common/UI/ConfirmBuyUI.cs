@@ -5,13 +5,10 @@ using UnityEngine.UI;
 public class ConfirmBuyUIData : BaseUIData
 {
     // 원래는 GameData에서 골드 정보를 불러오는게 맞는데, 임시로 BuyBtnOfGOldData에서 불러옴
-    //public BuyBtnOfGoldData BuyBtnOfGoldData { get; set; }
 
-    public Image ItemImage;
-    public int ItemPrice;
+    public BuyBtnOfGoldData BuyBtnOfGoldData { get; set; }
 
-
-    public bool IsGold = false;
+    public BuyBtnOfCharData BuyBtnOfCharData { get; set; }
 
 }
 
@@ -24,6 +21,8 @@ public class ConfirmBuyUI : BaseUI
     [SerializeField] private GameObject _failBuyUI;
 
     private ConfirmBuyUIData ConfirmBuyUIData;
+    private BuyBtnOfGoldData BuyBtnOfGoldData = null;
+    private BuyBtnOfCharData BuyBtnOfCharData = null;
     public override void SetData(BaseUIData data)
     {
         base.SetData(data);
@@ -32,32 +31,36 @@ public class ConfirmBuyUI : BaseUI
         _failBuyUI.SetActive(false);
 
         ConfirmBuyUIData = data as ConfirmBuyUIData;
-        /*BuyBtnOfGoldData buyBtnOfGoldData = ConfirmBuyUIData.BuyBtnOfGoldData;
-        
-        ConfirmText.text = buyBtnOfGoldData.GoldAmountText + "를 구매하시겠습니까?";*/
 
-        if (ConfirmBuyUIData.IsGold) ConfirmText.text = ConfirmBuyUIData.ItemPrice.ToString() + " 골드를 구매하시겠습니까?";
-        else ConfirmText.text = ConfirmBuyUIData.ItemPrice.ToString() + " 캐릭터를 구매하시겠습니까?";
-
+        if (ConfirmBuyUIData.BuyBtnOfGoldData != null)
+        {
+            BuyBtnOfGoldData = ConfirmBuyUIData.BuyBtnOfGoldData;
+            ConfirmText.text = BuyBtnOfGoldData.GoldAmountText + " 골드를 구매하시겠습니까?";
+        }
+        else if (ConfirmBuyUIData.BuyBtnOfCharData != null)
+        {
+            BuyBtnOfCharData = ConfirmBuyUIData.BuyBtnOfCharData;
+            ConfirmText.text = $"<color=red>{BuyBtnOfCharData.CharacterModel.Price.ToString()}</color>" + " 골드로 \n"
+                + BuyBtnOfCharData.CharacterModel.Name + " 캐릭터를 구매하시겠습니까?";
+        }
 
     }
 
     public void OnClickBuyBtn()
     {
-        /*ConfirmBuyUIData data = new ConfirmBuyUIData()
-        {
-            BuyBtnOfGoldData = ConfirmBuyUIData.BuyBtnOfGoldData
-
-        };*/
 
         ConfirmBuyUIData data = ConfirmBuyUIData;
 
-        if (ConfirmBuyUIData.IsGold)
+        if (ConfirmBuyUIData.BuyBtnOfGoldData != null)
         {
             if (ConfirmPayment())
             {
                 UIManager.Instance.OpenUI<GetItemUI>(data);
+
+                ////////////////////////////////
                 // 골드 획득 함수 실행
+                ////////////////////////////////
+                
                 OnClickCloseButton();
             }
             else
@@ -70,10 +73,17 @@ public class ConfirmBuyUI : BaseUI
         {
             if (ConfirmUserCurrencyData())
             {
-                // 구매 성공이므로, 골드 감소 ( 함수 작성 필요 )
+                // 구매 성공이므로, 캐릭터 보유 정보 변경
+                UserCharacterData userCharacterData = new UserCharacterData();
+                userCharacterData.AddAcuiredCharacter(ConfirmBuyUIData.BuyBtnOfCharData.CharacterModel.ID);
+                
+                /////////////////////////////////////////////
+                // 구매 성공이므로, 골드 감소 함수 실행
+                /////////////////////////////////////////////
+
                 UIManager.Instance.OpenUI<GetItemUI>(data);
-                // 캐릭터 구매 함수 실행
                 OnClickCloseButton();
+
             }
             else
             {
@@ -115,6 +125,6 @@ public class ConfirmBuyUI : BaseUI
             return false;
         }*/
         //return UserCurrencyData.Gold >= ConfirmBuyUIData.BuyBtnOfGoldData.GoldAmount;
-        return UserCurrencyData.Gold >= ConfirmBuyUIData.ItemPrice;
+        return UserCurrencyData.Gold >= BuyBtnOfCharData.CharacterModel.Price;
     }
 }

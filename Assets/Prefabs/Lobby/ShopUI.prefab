@@ -1272,6 +1272,7 @@ GameObject:
   - component: {fileID: 1212425910216980477}
   - component: {fileID: 5098849602845798653}
   - component: {fileID: 7359921985251237933}
+  - component: {fileID: 780050413990183037}
   m_Layer: 5
   m_Name: BuyCharacterButton
   m_TagString: Untagged
@@ -1380,7 +1381,33 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5098849602845798653}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 780050413990183037}
+        m_TargetAssemblyTypeName: BuyBtnOfChar, Assembly-CSharp
+        m_MethodName: OnClickBuyBtnOfChar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &780050413990183037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3040565194625403217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86fed8935420cd0478fd8f4620d88622, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuyBtnOfChar
+  Char_Id: 
+  BtnType: {fileID: 6281777166104030582}
 --- !u!1 &3058255821504012747
 GameObject:
   m_ObjectHideFlags: 0
@@ -4377,6 +4404,7 @@ GameObject:
   - component: {fileID: 8000071757290112029}
   - component: {fileID: 5082847267557786676}
   - component: {fileID: 2820882424870596749}
+  - component: {fileID: 6489693794203986312}
   m_Layer: 5
   m_Name: BuyCharacterButton
   m_TagString: Untagged
@@ -4485,7 +4513,33 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5082847267557786676}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6489693794203986312}
+        m_TargetAssemblyTypeName: BuyBtnOfChar, Assembly-CSharp
+        m_MethodName: OnClickBuyBtnOfChar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6489693794203986312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8590925697679938312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86fed8935420cd0478fd8f4620d88622, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuyBtnOfChar
+  Char_Id: 
+  BtnType: {fileID: 7485693403740802962}
 --- !u!1 &8711920296089769842
 GameObject:
   m_ObjectHideFlags: 0
