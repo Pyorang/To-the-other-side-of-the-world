@@ -656,7 +656,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 900, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4406141236559679710
 MonoBehaviour:
@@ -678,7 +678,6 @@ MonoBehaviour:
   - {fileID: 1481597205259167932}
   RewardAmountText: {fileID: 4688337659000229491}
   RewardButton: {fileID: 8760686620813957507}
-  TargetValue: 0
 --- !u!1 &7741364193102280576
 GameObject:
   m_ObjectHideFlags: 0
