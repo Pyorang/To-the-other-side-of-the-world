@@ -1,6 +1,7 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
@@ -14,12 +15,12 @@ public class ProgressData
 [Serializable]
 public class UserAchievementSaveData
 {
-    // Dictionary ´ë½Å List¸¦ »ç¿ëÇÕ´Ï´Ù.
+    // Dictionary ëŒ€ì‹  Listë¥¼ ì‚¬ìš©í•©ë‹ˆë‹¤.
     public List<ProgressData> progressList = new List<ProgressData>();
-    // HashSet ´ë½Å List¸¦ »ç¿ëÇÕ´Ï´Ù.
+    // HashSet ëŒ€ì‹  Listë¥¼ ì‚¬ìš©í•©ë‹ˆë‹¤.
     public List<string> clearedAchievementsList = new List<string>();
 
-    // ÀÌ¿Ü¿¡ ÀúÀåÇÏ·Á´Â ¸ğµç º¯¼öµéÀ» ¿©±â¿¡ Ãß°¡ÇÕ´Ï´Ù.
+    // ì´ì™¸ì— ì €ì¥í•˜ë ¤ëŠ” ëª¨ë“  ë³€ìˆ˜ë“¤ì„ ì—¬ê¸°ì— ì¶”ê°€í•©ë‹ˆë‹¤.
     public int TotalDayGameAccessed;
     public int MaxStageReached;
     public int TotalBlocksDestroyed;
@@ -36,13 +37,13 @@ public class UserAchievementSaveData
 
 public class UserAchievementData : IUserData
 {
-    // °¢ µµÀü°úÁ¦ ID¿¡ ´ëÇÑ ÇöÀç ÁøÇàµµ
+    // ê° ë„ì „ê³¼ì œ IDì— ëŒ€í•œ í˜„ì¬ ì§„í–‰ë„
     public Dictionary<string, int> progress = new Dictionary<string, int>();
-    // ÀÌ¹Ì Å¬¸®¾îÇÑ µµÀü°úÁ¦ ID ¸ñ·Ï
+    // ì´ë¯¸ í´ë¦¬ì–´í•œ ë„ì „ê³¼ì œ ID ëª©ë¡
     public HashSet<string> clearedAchievements = new HashSet<string>();
 
 
-    // NOTE : ¾÷Àû ´Ş¼º ¿©ºÎ¸¦ È®ÀÎÇÏ´Â ´©Àû µ¥ÀÌÅÍ
+    // NOTE : ì—…ì  ë‹¬ì„± ì—¬ë¶€ë¥¼ í™•ì¸í•˜ëŠ” ëˆ„ì  ë°ì´í„°
     public int TotalDayGameAccessed { get; set; }
 
     public int MaxStageReached { get; set; }
@@ -64,7 +65,7 @@ public class UserAchievementData : IUserData
 
     public void SetDefaultData()
     {
-        TotalDayGameAccessed = 1;
+        TotalDayGameAccessed = 0;
         MaxStageReached = 0;
         TotalBlocksDestroyed = 0;
         TotalBombBlocksDestroyed = 0;
@@ -81,38 +82,40 @@ public class UserAchievementData : IUserData
         {
             progress.Add(achievement.ID, 0);
         }
+
+        SetProgress();
     }
 
     public bool SaveData()
     {
         try
         {
-            // 1. ÀúÀå¿ë Å¬·¡½ºÀÇ ÀÎ½ºÅÏ½º¸¦ »ı¼ºÇÕ´Ï´Ù.
+            // 1. ì €ì¥ìš© í´ë˜ìŠ¤ì˜ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ìƒì„±í•©ë‹ˆë‹¤.
             UserAchievementSaveData saveData = new UserAchievementSaveData();
 
-            // 2. ÇöÀç µ¥ÀÌÅÍ¸¦ ÀúÀå¿ë Å¬·¡½º·Î º¯È¯ÇÕ´Ï´Ù.
+            // 2. í˜„ì¬ ë°ì´í„°ë¥¼ ì €ì¥ìš© í´ë˜ìŠ¤ë¡œ ë³€í™˜í•©ë‹ˆë‹¤.
             foreach (var kvp in progress)
             {
                 saveData.progressList.Add(new ProgressData { id = kvp.Key, value = kvp.Value });
             }
             saveData.clearedAchievementsList.AddRange(clearedAchievements);
 
-            // ´Ù¸¥ ÇÊµåµéµµ ¿Å°Ü ´ã½À´Ï´Ù.
+            // ë‹¤ë¥¸ í•„ë“œë“¤ë„ ì˜®ê²¨ ë‹´ìŠµë‹ˆë‹¤.
             saveData.TotalDayGameAccessed = this.TotalDayGameAccessed;
             saveData.MaxStageReached = this.MaxStageReached;
             // ...
 
-            // 3. º¯È¯µÈ µ¥ÀÌÅÍ¸¦ JSONÀ¸·Î ÀúÀåÇÕ´Ï´Ù.
+            // 3. ë³€í™˜ëœ ë°ì´í„°ë¥¼ JSONìœ¼ë¡œ ì €ì¥í•©ë‹ˆë‹¤.
             string jsonData = JsonUtility.ToJson(saveData, true);
             string filePath = Path.Combine(Application.persistentDataPath, "userAchievement.json");
             File.WriteAllText(filePath, jsonData);
 
-            Debug.Log($"¾÷Àû µ¥ÀÌÅÍ ÀúÀå ¼º°ø: {filePath}");
+            Debug.Log($"ì—…ì  ë°ì´í„° ì €ì¥ ì„±ê³µ: {filePath}");
             return true;
         }
         catch (System.Exception e)
         {
-            Debug.LogError($"¾÷Àû µ¥ÀÌÅÍ ÀúÀå ½ÇÆĞ: {e.Message}");
+            Debug.LogError($"ì—…ì  ë°ì´í„° ì €ì¥ ì‹¤íŒ¨: {e.Message}");
             return false;
         }
     }
@@ -125,11 +128,11 @@ public class UserAchievementData : IUserData
         {
             try
             {
-                // 1. JSON ÆÄÀÏÀ» ÀĞ¾î ÀúÀå¿ë Å¬·¡½º·Î º¯È¯ÇÕ´Ï´Ù.
+                // 1. JSON íŒŒì¼ì„ ì½ì–´ ì €ì¥ìš© í´ë˜ìŠ¤ë¡œ ë³€í™˜í•©ë‹ˆë‹¤.
                 string jsonData = File.ReadAllText(filePath);
                 UserAchievementSaveData loadedData = JsonUtility.FromJson<UserAchievementSaveData>(jsonData);
 
-                // 2. ÀúÀå¿ë Å¬·¡½ºÀÇ µ¥ÀÌÅÍ¸¦ ¿ø·¡ÀÇ Dictionary¿Í HashSetÀ¸·Î º¹¿øÇÕ´Ï´Ù.
+                // 2. ì €ì¥ìš© í´ë˜ìŠ¤ì˜ ë°ì´í„°ë¥¼ ì›ë˜ì˜ Dictionaryì™€ HashSetìœ¼ë¡œ ë³µì›í•©ë‹ˆë‹¤.
                 progress.Clear();
                 foreach (var item in loadedData.progressList)
                 {
@@ -142,24 +145,24 @@ public class UserAchievementData : IUserData
                     clearedAchievements.Add(item);
                 }
 
-                // ´Ù¸¥ ÇÊµåµéµµ º¹¿øÇÕ´Ï´Ù.
+                // ë‹¤ë¥¸ í•„ë“œë“¤ë„ ë³µì›í•©ë‹ˆë‹¤.
                 this.TotalDayGameAccessed = loadedData.TotalDayGameAccessed;
                 this.MaxStageReached = loadedData.MaxStageReached;
                 // ...
 
-                Debug.Log($"¾÷Àû µ¥ÀÌÅÍ ºÒ·¯¿À±â ¼º°ø: {filePath}");
+                Debug.Log($"ì—…ì  ë°ì´í„° ë¶ˆëŸ¬ì˜¤ê¸° ì„±ê³µ: {filePath}");
                 return true;
             }
             catch (System.Exception e)
             {
-                Debug.LogError($"¾÷Àû µ¥ÀÌÅÍ ºÒ·¯¿À±â ½ÇÆĞ: {e.Message}");
+                Debug.LogError($"ì—…ì  ë°ì´í„° ë¶ˆëŸ¬ì˜¤ê¸° ì‹¤íŒ¨: {e.Message}");
                 SetDefaultData();
                 return false;
             }
         }
         else
         {
-            Debug.Log("ÀúÀåµÈ ÆÄÀÏÀÌ ¾ø½À´Ï´Ù. ±âº» µ¥ÀÌÅÍ·Î ½ÃÀÛÇÕ´Ï´Ù.");
+            Debug.Log("ì €ì¥ëœ íŒŒì¼ì´ ì—†ìŠµë‹ˆë‹¤. ê¸°ë³¸ ë°ì´í„°ë¡œ ì‹œì‘í•©ë‹ˆë‹¤.");
             SetDefaultData();
             return false;
         }
@@ -167,17 +170,17 @@ public class UserAchievementData : IUserData
 
     public void IncreaseProgress(string relatedVariable, int amount)
     {
-        // 1. ReflectionÀ» »ç¿ëÇÏ¿© relatedVariable ÀÌ¸§°ú µ¿ÀÏÇÑ ¸â¹ö º¯¼ö¸¦ Ã£½À´Ï´Ù.
+        // 1. Reflectionì„ ì‚¬ìš©í•˜ì—¬ relatedVariable ì´ë¦„ê³¼ ë™ì¼í•œ ë©¤ë²„ ë³€ìˆ˜ë¥¼ ì°¾ìŠµë‹ˆë‹¤.
         FieldInfo field = GetType().GetField(relatedVariable, BindingFlags.Public | BindingFlags.Instance);
 
-        // ÇÊµå°¡ ¹ß°ßµÇ¸é °ªÀ» ¼³Á¤ÇÕ´Ï´Ù.
+        // í•„ë“œê°€ ë°œê²¬ë˜ë©´ ê°’ì„ ì„¤ì •í•©ë‹ˆë‹¤.
         if (field != null)
         {
             field.SetValue(this, amount);
         }
         else
         {
-            // ÇÊµå°¡ ¹ß°ßµÇÁö ¾ÊÀ¸¸é Properties¸¦ È®ÀÎÇÕ´Ï´Ù.
+            // í•„ë“œê°€ ë°œê²¬ë˜ì§€ ì•Šìœ¼ë©´ Propertiesë¥¼ í™•ì¸í•©ë‹ˆë‹¤.
             PropertyInfo property = GetType().GetProperty(relatedVariable, BindingFlags.Public | BindingFlags.Instance);
             if (property != null)
             {
@@ -185,26 +188,82 @@ public class UserAchievementData : IUserData
             }
             else
             {
-                // °ü·Ã º¯¼ö¸¦ Ã£À» ¼ö ¾ø´Â °æ¿ì °æ°í ¸Ş½ÃÁö¸¦ Ãâ·ÂÇÕ´Ï´Ù.
-                Debug.LogWarning($"UserAchievementData¿¡ 'RelatedVariable' {relatedVariable}¿Í(°ú) ÀÏÄ¡ÇÏ´Â º¯¼ö°¡ ¾ø½À´Ï´Ù.");
+                // ê´€ë ¨ ë³€ìˆ˜ë¥¼ ì°¾ì„ ìˆ˜ ì—†ëŠ” ê²½ìš° ê²½ê³  ë©”ì‹œì§€ë¥¼ ì¶œë ¥í•©ë‹ˆë‹¤.
+                Debug.LogWarning($"UserAchievementDataì— 'RelatedVariable' {relatedVariable}ì™€(ê³¼) ì¼ì¹˜í•˜ëŠ” ë³€ìˆ˜ê°€ ì—†ìŠµë‹ˆë‹¤.");
                 return;
             }
         }
 
-        // 2. ¸ğµç µµÀü °úÁ¦¸¦ ¼øÈ¸ÇÏ¸ç progress¸¦ ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù.
+        // 2. ëª¨ë“  ë„ì „ ê³¼ì œë¥¼ ìˆœíšŒí•˜ë©° progressë¥¼ ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤.
         foreach (var achievement in DataTableManager.Instance.GetAllAchievementData())
         {
             if (achievement.RelatedVariable == relatedVariable)
             {
-                // ÇØ´ç ¾÷ÀûÀÇ ID¿¡ ´ëÇØ ÁøÇàµµ¸¦ ¼³Á¤ÇÕ´Ï´Ù.
+                // í•´ë‹¹ ì—…ì ì˜ IDì— ëŒ€í•´ ì§„í–‰ë„ë¥¼ ì„¤ì •í•©ë‹ˆë‹¤.
                 if (progress.ContainsKey(achievement.ID))
                 {
                     progress[achievement.ID] = amount;
                 }
                 else
                 {
-                    // progress µñ¼Å³Ê¸®¿¡ ÇØ´ç ID°¡ ¾ø´Â °æ¿ì, »õ·Î Ãß°¡ÇÕ´Ï´Ù.
+                    // progress ë”•ì…”ë„ˆë¦¬ì— í•´ë‹¹ IDê°€ ì—†ëŠ” ê²½ìš°, ìƒˆë¡œ ì¶”ê°€í•©ë‹ˆë‹¤.
                     progress.Add(achievement.ID, amount);
+                }
+            }
+        }
+    }
+
+    public void SetProgress()
+    {
+        foreach (var progressData in progress.Keys.ToList()) // .Keys.ToList()ë¡œ ìˆœíšŒ ì¤‘ Dictionary ë³€ê²½ ë°©ì§€
+        {
+            // 1. RelatedVariable ê°€ì ¸ì˜¤ê¸° (í•´ë‹¹ IDì˜ ë„ì „ ê³¼ì œ ë°ì´í„°ê°€ ì—†ì„ ê²½ìš° ì²˜ë¦¬)
+            var achievementData = DataTableManager.Instance.GetAchievementData(progressData);
+            if (achievementData == null)
+            {
+                Debug.LogWarning($"DataTableManagerì— ID '{progressData}'ì™€(ê³¼) ì¼ì¹˜í•˜ëŠ” ë„ì „ ê³¼ì œ ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤.");
+                continue; // ë‹¤ìŒ í•­ëª©ìœ¼ë¡œ ì´ë™
+            }
+
+            string relatedVariable = achievementData.RelatedVariable;
+
+            // 2. Reflectionì„ ì‚¬ìš©í•˜ì—¬ relatedVariable ì´ë¦„ê³¼ ë™ì¼í•œ ë©¤ë²„ ë³€ìˆ˜ë¥¼ ì°¾ìŠµë‹ˆë‹¤.
+            FieldInfo field = GetType().GetField(relatedVariable, BindingFlags.Public | BindingFlags.Instance);
+            object actualValue = null;
+
+            // í•„ë“œê°€ ë°œê²¬ë˜ë©´ ê°’ì„ ê°€ì ¸ì˜µë‹ˆë‹¤.
+            if (field != null)
+            {
+                actualValue = field.GetValue(this);
+            }
+            else
+            {
+                // í•„ë“œê°€ ë°œê²¬ë˜ì§€ ì•Šìœ¼ë©´ Propertiesë¥¼ í™•ì¸í•˜ê³  ê°’ì„ ê°€ì ¸ì˜µë‹ˆë‹¤.
+                PropertyInfo property = GetType().GetProperty(relatedVariable, BindingFlags.Public | BindingFlags.Instance);
+                if (property != null)
+                {
+                    actualValue = property.GetValue(this);
+                }
+                else
+                {
+                    // ê´€ë ¨ ë³€ìˆ˜ë¥¼ ì°¾ì„ ìˆ˜ ì—†ëŠ” ê²½ìš° ê²½ê³  ë©”ì‹œì§€ë¥¼ ì¶œë ¥í•˜ê³ , ë‹¤ìŒ í•­ëª©ìœ¼ë¡œ ì´ë™í•©ë‹ˆë‹¤.
+                    Debug.LogWarning($"UserAchievementDataì— 'RelatedVariable' {relatedVariable}ì™€(ê³¼) ì¼ì¹˜í•˜ëŠ” ë³€ìˆ˜ê°€ ì—†ìŠµë‹ˆë‹¤. (ID: {progressData})");
+                    continue; // return ëŒ€ì‹  continue ì‚¬ìš©
+                }
+            }
+
+            // 3. progress ë”•ì…”ë„ˆë¦¬ì˜ ê°’ì„ ì‹¤ì œ ë³€ìˆ˜ ê°’ìœ¼ë¡œ ì—…ë°ì´íŠ¸ (ì•ˆì „í•œ í˜• ë³€í™˜ ì ìš©)
+            if (actualValue != null)
+            {
+                try
+                {
+                    // Convert.ToInt32ë¥¼ ì‚¬ìš©í•´ ì•ˆì „í•˜ê²Œ intë¡œ ë³€í™˜
+                    progress[progressData] = Convert.ToInt32(actualValue);
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"ë³€ìˆ˜ '{relatedVariable}'ì˜ ê°’({actualValue.GetType().Name})ì„ intë¡œ ë³€í™˜í•˜ëŠ” ë° ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤. ì˜¤ë¥˜: {e.Message}");
+                    // ë³€í™˜ ì‹¤íŒ¨ ì‹œì—ë„ continueë¡œ ë‹¤ìŒ í•­ëª© ì§„í–‰
                 }
             }
         }
