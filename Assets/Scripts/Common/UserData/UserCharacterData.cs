@@ -83,7 +83,7 @@ public class UserCharacterData : IUserData
 
     public void SetDefaultData()
     {
-        CharacterID_InUse = "CH_01";
-        acuiredChatacter.Add("CH_01");
+        CharacterID_InUse = "CH_1";
+        acuiredChatacter.Add("CH_1");
     }
 }

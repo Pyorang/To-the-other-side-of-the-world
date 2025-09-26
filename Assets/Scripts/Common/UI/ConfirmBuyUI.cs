@@ -57,6 +57,7 @@ public class ConfirmBuyUI : BaseUI
             if (ConfirmPayment())
             {
                 UIManager.Instance.OpenUI<GetItemUI>(data);
+                // 골드 획득 함수 실행
                 OnClickCloseButton();
             }
             else
@@ -71,6 +72,7 @@ public class ConfirmBuyUI : BaseUI
             {
                 // 구매 성공이므로, 골드 감소 ( 함수 작성 필요 )
                 UIManager.Instance.OpenUI<GetItemUI>(data);
+                // 캐릭터 구매 함수 실행
                 OnClickCloseButton();
             }
             else

@@ -3,6 +3,8 @@ using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
+using System.Linq;
 
 public class ShopUIData : BaseUIData
 {
@@ -12,6 +14,9 @@ public class ShopUI : BaseUI
 {
     // 캐릭터 정보 
     private CharacterModel[] _characterModel;
+
+    // 캐릭터 보유 및 선택 정보
+    private UserCharacterData _userCharacterData;
 
     // 페이지 전환 관련
     [SerializeField] private GameObject CharShopUI;
@@ -31,13 +36,23 @@ public class ShopUI : BaseUI
     [SerializeField] private TextMeshProUGUI rightSkillDetail;
     [SerializeField] private TextMeshProUGUI leftCharacterPrice;
     [SerializeField] private TextMeshProUGUI rightCharacterPrice;
+    [SerializeField] private Button leftCharacterBuyBtn;
+    [SerializeField] private Button rightCharacterBuyBtn;
 
-
+    // 보유 중인 캐릭터를 사용자에게 보여주기 위한 오브젝트
+    [SerializeField] private GameObject leftSoldOutMarker;
+    [SerializeField] private GameObject rightSoldOutMarker;
 
     private void Awake()
     {
         _characterModel = DataTableManager.Instance.GetAllCharacterModelData();
-       
+        _userCharacterData = UserDataManager.Instance.GetUserData<UserCharacterData>();
+
+        // 보유 정보를 출력하는지 테스트
+        _userCharacterData.SetDefaultData();
+        Debug.Log($"현재 보유한 캐릭터 수 : {_userCharacterData.acuiredChatacter.Count}");
+        Debug.Log($"현재 선택된 캐릭터 ID : {_userCharacterData.CharacterID_InUse}");
+
         UpdatePageData(currentPageIndex);
         UpdatePageNumText();
         Debug.Log($"현재 저장된 캐릭터 정보 수는 {_characterModel.Length} 입니다.");
@@ -96,7 +111,11 @@ public class ShopUI : BaseUI
 
     private void UpdatePageData(int currentPageIndex)
     {
+        
         int index = currentPageIndex * 2;
+
+        Debug.Log($"좌측 캐릭터 ID : {_characterModel[index].ID}");
+        Debug.Log($"우측 캐릭터 ID : {_characterModel[index+1].ID}");
 
         left_SaleCharacterImage.sprite = Resources.Load<Sprite>($"Textures/{_characterModel[index].ID}");
         right_SaleCharacterImage.sprite = Resources.Load<Sprite>($"Textures/{_characterModel[index + 1].ID}");
@@ -110,8 +129,49 @@ public class ShopUI : BaseUI
         leftSkillDetail.text = _characterModel[index].SkillDescription;
         rightSkillDetail.text = _characterModel[index + 1].SkillDescription;
 
-        leftCharacterPrice.text = _characterModel[index].Price.ToString();
-        rightCharacterPrice.text = _characterModel[index + 1].Price.ToString();
+        // 구매 버튼에 들어갈 색상, 텍스트 설정
+        Color color = new Color(1, 1, 1, 0.3f);
+        string leftText = "";
+        string rightText = "";
+
+        if (_userCharacterData.CharacterID_InUse == _characterModel[index].ID) leftText = "선택중";
+        else if (_userCharacterData.acuiredChatacter.Contains(_characterModel[index].ID)) leftText = "보유중";
+        else leftText = _characterModel[index].Price.ToString();
+
+        if (_userCharacterData.CharacterID_InUse == _characterModel[index+1].ID) rightText = "선택중";
+        else if (_userCharacterData.acuiredChatacter.Contains(_characterModel[index+1].ID)) rightText = "보유중";
+        else rightText = _characterModel[index+1].Price.ToString();
+
+        // 보유중, 구매 완료 등의 표시를 하기 위한 코드
+
+
+        if (leftText == "선택중" || leftText == "보유중")
+        {
+            leftCharacterBuyBtn.interactable = false;
+            leftCharacterBuyBtn.image.color = color;
+            leftSoldOutMarker.SetActive(true);
+        }
+        else
+        {
+            leftCharacterBuyBtn.interactable = true;
+            leftCharacterBuyBtn.image.color = Color.white;
+            leftSoldOutMarker.SetActive(false);
+        }
+        leftCharacterPrice.text = leftText;
+
+        if (rightText == "선택중" || rightText == "보유중")
+        {
+            rightCharacterBuyBtn.interactable = false;
+            rightCharacterBuyBtn.image.color = color;
+            rightSoldOutMarker.SetActive(true);
+        }
+        else
+        {
+            rightCharacterBuyBtn.interactable = true;
+            rightCharacterBuyBtn.image.color = Color.white;
+            rightSoldOutMarker.SetActive(false);
+        }
+        rightCharacterPrice.text = rightText;
 
     }
 
