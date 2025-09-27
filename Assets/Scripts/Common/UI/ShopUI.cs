@@ -48,14 +48,18 @@ public class ShopUI : BaseUI
         _characterModel = DataTableManager.Instance.GetAllCharacterModelData();
         _userCharacterData = UserDataManager.Instance.GetUserData<UserCharacterData>();
 
-        // 보유 정보를 출력하는지 테스트
-        _userCharacterData.SetDefaultData();
         Debug.Log($"현재 보유한 캐릭터 수 : {_userCharacterData.acuiredChatacter.Count}");
+        foreach (var Id in _userCharacterData.acuiredChatacter)
+        {
+            Debug.Log($"보유 캐릭터 : {Id}");
+        }
         Debug.Log($"현재 선택된 캐릭터 ID : {_userCharacterData.CharacterID_InUse}");
 
         UpdatePageData(currentPageIndex);
         UpdatePageNumText();
         Debug.Log($"현재 저장된 캐릭터 정보 수는 {_characterModel.Length} 입니다.");
+
+        UserDataManager.Instance.GetUserData<UserCharacterData>().SoldOut.AddListener(UpdateCurrentPageData);
     }
 
     public void OnClickLeftPageBtn()
@@ -109,6 +113,11 @@ public class ShopUI : BaseUI
         pageText.text = currentPageIndex.ToString();
     }
 
+    public void UpdateCurrentPageData()
+    {
+        UpdatePageData(currentPageIndex);
+    }
+
     public void UpdatePageData(int currentPageIndex)
     {
         
@@ -137,53 +146,52 @@ public class ShopUI : BaseUI
         string leftText = "";
         string rightText = "";
 
-        if (_userCharacterData.CharacterID_InUse == _characterModel[index].ID) leftText = "선택중";
-        else if (_userCharacterData.acuiredChatacter.Contains(_characterModel[index].ID)) leftText = "보유중";
-        else leftText = _characterModel[index].Price.ToString();
-
-        if (_userCharacterData.CharacterID_InUse == _characterModel[index+1].ID) rightText = "선택중";
-        else if (_userCharacterData.acuiredChatacter.Contains(_characterModel[index+1].ID)) rightText = "보유중";
-        else rightText = _characterModel[index+1].Price.ToString();
-
-        // 보유중, 구매 완료 등의 표시를 하기 위한 코드
-
-
-        if (leftText == "선택중")
+        if (_userCharacterData.CharacterID_InUse == _characterModel[index].ID)
         {
             leftCharacterBuyBtn.interactable = false;
             leftCharacterBuyBtn.image.color = color;
             leftSoldOutMarker.SetActive(true);
+            leftText = "선택중";
         }
-        else if (leftText == "보유중")
+        else if (_userCharacterData.acuiredChatacter.Contains(_characterModel[index].ID))
         {
+            leftCharacterBuyBtn.interactable = true;
             leftSoldOutMarker.SetActive(true);
+            leftCharacterBuyBtn.image.color = Color.white;
+            leftText = "보유중";
         }
         else
         {
             leftCharacterBuyBtn.interactable = true;
             leftCharacterBuyBtn.image.color = Color.white;
             leftSoldOutMarker.SetActive(false);
+            leftText = _characterModel[index].Price.ToString();
         }
         leftCharacterPrice.text = leftText;
 
-        if (rightText == "선택중")
+
+        if (_userCharacterData.CharacterID_InUse == _characterModel[index + 1].ID)
         {
             rightCharacterBuyBtn.interactable = false;
             rightCharacterBuyBtn.image.color = color;
             rightSoldOutMarker.SetActive(true);
+            rightText = "선택중";
         }
-        else if (rightText == "보유중")
+        else if (_userCharacterData.acuiredChatacter.Contains(_characterModel[index + 1].ID))
         {
+            rightCharacterBuyBtn.interactable = true;
             rightSoldOutMarker.SetActive(true);
+            rightCharacterBuyBtn.image.color = Color.white;
+            rightText = "보유중";
         }
         else
         {
             rightCharacterBuyBtn.interactable = true;
             rightCharacterBuyBtn.image.color = Color.white;
             rightSoldOutMarker.SetActive(false);
+            rightText = _characterModel[index + 1].Price.ToString();
         }
         rightCharacterPrice.text = rightText;
-
     }
 
 }

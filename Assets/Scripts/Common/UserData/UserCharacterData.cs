@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 [Serializable]
 public class CharacterSaveData
@@ -18,6 +20,8 @@ public class UserCharacterData : IUserData
 
     private string savePath;
     private const string filename = "characterData.json";
+
+    public UnityEvent SoldOut = new UnityEvent();
 
     public UserCharacterData()
     {

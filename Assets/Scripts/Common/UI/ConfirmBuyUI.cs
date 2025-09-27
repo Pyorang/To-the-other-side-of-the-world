@@ -57,11 +57,11 @@ public class ConfirmBuyUI : BaseUI
             {
                 UIManager.Instance.OpenUI<GetItemUI>(data);
 
-                ////////////////////////////////
-                // 골드 획득 함수 실행
-                ////////////////////////////////
+                UserDataManager.Instance.GetUserData<UserCurrencyData>().Gold += BuyBtnOfGoldData.GoldAmount;
                 
                 OnClickCloseButton();
+
+                UserDataManager.Instance.SaveUserData();
             }
             else
             {
@@ -74,15 +74,21 @@ public class ConfirmBuyUI : BaseUI
             if (ConfirmUserCurrencyData())
             {
                 // 구매 성공이므로, 캐릭터 보유 정보 변경
-                UserCharacterData userCharacterData = new UserCharacterData();
-                userCharacterData.AddAcuiredCharacter(ConfirmBuyUIData.BuyBtnOfCharData.CharacterModel.ID);
+                UserCharacterData userCharacterData = UserDataManager.Instance.GetUserData<UserCharacterData>();
+                Debug.Log($"ID : {ConfirmBuyUIData.BuyBtnOfCharData.CharacterModel.ID} 캐릭터 구매 완료");
                 
-                /////////////////////////////////////////////
-                // 구매 성공이므로, 골드 감소 함수 실행
-                /////////////////////////////////////////////
+                userCharacterData.AddAcuiredCharacter(ConfirmBuyUIData.BuyBtnOfCharData.CharacterModel.ID);
+                Debug.Log($"현재 보유중인 캐릭터 수 : {userCharacterData.acuiredChatacter.Count}");
+                UserDataManager.Instance.GetUserData<UserCharacterData>().SoldOut.Invoke();
+
+                UserDataManager.Instance.GetUserData<UserCurrencyData>().Gold -= BuyBtnOfCharData.CharacterModel.Price;
+
+                
 
                 UIManager.Instance.OpenUI<GetItemUI>(data);
                 OnClickCloseButton();
+
+                UserDataManager.Instance.SaveUserData();
 
             }
             else
