@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class MissionUI : MonoBehaviour
 {
@@ -23,7 +24,13 @@ public class MissionUI : MonoBehaviour
 
     public void CheckMissionSuccess()
     {
-        if(UserDataManager.Instance.GetUserData<UserAchievementData>().clearedAchievements.Contains(missionData.ID))
+        if (!UserDataManager.Instance.GetUserData<UserAchievementData>().progress.ContainsKey(missionData.ID))
+        {
+            Debug.Log($"{missionData.ID} 데이터 없음");
+            return;
+        }
+
+        if (UserDataManager.Instance.GetUserData<UserAchievementData>().clearedAchievements.Contains(missionData.ID))
         {
             RewardButton.interactable = false;
         }
@@ -46,8 +53,13 @@ public class MissionUI : MonoBehaviour
 
     public void SetMissionDesc(AchievementModel missionData)
     {
-        string showProgress = " (" + Math.Min(UserDataManager.Instance.GetUserData<UserAchievementData>().progress[missionData.ID], missionData.TargetValue) + "/" + missionData.TargetValue + ")";
+        if (!UserDataManager.Instance.GetUserData<UserAchievementData>().progress.ContainsKey(missionData.ID))
+        {
+            Debug.Log($"{missionData.ID} 데이터 없음");
+            return;
+        }
 
+        string showProgress = " (" + Math.Min(UserDataManager.Instance.GetUserData<UserAchievementData>().progress[missionData.ID], missionData.TargetValue) + "/" + missionData.TargetValue + ")";
         foreach (var text in MissionDescText)
         {
             text.text = missionData.Description + showProgress;

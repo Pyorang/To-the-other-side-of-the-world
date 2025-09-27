@@ -77,6 +77,7 @@ public class UserAchievementData : IUserData
 
         foreach (var achievement in DataTableManager.Instance.GetAllAchievementData())
         {
+            Debug.Log($"저장되는 ID : {achievement.ID}");
             progress.Add(achievement.ID, 0);
         }
     }
@@ -134,6 +135,7 @@ public class UserAchievementData : IUserData
                 progress.Clear();
                 foreach (var item in loadedData.progressList)
                 {
+                    Debug.Log($"ID : {item.id}, value : {item.value}");
                     progress.Add(item.id, item.value);
                 }
 
