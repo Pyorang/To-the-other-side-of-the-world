@@ -1,18 +1,46 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
+[Serializable]
+public class ProgressData
+{
+    public string id;
+    public int value;
+}
+
+[Serializable]
+public class UserAchievementSaveData
+{
+    public List<ProgressData> progressList = new List<ProgressData>();
+    public List<string> clearedAchievementsList = new List<string>();
+
+    public int TotalDayGameAccessed;
+    public int MaxStageReached;
+    public int TotalBlocksDestroyed;
+    public int TotalBombBlocksDestroyed;
+    public int TotalEnhancedBlocksDestroyed;
+    public int TotalCharactersAcquired;
+    public int dwarf_200_floor_challenge;
+    public int earth_mage_block_conversion;
+    public int tamer_shield_consumption;
+    public int ancient_dwarf_block_destruction;
+    public int low_stage_game_over;
+    public int one_tap_stage_clear;
+}
+
 public class UserAchievementData : IUserData
 {
-    // °¢ µµÀü°úÁ¦ ID¿¡ ´ëÇÑ ÇöÀç ÁøÇàµµ
+    // ê° ë„ì „ê³¼ì œ IDì— ëŒ€í•œ í˜„ì¬ ì§„í–‰ë„
     public Dictionary<string, int> progress = new Dictionary<string, int>();
-    // ÀÌ¹Ì Å¬¸®¾îÇÑ µµÀü°úÁ¦ ID ¸ñ·Ï
+    // ì´ë¯¸ í´ë¦¬ì–´í•œ ë„ì „ê³¼ì œ ID ëª©ë¡
     public HashSet<string> clearedAchievements = new HashSet<string>();
 
 
-    // NOTE : ¾÷Àû ´Ş¼º ¿©ºÎ¸¦ È®ÀÎÇÏ´Â ´©Àû µ¥ÀÌÅÍ
+    // NOTE : ì—…ì  ë‹¬ì„± ì—¬ë¶€ë¥¼ í™•ì¸í•˜ëŠ” ëˆ„ì  ë°ì´í„°
     public int TotalDayGameAccessed { get; set; }
 
     public int MaxStageReached { get; set; }
@@ -34,7 +62,7 @@ public class UserAchievementData : IUserData
 
     public void SetDefaultData()
     {
-        TotalDayGameAccessed = 1;
+        TotalDayGameAccessed = 0;
         MaxStageReached = 0;
         TotalBlocksDestroyed = 0;
         TotalBombBlocksDestroyed = 0;
@@ -57,21 +85,37 @@ public class UserAchievementData : IUserData
     {
         try
         {
-            // ÀüÃ¼ µ¥ÀÌÅÍ¸¦ JSON ¹®ÀÚ¿­·Î º¯È¯ÇÕ´Ï´Ù.
-            string jsonData = JsonUtility.ToJson(this, true); // µÎ ¹øÂ° ÀÎÀÚ´Â ÀĞ±â ÁÁ°Ô µé¿©¾²±â(pretty print)¸¦ ÇØÁİ´Ï´Ù.
+            UserAchievementSaveData saveData = new UserAchievementSaveData();
 
-            // ÀúÀå °æ·Î¸¦ ¼³Á¤ÇÕ´Ï´Ù.
+            foreach (var kvp in progress)
+            {
+                saveData.progressList.Add(new ProgressData { id = kvp.Key, value = kvp.Value });
+            }
+            saveData.clearedAchievementsList.AddRange(clearedAchievements);
+
+            saveData.TotalDayGameAccessed = this.TotalDayGameAccessed;
+            saveData.MaxStageReached = this.MaxStageReached;
+            saveData.TotalBlocksDestroyed = this.TotalBlocksDestroyed;
+            saveData.TotalBombBlocksDestroyed = this.TotalBombBlocksDestroyed;
+            saveData.TotalEnhancedBlocksDestroyed = this.TotalEnhancedBlocksDestroyed;
+            saveData.TotalCharactersAcquired = this.TotalCharactersAcquired;
+            saveData.dwarf_200_floor_challenge = this.dwarf_200_floor_challenge;
+            saveData.earth_mage_block_conversion = this.earth_mage_block_conversion;
+            saveData.tamer_shield_consumption = this.tamer_shield_consumption;
+            saveData.ancient_dwarf_block_destruction = this.ancient_dwarf_block_destruction;
+            saveData.low_stage_game_over = this.low_stage_game_over;
+            saveData.one_tap_stage_clear = this.one_tap_stage_clear;
+
+            string jsonData = JsonUtility.ToJson(saveData, true);
             string filePath = Path.Combine(Application.persistentDataPath, "userAchievement.json");
-
-            // ÆÄÀÏ¿¡ JSON µ¥ÀÌÅÍ¸¦ ¾¹´Ï´Ù.
             File.WriteAllText(filePath, jsonData);
 
-            Debug.Log($"¾÷Àû µ¥ÀÌÅÍ ÀúÀå ¼º°ø: {filePath}");
+            Debug.Log($"ì—…ì  ë°ì´í„° ì €ì¥ ì„±ê³µ: {filePath}");
             return true;
         }
         catch (System.Exception e)
         {
-            Debug.LogError($"¾÷Àû µ¥ÀÌÅÍ ÀúÀå ½ÇÆĞ: {e.Message}");
+            Debug.LogError($"ì—…ì  ë°ì´í„° ì €ì¥ ì‹¤íŒ¨: {e.Message}");
             return false;
         }
     }
@@ -84,28 +128,76 @@ public class UserAchievementData : IUserData
         {
             try
             {
-                // ÆÄÀÏ¿¡¼­ JSON ¹®ÀÚ¿­À» ÀĞ¾î¿É´Ï´Ù.
                 string jsonData = File.ReadAllText(filePath);
+                UserAchievementSaveData loadedData = JsonUtility.FromJson<UserAchievementSaveData>(jsonData);
 
-                // JSON µ¥ÀÌÅÍ¸¦ ÀÌ Å¬·¡½ºÀÇ °´Ã¼·Î º¯È¯ÇÕ´Ï´Ù.
-                JsonUtility.FromJsonOverwrite(jsonData, this);
+                progress.Clear();
+                foreach (var item in loadedData.progressList)
+                {
+                    progress.Add(item.id, item.value);
+                }
 
-                Debug.Log($"¾÷Àû µ¥ÀÌÅÍ ºÒ·¯¿À±â ¼º°ø: {filePath}");
+                clearedAchievements.Clear();
+                foreach (var item in loadedData.clearedAchievementsList)
+                {
+                    clearedAchievements.Add(item);
+                }
+
+                this.TotalDayGameAccessed = loadedData.TotalDayGameAccessed;
+                this.MaxStageReached = loadedData.MaxStageReached;
+                this.TotalBlocksDestroyed = loadedData.TotalBlocksDestroyed;
+                this.TotalBombBlocksDestroyed = loadedData.TotalBombBlocksDestroyed;
+                this.TotalEnhancedBlocksDestroyed = loadedData.TotalEnhancedBlocksDestroyed;
+                this.TotalCharactersAcquired = loadedData.TotalCharactersAcquired;
+                this.dwarf_200_floor_challenge = loadedData.dwarf_200_floor_challenge;
+                this.earth_mage_block_conversion = loadedData.earth_mage_block_conversion;
+                this.tamer_shield_consumption = loadedData.tamer_shield_consumption;
+                this.ancient_dwarf_block_destruction = loadedData.ancient_dwarf_block_destruction;
+                this.low_stage_game_over = loadedData.low_stage_game_over;
+                this.one_tap_stage_clear = loadedData.one_tap_stage_clear;
+
+                Debug.Log($"ì—…ì  ë°ì´í„° ë¶ˆëŸ¬ì˜¤ê¸° ì„±ê³µ: {filePath}");
                 return true;
             }
             catch (System.Exception e)
             {
-                Debug.LogError($"¾÷Àû µ¥ÀÌÅÍ ºÒ·¯¿À±â ½ÇÆĞ: {e.Message}");
-                SetDefaultData(); // ½ÇÆĞ ½Ã ±âº» µ¥ÀÌÅÍ·Î ÃÊ±âÈ­ÇÕ´Ï´Ù.
+                Debug.LogError($"ì—…ì  ë°ì´í„° ë¶ˆëŸ¬ì˜¤ê¸° ì‹¤íŒ¨: {e.Message}");
+                SetDefaultData();
                 return false;
             }
         }
         else
         {
-            Debug.Log("ÀúÀåµÈ ÆÄÀÏÀÌ ¾ø½À´Ï´Ù. ±âº» µ¥ÀÌÅÍ·Î ½ÃÀÛÇÕ´Ï´Ù.");
+            Debug.Log("ì €ì¥ëœ íŒŒì¼ì´ ì—†ìŠµë‹ˆë‹¤. ê¸°ë³¸ ë°ì´í„°ë¡œ ì‹œì‘í•©ë‹ˆë‹¤.");
             SetDefaultData();
             return false;
         }
     }
 
+    public void IncreaseProgress(string relatedVariable, int amount)
+    {
+        PropertyInfo property = GetType().GetProperty(relatedVariable, BindingFlags.Public | BindingFlags.Instance);
+        if (property != null)
+        {
+            property.SetValue(this, (int)property.GetValue(this) + amount);
+        }
+
+        foreach (var achievement in DataTableManager.Instance.GetAllAchievementData())
+        {
+            if (achievement.RelatedVariable == relatedVariable)
+            {
+                if (progress.ContainsKey(achievement.ID))
+                {
+                    progress[achievement.ID] += amount;
+                }
+                else
+                {
+                    Debug.Log("hihi");
+                    progress.Add(achievement.ID, amount);
+                }
+            }
+        }
+
+        SaveData();
+    }
 }

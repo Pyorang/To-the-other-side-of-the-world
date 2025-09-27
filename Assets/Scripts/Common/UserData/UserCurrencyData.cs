@@ -1,9 +1,21 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class UserCurrencyData : IUserData
 {
-    public long Gold { get; set; }
+    public UnityEvent GoldChanged = new UnityEvent();
+    
+    private long _gold;
+    public long Gold
+    {
+        get => _gold;
+        set
+        {
+            _gold = value;
+            GoldChanged.Invoke();
+        }
+    }
 
     public void SetDefaultData()
     {
