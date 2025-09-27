@@ -10,7 +10,7 @@
     },
     {
       "ID": "DM_2",
-      "Name": "블록 100개 제거",
+      "Name": "블록 300개 제거",
       "Description": "블록 300개 제거",
       "TargetValue": 300,
       "RewardGold": 50,
