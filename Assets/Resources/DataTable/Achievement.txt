@@ -25,14 +25,6 @@
       "RelatedVariable": ""
     },
     {
-      "ID": "DM_4",
-      "Name": "모든 일일퀘스트 클리어",
-      "Description": "모든 일일퀘스트 클리어",
-      "TargetValue": 3,
-      "RewardGold": 100,
-      "RelatedVariable": ""
-    },
-    {
       "ID": "CM_1",
       "Name": "신입 광부의 등장",
       "Description": "출석 총 7일하기",

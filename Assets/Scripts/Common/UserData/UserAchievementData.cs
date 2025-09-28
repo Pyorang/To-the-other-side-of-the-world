@@ -19,6 +19,8 @@ public class UserAchievementSaveData
     public List<string> clearedAchievementsList = new List<string>();
 
     public int TotalDayGameAccessed;
+    public int ToatlDailyMissionCleared;
+    public bool GotExtraDailyMissionReward;
     public int MaxStageReached;
     public int TotalBlocksDestroyed;
     public int TotalBombBlocksDestroyed;
@@ -42,6 +44,8 @@ public class UserAchievementData : IUserData
 
     // NOTE : 업적 달성 여부를 확인하는 누적 데이터
     public int TotalDayGameAccessed { get; set; }
+    public int TotalDailyMissionCleared { get; set; }
+    public bool GotExtraDailyMissionReward { get; set; }
 
     public int MaxStageReached { get; set; }
 
@@ -63,6 +67,8 @@ public class UserAchievementData : IUserData
     public void SetDefaultData()
     {
         TotalDayGameAccessed = 0;
+        TotalDailyMissionCleared = 0;
+        GotExtraDailyMissionReward = false;
         MaxStageReached = 0;
         TotalBlocksDestroyed = 0;
         TotalBombBlocksDestroyed = 0;
@@ -95,6 +101,8 @@ public class UserAchievementData : IUserData
             saveData.clearedAchievementsList.AddRange(clearedAchievements);
 
             saveData.TotalDayGameAccessed = this.TotalDayGameAccessed;
+            saveData.ToatlDailyMissionCleared = this.TotalDailyMissionCleared;
+            saveData.GotExtraDailyMissionReward = this.GotExtraDailyMissionReward;
             saveData.MaxStageReached = this.MaxStageReached;
             saveData.TotalBlocksDestroyed = this.TotalBlocksDestroyed;
             saveData.TotalBombBlocksDestroyed = this.TotalBombBlocksDestroyed;
@@ -146,6 +154,8 @@ public class UserAchievementData : IUserData
                 }
 
                 this.TotalDayGameAccessed = loadedData.TotalDayGameAccessed;
+                this.TotalDailyMissionCleared = loadedData.ToatlDailyMissionCleared;
+                this.GotExtraDailyMissionReward = loadedData.GotExtraDailyMissionReward;
                 this.MaxStageReached = loadedData.MaxStageReached;
                 this.TotalBlocksDestroyed = loadedData.TotalBlocksDestroyed;
                 this.TotalBombBlocksDestroyed = loadedData.TotalBombBlocksDestroyed;
@@ -194,7 +204,6 @@ public class UserAchievementData : IUserData
                 }
                 else
                 {
-                    Debug.Log("hihi");
                     progress.Add(achievement.ID, amount);
                 }
             }
