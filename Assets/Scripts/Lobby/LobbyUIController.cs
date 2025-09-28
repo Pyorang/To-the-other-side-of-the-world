@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class LobbyUIController : MonoBehaviour
 {
@@ -14,21 +15,18 @@ public class LobbyUIController : MonoBehaviour
     {
         UIManager.Instance.CurrencyUI.SetActive(true);
 
-        SetChoosedCharAnim();
+        StartCoroutine(ISetChoosedCharAnimAndSize());
 
-        Debug.Log(UserDataManager.Instance.GetUserData<UserCharacterData>().CharacterID_InUse + "_AnimAct");
+        UserDataManager.Instance.GetUserData<UserCharacterData>().ChangeCharAction = SetChoosedCharAnimAndSize;
+;
+
+    Debug.Log(UserDataManager.Instance.GetUserData<UserCharacterData>().CharacterID_InUse + "_AnimAct");
 
     }
 
     private void Update()
     {
         HandleInput();
-        SetChoosedCharAnim();
-    }
-
-    private void LateUpdate()
-    {
-        SetNativeSize();
     }
 
     private void HandleInput()
@@ -85,23 +83,22 @@ public class LobbyUIController : MonoBehaviour
         SceneLoader.Instance.LoadScene(ESceneType.InGame);
         
     }
-    public void SetChoosedCharAnim()
+
+    public void SetChoosedCharAnimAndSize()
+    {
+        StartCoroutine(ISetChoosedCharAnimAndSize());
+    }
+    private IEnumerator ISetChoosedCharAnimAndSize()
     {
         string choosedCharID = UserDataManager.Instance.GetUserData<UserCharacterData>().CharacterID_InUse;
 
-        if (choosedCharID == CurrentChoosedCharID) return;
+        if (choosedCharID == CurrentChoosedCharID) yield break;
         CurrentChoosedCharID = choosedCharID;
-        isSetNativeSize = true;
 
         ChoosedCharAnim.Play(choosedCharID);
-        
-    }
-
-    public void SetNativeSize()
-    {
-        if (!isSetNativeSize) return;
+        yield return null;
 
         ChoosedCharImage.SetNativeSize();
-        isSetNativeSize = false;
+
     }
 }

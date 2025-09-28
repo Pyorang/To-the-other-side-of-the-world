@@ -23,7 +23,8 @@ public class BuyBtnOfChar : MonoBehaviour
             UserCharacterData userCharacterData = UserDataManager.Instance.GetUserData<UserCharacterData>();
             userCharacterData.CharacterID_InUse = Char_Id;
 
-            UserDataManager.Instance.GetUserData<UserCharacterData>().SoldOut.Invoke();
+            UserDataManager.Instance.GetUserData<UserCharacterData>().SoldOut?.Invoke();
+            UserDataManager.Instance.GetUserData<UserCharacterData>().ChangeCharAction?.Invoke();
 
             UserDataManager.Instance.SaveUserData();
 
