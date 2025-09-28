@@ -1,15 +1,28 @@
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-using System.Linq;
 
-public class ShopUIData : BaseUIData
+[Serializable]
+public struct CharacterSalePanel
 {
-    //public bool IsPossesed { get; set; }
+    //판매 캐릭터 정보
+    public Image saleCharacterImage;
+    [Space(10f)]
+    public TextMeshProUGUI characterName;
+    [Space(10f)]
+    public TextMeshProUGUI skillName;
+    public TextMeshProUGUI skillDetail;
+    [Space(10f)]
+    public TextMeshProUGUI characterPrice;
+    [Space(10f)]
+    public Button characterBuyBtn;
+    [Space(10f)]
+    // 구매 완료 표시 오브젝트
+    public GameObject soldOutMarker;
+
 }
+
 public class ShopUI : BaseUI
 {
     // 캐릭터 정보 
@@ -19,34 +32,29 @@ public class ShopUI : BaseUI
     private UserCharacterData _userCharacterData;
 
     // 페이지 전환 관련
+    [Header("Page Change UI")]
     [SerializeField] private GameObject CharShopUI;
     [SerializeField] private GameObject GoldShopUI;
+
+    [Header("PageIndex Text")]
     [SerializeField] private TextMeshProUGUI pageText;
 
     private int currentPageIndex = 0;
+    private int maxPageIndex;
 
-    // 각 페이지에 해당하는 캐릭터 정보를 표현하는 변수
-    [SerializeField] private Image left_SaleCharacterImage;
-    [SerializeField] private Image right_SaleCharacterImage;
-    [SerializeField] private TextMeshProUGUI leftCharacterName;
-    [SerializeField] private TextMeshProUGUI rightCharacterName;
-    [SerializeField] private TextMeshProUGUI leftSkillName;
-    [SerializeField] private TextMeshProUGUI rightSkillName;
-    [SerializeField] private TextMeshProUGUI leftSkillDetail;
-    [SerializeField] private TextMeshProUGUI rightSkillDetail;
-    [SerializeField] private TextMeshProUGUI leftCharacterPrice;
-    [SerializeField] private TextMeshProUGUI rightCharacterPrice;
-    [SerializeField] private Button leftCharacterBuyBtn;
-    [SerializeField] private Button rightCharacterBuyBtn;
+    [Header("Left Character Sale Panel")]
+    public CharacterSalePanel leftCSPanel;
 
-    // 보유 중인 캐릭터를 사용자에게 보여주기 위한 오브젝트
-    [SerializeField] private GameObject leftSoldOutMarker;
-    [SerializeField] private GameObject rightSoldOutMarker;
+    [Header("Right Character Sale Panel")]
+    public CharacterSalePanel rightCSPanel;
+
 
     private void Awake()
     {
         _characterModel = DataTableManager.Instance.GetAllCharacterModelData();
         _userCharacterData = UserDataManager.Instance.GetUserData<UserCharacterData>();
+
+        maxPageIndex = _characterModel.Length / 2;
 
         Debug.Log($"현재 보유한 캐릭터 수 : {_userCharacterData.acuiredChatacter.Count}");
         foreach (var Id in _userCharacterData.acuiredChatacter)
@@ -64,7 +72,7 @@ public class ShopUI : BaseUI
 
     public void ShowGoldPage()
     {
-        currentPageIndex = _characterModel.Length / 2;
+        currentPageIndex = maxPageIndex;
         GoldShopUI.SetActive(true);
         CharShopUI.SetActive(false);
         UpdatePageNumText();
@@ -73,7 +81,7 @@ public class ShopUI : BaseUI
     public void OnClickLeftPageBtn()
     {
         Debug.Log($"현재 CurrentPageIndex : {currentPageIndex}");
-        if (currentPageIndex == _characterModel.Length / 2)
+        if (currentPageIndex ==  maxPageIndex)
         {
             Debug.Log("현재 페이지는 골드 페이지 입니다. 캐릭터 페이지로 전환합니다.");
             GoldShopUI.SetActive(false);
@@ -93,12 +101,12 @@ public class ShopUI : BaseUI
 
     public void OnClickRightPageBtn()
     {
-        if (currentPageIndex >= _characterModel.Length / 2)
+        if (currentPageIndex >= maxPageIndex)
         {
             Debug.Log("최대 페이지 입니다.");
             return;
         }
-        else if (currentPageIndex >= (_characterModel.Length / 2) -1)
+        else if (currentPageIndex >= (maxPageIndex) -1)
         {
             Debug.Log("현재 페이지는 캐릭터 페이지입니다. 골드 페이지로 전환합니다.");
             CharShopUI.SetActive(false);
@@ -116,7 +124,7 @@ public class ShopUI : BaseUI
 
     private void UpdatePageNumText()
     {
-        pageText.text = currentPageIndex.ToString();
+        pageText.text = (currentPageIndex + 1).ToString();
     }
 
     public void UpdateCurrentPageData()
@@ -132,72 +140,76 @@ public class ShopUI : BaseUI
         Debug.Log($"좌측 캐릭터 ID : {_characterModel[index].ID}");
         Debug.Log($"우측 캐릭터 ID : {_characterModel[index+1].ID}");
 
-        left_SaleCharacterImage.sprite = Resources.Load<Sprite>($"Textures/{_characterModel[index].ID}");
-        right_SaleCharacterImage.sprite = Resources.Load<Sprite>($"Textures/{_characterModel[index + 1].ID}");
+        // left Character Sale panel
+        leftCSPanel.saleCharacterImage.sprite = Resources.Load<Sprite>($"Textures/{_characterModel[index].ID}");
+        leftCSPanel.characterName.text = _characterModel[index].Name;
+        leftCSPanel.skillName.text = _characterModel[index].SkillName;
+        leftCSPanel.skillDetail.text = _characterModel[index].SkillDescription;
+        leftCSPanel.characterBuyBtn.GetComponent<BuyBtnOfChar>().Char_Id = _characterModel[index].ID;
 
-        leftCharacterName.text = _characterModel[index].Name;
-        rightCharacterName.text = _characterModel[index + 1].Name;
+        //right Character Sale panel
+        rightCSPanel.saleCharacterImage.sprite = Resources.Load<Sprite>($"Textures/{_characterModel[index + 1].ID}");
+        rightCSPanel.characterName.text = _characterModel[index + 1].Name;
+        rightCSPanel.skillName.text = _characterModel[index + 1].SkillName;
+        rightCSPanel.skillDetail.text = _characterModel[index + 1].SkillDescription;
+        rightCSPanel.characterBuyBtn.GetComponent<BuyBtnOfChar>().Char_Id = _characterModel[index + 1].ID;
 
-        leftSkillName.text = _characterModel[index].SkillName;
-        rightSkillName.text = _characterModel[index + 1].SkillName;
-
-        leftSkillDetail.text = _characterModel[index].SkillDescription;
-        rightSkillDetail.text = _characterModel[index + 1].SkillDescription;
-
-        leftCharacterBuyBtn.GetComponent<BuyBtnOfChar>().Char_Id = _characterModel[index].ID;
-        rightCharacterBuyBtn.GetComponent<BuyBtnOfChar>().Char_Id = _characterModel[index+1].ID;
 
         // 구매 버튼에 들어갈 색상, 텍스트 설정
         Color color = new Color(1, 1, 1, 0.3f);
-        string leftText = "";
-        string rightText = "";
 
         if (_userCharacterData.CharacterID_InUse == _characterModel[index].ID)
         {
-            leftCharacterBuyBtn.interactable = false;
-            leftCharacterBuyBtn.image.color = color;
-            leftSoldOutMarker.SetActive(true);
-            leftText = "선택중";
+            leftCSPanel.characterBuyBtn.interactable = false;
+            leftCSPanel.characterBuyBtn.image.color = color;
+            leftCSPanel.soldOutMarker.SetActive(true);
+
+            leftCSPanel.characterPrice.text = "선택중";
         }
         else if (_userCharacterData.acuiredChatacter.Contains(_characterModel[index].ID))
         {
-            leftCharacterBuyBtn.interactable = true;
-            leftSoldOutMarker.SetActive(true);
-            leftCharacterBuyBtn.image.color = Color.white;
-            leftText = "보유중";
+            leftCSPanel.characterBuyBtn.interactable = true;
+            leftCSPanel.soldOutMarker.SetActive(true);
+            leftCSPanel.characterBuyBtn.image.color = Color.white;
+
+            leftCSPanel.characterPrice.text = "보유중";
         }
         else
         {
-            leftCharacterBuyBtn.interactable = true;
-            leftCharacterBuyBtn.image.color = Color.white;
-            leftSoldOutMarker.SetActive(false);
-            leftText = _characterModel[index].Price.ToString();
+            leftCSPanel.characterBuyBtn.interactable = true;
+            leftCSPanel.characterBuyBtn.image.color = Color.white;
+            leftCSPanel.soldOutMarker.SetActive(false);
+            leftCSPanel.characterPrice.text = _characterModel[index].Price.ToString();
         }
-        leftCharacterPrice.text = leftText;
 
 
         if (_userCharacterData.CharacterID_InUse == _characterModel[index + 1].ID)
         {
-            rightCharacterBuyBtn.interactable = false;
-            rightCharacterBuyBtn.image.color = color;
-            rightSoldOutMarker.SetActive(true);
-            rightText = "선택중";
+            rightCSPanel.characterBuyBtn.interactable = false;
+            rightCSPanel.characterBuyBtn.image.color = color;
+            rightCSPanel.soldOutMarker.SetActive(true);
+
+            rightCSPanel.characterPrice.text = "선택중";
         }
         else if (_userCharacterData.acuiredChatacter.Contains(_characterModel[index + 1].ID))
         {
-            rightCharacterBuyBtn.interactable = true;
-            rightSoldOutMarker.SetActive(true);
-            rightCharacterBuyBtn.image.color = Color.white;
-            rightText = "보유중";
+            rightCSPanel.characterBuyBtn.interactable = true;
+            rightCSPanel.soldOutMarker.SetActive(true);
+            rightCSPanel.characterBuyBtn.image.color = Color.white;
+
+            rightCSPanel.characterPrice.text = "보유중";
         }
         else
         {
-            rightCharacterBuyBtn.interactable = true;
-            rightCharacterBuyBtn.image.color = Color.white;
-            rightSoldOutMarker.SetActive(false);
-            rightText = _characterModel[index + 1].Price.ToString();
+            rightCSPanel.characterBuyBtn.interactable = true;
+            rightCSPanel.characterBuyBtn.image.color = Color.white;
+            rightCSPanel.soldOutMarker.SetActive(false);
+
+            rightCSPanel.characterPrice.text = _characterModel[index + 1].Price.ToString();
         }
-        rightCharacterPrice.text = rightText;
+
+        leftCSPanel.saleCharacterImage.SetNativeSize();
+        rightCSPanel.saleCharacterImage.SetNativeSize();
     }
 
 }
