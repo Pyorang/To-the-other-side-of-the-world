@@ -24,6 +24,7 @@ public class ShopUI : BaseUI
     [SerializeField] private TextMeshProUGUI pageText;
 
     private int currentPageIndex = 0;
+    private int maxCharPageIndex;
 
     // 각 페이지에 해당하는 캐릭터 정보를 표현하는 변수
     [SerializeField] private Image left_SaleCharacterImage;
@@ -48,6 +49,7 @@ public class ShopUI : BaseUI
         _characterModel = DataTableManager.Instance.GetAllCharacterModelData();
         _userCharacterData = UserDataManager.Instance.GetUserData<UserCharacterData>();
 
+        maxCharPageIndex = _characterModel.Length / 2;
         Debug.Log($"현재 보유한 캐릭터 수 : {_userCharacterData.acuiredChatacter.Count}");
         foreach (var Id in _userCharacterData.acuiredChatacter)
         {
@@ -198,6 +200,9 @@ public class ShopUI : BaseUI
             rightText = _characterModel[index + 1].Price.ToString();
         }
         rightCharacterPrice.text = rightText;
+
+        left_SaleCharacterImage.SetNativeSize();
+        right_SaleCharacterImage.SetNativeSize();
     }
 
 }
