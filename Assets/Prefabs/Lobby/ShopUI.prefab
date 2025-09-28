@@ -4016,19 +4016,35 @@ MonoBehaviour:
   GoldShopUI: {fileID: 2926704367083547641}
   pageText: {fileID: 502969720841508392}
   left_SaleCharacterImage: {fileID: 4592630310713699018}
-  right_SaleCharacterImage: {fileID: 2951314785548876138}
   leftCharacterName: {fileID: 600229948947637650}
-  rightCharacterName: {fileID: 12123699642426327}
   leftSkillName: {fileID: 3073605000378948389}
-  rightSkillName: {fileID: 3524623317807374231}
   leftSkillDetail: {fileID: 3824268797697096694}
-  rightSkillDetail: {fileID: 8778903413004030684}
   leftCharacterPrice: {fileID: 7485693403740802962}
-  rightCharacterPrice: {fileID: 6281777166104030582}
   leftCharacterBuyBtn: {fileID: 2820882424870596749}
-  rightCharacterBuyBtn: {fileID: 7359921985251237933}
   leftSoldOutMarker: {fileID: 1586325187713514343}
+  right_SaleCharacterImage: {fileID: 2951314785548876138}
+  rightCharacterName: {fileID: 12123699642426327}
+  rightSkillName: {fileID: 3524623317807374231}
+  rightSkillDetail: {fileID: 8778903413004030684}
+  rightCharacterPrice: {fileID: 6281777166104030582}
+  rightCharacterBuyBtn: {fileID: 7359921985251237933}
   rightSoldOutMarker: {fileID: 5879892257633179896}
+  leftCSPanel:
+    saleCharacterImage: {fileID: 4592630310713699018}
+    characterName: {fileID: 600229948947637650}
+    skillName: {fileID: 3073605000378948389}
+    skillDetail: {fileID: 3824268797697096694}
+    characterPrice: {fileID: 7485693403740802962}
+    characterBuyBtn: {fileID: 2820882424870596749}
+    soldOutMarker: {fileID: 1586325187713514343}
+  rightCSPanel:
+    saleCharacterImage: {fileID: 2951314785548876138}
+    characterName: {fileID: 12123699642426327}
+    skillName: {fileID: 3524623317807374231}
+    skillDetail: {fileID: 8778903413004030684}
+    characterPrice: {fileID: 6281777166104030582}
+    characterBuyBtn: {fileID: 7359921985251237933}
+    soldOutMarker: {fileID: 5879892257633179896}
 --- !u!1 &7911536598438081930
 GameObject:
   m_ObjectHideFlags: 0
