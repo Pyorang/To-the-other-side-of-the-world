@@ -55,10 +55,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18f63257e1d81e14c88fd9de4097f85a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DailyMissionUI
+  RewardGold: 100
   _missionUIPrefab:
   - {fileID: 3509319142556760351}
   - {fileID: 9119852556985851339}
   - {fileID: 9080987885205489368}
+  _progressBar: {fileID: 7434238773158619698}
+  _rewardButton: {fileID: 4329602318986274202}
+  _rewardButtonText: {fileID: 4665241129315852592}
+  _clearText: {fileID: 5710484614761162394}
 --- !u!1 &2913748695588538455
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,7 +234,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -853}
+  m_AnchoredPosition: {x: 0, y: -900}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &229306568269081865
@@ -480,7 +485,7 @@ GameObject:
   - component: {fileID: 7453460243559611266}
   - component: {fileID: 4329602318986274202}
   m_Layer: 5
-  m_Name: RewardButtonn
+  m_Name: RewardButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -503,8 +508,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 80}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 100, y: 0}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &8888836169074756018
 CanvasRenderer:
@@ -535,7 +540,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: -1875337600358860702, guid: 1635260e9687d5b459c1cc26395e4c12, type: 3}
-  m_Type: 3
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -569,7 +574,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.3137255, g: 0.3137255, b: 0.3137255, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -583,11 +588,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 7453460243559611266}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2881165437454594297}
+        m_TargetAssemblyTypeName: DailyMissionUI, Assembly-CSharp
+        m_MethodName: OnClickRewardButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4289337665555691921
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,8 +641,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -700}
-  m_SizeDelta: {x: 700, y: 50}
+  m_AnchoredPosition: {x: -35, y: -700}
+  m_SizeDelta: {x: 900, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9019946821036090672
 CanvasRenderer:
@@ -697,11 +714,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7786438640354585748}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: -20, y: 60}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &7181388505140457423
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -730,7 +747,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 60 G
+  m_text: 100 G
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bd7c4b1ff6cf67c4e801fdc9bc2ab6fb, type: 2}
   m_sharedMaterial: {fileID: -6123288259687879939, guid: bd7c4b1ff6cf67c4e801fdc9bc2ab6fb, type: 2}
@@ -757,10 +774,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
+  m_fontSize: 42.85
   m_fontSizeBase: 30
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -836,7 +853,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 690, y: 40}
+  m_SizeDelta: {x: 900, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6324352484211492162
 CanvasRenderer:
@@ -871,7 +888,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.999
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -966,7 +983,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6515163329215168096, guid: 3325998f4fbe23748bbae0481c25196e, type: 3}
       propertyPath: m_Name
-      value: MissionUI_1
+      value: DailyMissionUI_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760686620813957507, guid: 3325998f4fbe23748bbae0481c25196e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760686620813957507, guid: 3325998f4fbe23748bbae0481c25196e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760686620813957507, guid: 3325998f4fbe23748bbae0481c25196e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2881165437454594297}
+    - target: {fileID: 8760686620813957507, guid: 3325998f4fbe23748bbae0481c25196e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760686620813957507, guid: 3325998f4fbe23748bbae0481c25196e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnClickMissionClear
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760686620813957507, guid: 3325998f4fbe23748bbae0481c25196e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: DailyMissionUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760686620813957507, guid: 3325998f4fbe23748bbae0481c25196e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1079,7 +1124,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6515163329215168096, guid: 3325998f4fbe23748bbae0481c25196e, type: 3}
       propertyPath: m_Name
-      value: MissionUI_3
+      value: DailyMissionUI_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760686620813957507, guid: 3325998f4fbe23748bbae0481c25196e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760686620813957507, guid: 3325998f4fbe23748bbae0481c25196e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760686620813957507, guid: 3325998f4fbe23748bbae0481c25196e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2881165437454594297}
+    - target: {fileID: 8760686620813957507, guid: 3325998f4fbe23748bbae0481c25196e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760686620813957507, guid: 3325998f4fbe23748bbae0481c25196e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnClickMissionClear
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760686620813957507, guid: 3325998f4fbe23748bbae0481c25196e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: DailyMissionUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760686620813957507, guid: 3325998f4fbe23748bbae0481c25196e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1192,7 +1265,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6515163329215168096, guid: 3325998f4fbe23748bbae0481c25196e, type: 3}
       propertyPath: m_Name
-      value: MissionUI_2
+      value: DailyMissionUI_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760686620813957507, guid: 3325998f4fbe23748bbae0481c25196e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760686620813957507, guid: 3325998f4fbe23748bbae0481c25196e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760686620813957507, guid: 3325998f4fbe23748bbae0481c25196e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2881165437454594297}
+    - target: {fileID: 8760686620813957507, guid: 3325998f4fbe23748bbae0481c25196e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760686620813957507, guid: 3325998f4fbe23748bbae0481c25196e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnClickMissionClear
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760686620813957507, guid: 3325998f4fbe23748bbae0481c25196e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: DailyMissionUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760686620813957507, guid: 3325998f4fbe23748bbae0481c25196e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
