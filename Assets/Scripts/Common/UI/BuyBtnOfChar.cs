@@ -27,6 +27,7 @@ public class BuyBtnOfChar : MonoBehaviour
 
             UserDataManager.Instance.SaveUserData();
 
+
         }
         else
         {

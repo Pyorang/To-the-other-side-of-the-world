@@ -62,6 +62,14 @@ public class ShopUI : BaseUI
         UserDataManager.Instance.GetUserData<UserCharacterData>().SoldOut.AddListener(UpdateCurrentPageData);
     }
 
+    public void ShowGoldPage()
+    {
+        currentPageIndex = _characterModel.Length / 2;
+        GoldShopUI.SetActive(true);
+        CharShopUI.SetActive(false);
+        UpdatePageNumText();
+    }
+
     public void OnClickLeftPageBtn()
     {
         Debug.Log($"현재 CurrentPageIndex : {currentPageIndex}");
@@ -77,11 +85,8 @@ public class ShopUI : BaseUI
             Debug.Log("최소 페이지 입니다.");
             return;
         }
-        else
-        {
-            UpdatePageData(currentPageIndex-1);
-        }
 
+        UpdatePageData(currentPageIndex - 1);
         currentPageIndex--;
         UpdatePageNumText();
     }
@@ -101,10 +106,11 @@ public class ShopUI : BaseUI
         }
         else
         {
-            UpdatePageData(currentPageIndex+1);
+            UpdatePageData(currentPageIndex + 1);
         }
-
+        
         currentPageIndex++; 
+
         UpdatePageNumText();
     }
 

@@ -395,10 +395,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5253163175062276129, guid: de508cddc437ec14db495f9691122c00, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnClickMissionShopButton
-      objectReference: {fileID: 0}
     - target: {fileID: 7130774678339814624, guid: de508cddc437ec14db495f9691122c00, type: 3}
       propertyPath: m_Name
       value: LobbyUIController

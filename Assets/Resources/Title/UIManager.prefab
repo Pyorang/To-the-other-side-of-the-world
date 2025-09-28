@@ -255,7 +255,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -13, y: 0}
+  m_AnchoredPosition: {x: -35, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4286774753573184919
@@ -286,7 +286,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1000000+
+  m_text: 111111+
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bd7c4b1ff6cf67c4e801fdc9bc2ab6fb, type: 2}
   m_sharedMaterial: {fileID: -6123288259687879939, guid: bd7c4b1ff6cf67c4e801fdc9bc2ab6fb, type: 2}
@@ -320,7 +320,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -351,7 +351,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 36.468117, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -525,10 +525,46 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6892984292603701458, guid: be6f8673ac0e14748bc4b0a1bd19d8e8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6892984292603701458, guid: be6f8673ac0e14748bc4b0a1bd19d8e8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6892984292603701458, guid: be6f8673ac0e14748bc4b0a1bd19d8e8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2696066960159664516}
+    - target: {fileID: 6892984292603701458, guid: be6f8673ac0e14748bc4b0a1bd19d8e8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6892984292603701458, guid: be6f8673ac0e14748bc4b0a1bd19d8e8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickGoldAddBtn
+      objectReference: {fileID: 0}
+    - target: {fileID: 6892984292603701458, guid: be6f8673ac0e14748bc4b0a1bd19d8e8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CurrencyUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6892984292603701458, guid: be6f8673ac0e14748bc4b0a1bd19d8e8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7272230960292553488, guid: be6f8673ac0e14748bc4b0a1bd19d8e8, type: 3}
       propertyPath: _goldAmountText
       value: 
       objectReference: {fileID: 6874391563905090318}
+    - target: {fileID: 9045586772885137789, guid: be6f8673ac0e14748bc4b0a1bd19d8e8, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.50000006
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045586772885137789, guid: be6f8673ac0e14748bc4b0a1bd19d8e8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 43.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 4749905089777685180, guid: be6f8673ac0e14748bc4b0a1bd19d8e8, type: 3}
@@ -538,6 +574,17 @@ PrefabInstance:
       addedObject: {fileID: 7589837628295183109}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be6f8673ac0e14748bc4b0a1bd19d8e8, type: 3}
+--- !u!114 &2696066960159664516 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7272230960292553488, guid: be6f8673ac0e14748bc4b0a1bd19d8e8, type: 3}
+  m_PrefabInstance: {fileID: 4721598813761833620}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ac91443c6ba9184988d6b600320d097, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CurrencyUI
 --- !u!224 &5753726960983137310 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1035587350388987530, guid: be6f8673ac0e14748bc4b0a1bd19d8e8, type: 3}
