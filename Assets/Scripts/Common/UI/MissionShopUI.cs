@@ -7,6 +7,12 @@ enum UiType
     CM = 1,
     Shop = 2
 }
+
+public class MissionShopUIData : BaseUIData
+{
+    public bool isClickGoldAddBtn = false;
+}
+
 public class MissionShopUI : BaseUI
 {
 
@@ -16,25 +22,21 @@ public class MissionShopUI : BaseUI
     private AchievementModel[] _dailyAchievements;
     private CharacterModel[] _characterModel;
 
+    [SerializeField] private ShopUI ShopUI;
+
     private int currentUiIndex = 0;
 
     public override void SetData(BaseUIData data)
     {
         base.SetData(data);
 
-        // UserDataManager에서 접속날짜와 기록된 날짜를 비교하여 미션 초기화 여부 결정
-
-        //ShopUI, DMUI, CMUI, CSUI 분리해서 스크립트 구성해야겠다.
-        //얘네들은 별개의 UI 창이라고 생각하고 하는게 맞는듯
-
-        // DM 불러오기
-        /*for (int i = 0; i < 4; i++)
+        MissionShopUIData missionShopUIData = data as MissionShopUIData;
+        if (missionShopUIData != null && missionShopUIData.isClickGoldAddBtn)
         {
-            _dailyAchievements[i] = DataTableManager.Instance.GetAchievementData($"DM_{i + 1}");
-        }*/
-
-        // 상점에 필요한 캐릭터 데이터 불러오기
-        //_characterModel = DataTableManager.Instance.GetAllChracterData();
+            OnClickShowShopUI();
+            ShopUI.ShowGoldPage();
+        }
+            
 
     }
     public void OnClickShowDailyMissionUI()

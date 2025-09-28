@@ -1196,6 +1196,7 @@ MonoBehaviour:
   - {fileID: 4174316051543537019}
   - {fileID: 3765910203698332752}
   - {fileID: 5334867457146137981}
+  ShopUI: {fileID: 6943827986573899065}
 --- !u!1001 &2962310257154221719
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1303,6 +1304,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7532383700449760984, guid: d0ac045584eb4134ea37ab77a43b04a7, type: 3}
   m_PrefabInstance: {fileID: 2962310257154221719}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6943827986573899065 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5278592289756369838, guid: d0ac045584eb4134ea37ab77a43b04a7, type: 3}
+  m_PrefabInstance: {fileID: 2962310257154221719}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4725501323979288655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cee12eec41718147b3175118f39b17e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopUI
 --- !u!1001 &4160362872016264653
 PrefabInstance:
   m_ObjectHideFlags: 0

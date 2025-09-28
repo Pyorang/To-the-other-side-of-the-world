@@ -22,4 +22,14 @@ public class CurrencyUI : MonoBehaviour
         var data = UserDataManager.Instance.GetUserData<UserCurrencyData>();
         _goldAmountText.text = data.Gold.ToString("N0");
     }
+
+    public void OnClickGoldAddBtn()
+    {
+        var data = new MissionShopUIData()
+        {
+            isClickGoldAddBtn = true
+        };
+        
+        UIManager.Instance.OpenUI<MissionShopUI>(data);
+    }
 }
