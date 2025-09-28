@@ -116,7 +116,7 @@ public class ShopUI : BaseUI
 
     private void UpdatePageNumText()
     {
-        pageText.text = currentPageIndex.ToString();
+        pageText.text = (currentPageIndex + 1).ToString();
     }
 
     public void UpdateCurrentPageData()
