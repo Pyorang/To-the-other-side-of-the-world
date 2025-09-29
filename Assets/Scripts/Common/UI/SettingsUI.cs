@@ -19,12 +19,14 @@ public class SettingsUI : BaseUI
     public void OnBGMValueChanged()
     {
         AudioManager.Instance.SetVolume(AudioType.BGM, _bgmSlider.value);
+        UserDataManager.Instance.GetUserData<UserSettingsData>().BGMvalue = _bgmSlider.value;
         UserDataManager.Instance.SaveUserData();
     }
 
     public void OnSFXValueChanged()
     {
         AudioManager.Instance.SetVolume(AudioType.SFX, _sfxSlider.value);
+        UserDataManager.Instance.GetUserData<UserSettingsData>().SFXvalue = _sfxSlider.value;
         UserDataManager.Instance.SaveUserData();
     }
 
