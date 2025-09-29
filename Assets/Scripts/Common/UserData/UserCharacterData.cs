@@ -22,6 +22,7 @@ public class UserCharacterData : IUserData
     private const string filename = "characterData.json";
 
     public UnityEvent SoldOut = new UnityEvent();
+    public Action ChangeCharAction;
 
     public UserCharacterData()
     {
