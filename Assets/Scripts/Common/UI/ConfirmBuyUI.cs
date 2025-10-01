@@ -35,7 +35,7 @@ public class ConfirmBuyUI : BaseUI
         if (ConfirmBuyUIData.BuyBtnOfGoldData != null)
         {
             BuyBtnOfGoldData = ConfirmBuyUIData.BuyBtnOfGoldData;
-            ConfirmText.text = BuyBtnOfGoldData.GoldAmountText + " 골드를 구매하시겠습니까?";
+            ConfirmText.text = BuyBtnOfGoldData.GoldAmount.ToString() + " 골드를 구매하시겠습니까?";
         }
         else if (ConfirmBuyUIData.BuyBtnOfCharData != null)
         {

@@ -461,7 +461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 284bd59eda3c651438e67bd383310551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuyBtnOfGold
-  goldAmount: 1500
+  goldAmount: 8100
   goldAmountImage: {fileID: 5018296635158132233}
   goldAmountText: {fileID: 6850081324359568110}
   btnNum: 3
@@ -2300,7 +2300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 284bd59eda3c651438e67bd383310551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuyBtnOfGold
-  goldAmount: 100
+  goldAmount: 300
   goldAmountImage: {fileID: 6408524427033704400}
   goldAmountText: {fileID: 5309872375556817121}
   btnNum: 0
@@ -2802,7 +2802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 284bd59eda3c651438e67bd383310551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuyBtnOfGold
-  goldAmount: 1000
+  goldAmount: 2700
   goldAmountImage: {fileID: 4180210423992133900}
   goldAmountText: {fileID: 683485831943975338}
   btnNum: 2
@@ -4015,20 +4015,6 @@ MonoBehaviour:
   CharShopUI: {fileID: 4006431354123888281}
   GoldShopUI: {fileID: 2926704367083547641}
   pageText: {fileID: 502969720841508392}
-  left_SaleCharacterImage: {fileID: 4592630310713699018}
-  leftCharacterName: {fileID: 600229948947637650}
-  leftSkillName: {fileID: 3073605000378948389}
-  leftSkillDetail: {fileID: 3824268797697096694}
-  leftCharacterPrice: {fileID: 7485693403740802962}
-  leftCharacterBuyBtn: {fileID: 2820882424870596749}
-  leftSoldOutMarker: {fileID: 1586325187713514343}
-  right_SaleCharacterImage: {fileID: 2951314785548876138}
-  rightCharacterName: {fileID: 12123699642426327}
-  rightSkillName: {fileID: 3524623317807374231}
-  rightSkillDetail: {fileID: 8778903413004030684}
-  rightCharacterPrice: {fileID: 6281777166104030582}
-  rightCharacterBuyBtn: {fileID: 7359921985251237933}
-  rightSoldOutMarker: {fileID: 5879892257633179896}
   leftCSPanel:
     saleCharacterImage: {fileID: 4592630310713699018}
     characterName: {fileID: 600229948947637650}
@@ -4191,7 +4177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 284bd59eda3c651438e67bd383310551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuyBtnOfGold
-  goldAmount: 500
+  goldAmount: 900
   goldAmountImage: {fileID: 2963377627318720327}
   goldAmountText: {fileID: 4973965701860224872}
   btnNum: 1
