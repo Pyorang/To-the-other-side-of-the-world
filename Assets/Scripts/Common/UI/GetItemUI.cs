@@ -23,13 +23,23 @@ public class GetItemUI : BaseUI
         else if (confirmBuyUIData.BuyBtnOfGoldData != null)
         {
             BuyBtnOfGoldData buyBtnOfGoldData = confirmBuyUIData.BuyBtnOfGoldData;
-            if (buyBtnOfGoldData.GoldAmountImage != null) ItemImage.sprite = buyBtnOfGoldData.GoldAmountImage.sprite;
+            if (buyBtnOfGoldData.GoldAmountImage != null)
+            {
+                ItemImage.sprite = buyBtnOfGoldData.GoldAmountImage.sprite;
+                ItemImage.SetNativeSize();
+                ItemImage.GetComponent<RectTransform>().localScale = new Vector3(2, 2, 5);
+            }
         }
         else
         {
             BuyBtnOfCharData buyBtnOfCharData = confirmBuyUIData.BuyBtnOfCharData;
-            if (buyBtnOfCharData.CharacterModel.ID != null) ItemImage.sprite = Resources.Load<Sprite>($"Textures/{buyBtnOfCharData.CharacterModel.ID}");
+            if (buyBtnOfCharData.CharacterModel.ID != null)
+            {
+                ItemImage.sprite = Resources.Load<Sprite>($"Textures/{buyBtnOfCharData.CharacterModel.ID}");
+                ItemImage.SetNativeSize();
+                ItemImage.GetComponent<RectTransform>().localScale = new Vector3(10, 10, 5);
+            }
+
         }
-   
     }
 }
