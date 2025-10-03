@@ -29,6 +29,7 @@ public class UserAccountData : IUserData
         catch
         {
             Debug.Log("접속 기록이 없습니다.");
+            UserDataManager.Instance.GetUserData<UserAchievementData>().TotalDayGameAccessed = 0;
             SetDefaultData();
             return false;
         }
@@ -61,6 +62,7 @@ public class UserAccountData : IUserData
 
         Debug.Log("초기 접속");
 
+        UserDataManager.Instance.GetUserData<UserAchievementData>().IncreaseProgress("TotalDayGameAccessed", 1);
         UserDataManager.Instance.GetUserData<UserAchievementData>().ResetDailyMissionData();
         SaveData();
     }
@@ -77,6 +79,7 @@ public class UserAccountData : IUserData
             accessYear = DateTime.Now.Year;
 
             UserDataManager.Instance.GetUserData<UserAchievementData>().ResetDailyMissionData();
+            UserDataManager.Instance.GetUserData<UserAchievementData>().IncreaseProgress("TotalDayGameAccessed", 1);
             SaveData();
 
             Debug.Log("접속일이 변경되어 초기화됩니다.");

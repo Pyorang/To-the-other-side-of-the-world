@@ -23,6 +23,5 @@ public class LobbyManager : SingletonBehaviour<LobbyManager>
         LobbyUIController.init();
         UIManager.Instance.CurrencyUI.SetActive(true);
         AudioManager.Instance.Play(AudioType.BGM, "lobby");
-        UserDataManager.Instance.GetUserData<UserAchievementData>().IncreaseProgress("TotalDayGameAccessed", 1);
     }
 }
