@@ -256,7 +256,7 @@ public class ShopUI : BaseUI
             return;
         }
 
-        descriptionTime++;
+        descriptionTime += Time.deltaTime;
         descriptionPosition = LadderWave(descriptionTime, descriptionSpeed, descriptionDelayTime);
 
         leftSkillView.verticalNormalizedPosition = descriptionPosition;

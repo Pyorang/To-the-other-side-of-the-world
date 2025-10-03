@@ -4088,8 +4088,8 @@ MonoBehaviour:
   leftSkillView: {fileID: 4647534589426874067}
   rightSkillView: {fileID: 5192348779477292633}
   descriptionPosition: 1
-  descriptionSpeed: 0.002
-  descriptionDelayTime: 100
+  descriptionSpeed: 1
+  descriptionDelayTime: 2
 --- !u!1 &7911536598438081930
 GameObject:
   m_ObjectHideFlags: 0
