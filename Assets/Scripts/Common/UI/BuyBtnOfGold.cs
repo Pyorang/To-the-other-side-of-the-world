@@ -42,6 +42,7 @@ public class BuyBtnOfGold : MonoBehaviour
                 GoldAmountImage = goldAmountImage
             }
         };
+        AudioManager.Instance.Play(AudioType.SFX, "ui_openUI_button_click");
         UIManager.Instance.OpenUI<ConfirmBuyUI>(data);
     }
 }

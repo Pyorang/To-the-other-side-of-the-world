@@ -27,7 +27,7 @@ public class BuyBtnOfChar : MonoBehaviour
             UserDataManager.Instance.GetUserData<UserCharacterData>().ChangeCharAction?.Invoke();
 
             UserDataManager.Instance.SaveUserData();
-
+            AudioManager.Instance.Play(AudioType.SFX, "ui_button_click");
 
         }
         else
@@ -41,6 +41,7 @@ public class BuyBtnOfChar : MonoBehaviour
                 }
             };
 
+            AudioManager.Instance.Play(AudioType.SFX, "ui_openUI_button_click");
             UIManager.Instance.OpenUI<ConfirmBuyUI>(data);
         }
         

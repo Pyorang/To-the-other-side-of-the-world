@@ -48,6 +48,15 @@ public class ShopUI : BaseUI
     [Header("Right Character Sale Panel")]
     public CharacterSalePanel rightCSPanel;
 
+    [Header("SkillDescriptionArea")]
+    [SerializeField] ScrollRect leftSkillView;
+    [SerializeField] ScrollRect rightSkillView;
+
+    [Space]
+    [SerializeField] private float descriptionPosition = 1f;
+    [SerializeField] private float descriptionSpeed = 0.5f;
+    [SerializeField] private float descriptionDelayTime = 0.5f;
+    private float descriptionTime = 0f;
 
     private void Awake()
     {
@@ -70,6 +79,10 @@ public class ShopUI : BaseUI
         UserDataManager.Instance.GetUserData<UserCharacterData>().SoldOut.AddListener(UpdateCurrentPageData);
     }
 
+    private void Update()
+    {
+        MoveSkillDescription();
+    }
     public void ShowGoldPage()
     {
         currentPageIndex = maxPageIndex;
@@ -80,6 +93,7 @@ public class ShopUI : BaseUI
 
     public void OnClickLeftPageBtn()
     {
+        AudioManager.Instance.Play(AudioType.SFX, "ui_button_click");
         Debug.Log($"현재 CurrentPageIndex : {currentPageIndex}");
         if (currentPageIndex ==  maxPageIndex)
         {
@@ -94,6 +108,10 @@ public class ShopUI : BaseUI
             return;
         }
 
+        descriptionTime = 0f;
+        leftSkillView.verticalNormalizedPosition = 1;
+        rightSkillView.verticalNormalizedPosition = 1;
+
         UpdatePageData(currentPageIndex - 1);
         currentPageIndex--;
         UpdatePageNumText();
@@ -101,6 +119,7 @@ public class ShopUI : BaseUI
 
     public void OnClickRightPageBtn()
     {
+        AudioManager.Instance.Play(AudioType.SFX, "ui_button_click");
         if (currentPageIndex >= maxPageIndex)
         {
             Debug.Log("최대 페이지 입니다.");
@@ -116,7 +135,11 @@ public class ShopUI : BaseUI
         {
             UpdatePageData(currentPageIndex + 1);
         }
-        
+
+        descriptionTime = 0f;
+        leftSkillView.verticalNormalizedPosition = 1;
+        rightSkillView.verticalNormalizedPosition = 1;
+
         currentPageIndex++; 
 
         UpdatePageNumText();
@@ -210,6 +233,34 @@ public class ShopUI : BaseUI
 
         leftCSPanel.saleCharacterImage.SetNativeSize();
         rightCSPanel.saleCharacterImage.SetNativeSize();
+    }
+
+    public float LadderWave(float time ,float speed, float pause)
+    {
+        float period = 2f / speed + pause * 2f;
+        float t = time % period;
+
+        float riseTime = 1f / speed;
+        if (t < pause) return 1f;
+        if (t < pause + riseTime) return 1f - (t - pause) / riseTime;
+        if (t < 2 * pause + riseTime) return 0;
+        return (t - riseTime - 2 * pause) / riseTime;
+    }
+    private void MoveSkillDescription()
+    {
+        if (!CharShopUI.activeSelf)
+        {
+            descriptionTime = 0f;
+            leftSkillView.verticalNormalizedPosition = 1;
+            rightSkillView.verticalNormalizedPosition = 1;
+            return;
+        }
+
+        descriptionTime++;
+        descriptionPosition = LadderWave(descriptionTime, descriptionSpeed, descriptionDelayTime);
+
+        leftSkillView.verticalNormalizedPosition = descriptionPosition;
+        rightSkillView.verticalNormalizedPosition = descriptionPosition;
     }
 
 }

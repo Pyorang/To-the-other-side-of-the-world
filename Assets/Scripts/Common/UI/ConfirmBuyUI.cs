@@ -58,8 +58,8 @@ public class ConfirmBuyUI : BaseUI
                 UIManager.Instance.OpenUI<GetItemUI>(data);
 
                 UserDataManager.Instance.GetUserData<UserCurrencyData>().Gold += BuyBtnOfGoldData.GoldAmount;
-                
-                OnClickCloseButton();
+
+                Close();
 
                 UserDataManager.Instance.SaveUserData();
             }

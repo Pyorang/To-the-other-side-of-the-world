@@ -33,7 +33,8 @@ public class MissionShopUI : BaseUI
         MissionShopUIData missionShopUIData = data as MissionShopUIData;
         if (missionShopUIData != null && missionShopUIData.isClickGoldAddBtn)
         {
-            OnClickShowShopUI();
+            AudioManager.Instance.Play(AudioType.SFX, "ui_openUi_button_click");
+            ChangeUI((int)UiType.Shop);
             ShopUI.ShowGoldPage();
         }
             
@@ -41,22 +42,20 @@ public class MissionShopUI : BaseUI
     }
     public void OnClickShowDailyMissionUI()
     {
+        AudioManager.Instance.Play(AudioType.SFX, "ui_button_click");
         ChangeUI((int)UiType.DM);
     }
 
     public void OnClickShowChallengeMissionUI()
     {
+        AudioManager.Instance.Play(AudioType.SFX, "ui_button_click");
         ChangeUI((int)UiType.CM);
     }
 
     public void OnClickShowShopUI()
     {
+        AudioManager.Instance.Play(AudioType.SFX, "ui_button_click");
         ChangeUI((int)UiType.Shop);
-    }
-
-    public void OnClickChangeShopPage()
-    {
-        Debug.Log($"{GetType()}::{nameof(OnClickChangeShopPage)}");
     }
 
     private void ChangeUI(int UiIndex)

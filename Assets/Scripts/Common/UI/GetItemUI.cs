@@ -10,6 +10,8 @@ public class GetItemUI : BaseUI
     {
         base.SetData(data);
 
+        AudioManager.Instance.Play(AudioType.SFX, "ui_getItem");
+
         ConfirmBuyUIData confirmBuyUIData = data as ConfirmBuyUIData;
 
         if (confirmBuyUIData.BuyBtnOfCharData == null && confirmBuyUIData.BuyBtnOfGoldData == null)
