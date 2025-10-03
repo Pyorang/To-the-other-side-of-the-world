@@ -11,32 +11,31 @@ public class UserAccountData : IUserData
 
     public bool LoadData()
     {
-        bool result = false;
-
         accessDay = PlayerPrefs.GetInt(nameof(accessDay));
         accessMonth = PlayerPrefs.GetInt(nameof(accessMonth));
         accessYear = PlayerPrefs.GetInt(nameof(accessYear));
 
-        if (accessDay == 0 || accessMonth == 0 || accessYear == 0)
+        try
         {
-            Debug.Log("접속 기록이 없습니다.");
-        }
-        else
-        {
-            Debug.Log($"현재 접속 시간 : {DateTime.Now.Year} : {DateTime.Now.Month} : {DateTime.Now.Day}");
-            Debug.Log($"지난 접속 시간 : {accessYear} : {accessMonth} : {accessDay}");
+            // date 값 오류 체크용
+            var date = new DateTime(accessYear, accessMonth, accessDay);
+
+            Debug.Log($"현재 접속 날짜 : {DateTime.Now.Year} : {DateTime.Now.Month} : {DateTime.Now.Day}");
+            Debug.Log($"지난 접속 날짜 : {accessYear} : {accessMonth} : {accessDay}");
 
             CheckAccessDays();
-
-            result = true;
+            return true;
         }
-
-        return result;
+        catch
+        {
+            Debug.Log("접속 기록이 없습니다.");
+            SetDefaultData();
+            return false;
+        }
     }
 
     public bool SaveData()
     {
-        bool result = false;
         try
         {
             PlayerPrefs.SetInt(nameof(accessDay), accessDay);
@@ -44,15 +43,14 @@ public class UserAccountData : IUserData
             PlayerPrefs.SetInt(nameof(accessYear), accessYear);
             PlayerPrefs.Save();
 
-            result = true;
-
             Debug.Log("접속 시간 저장 완료");
+            return true;
         }
         catch (Exception e)
         {
+            Debug.Log("접속 시간 저장 실패..");
+            return false;
         }
-
-        return result;
     }
 
     public void SetDefaultData()
