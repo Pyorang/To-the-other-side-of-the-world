@@ -473,7 +473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 284bd59eda3c651438e67bd383310551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuyBtnOfGold
-  goldAmount: 8100
+  goldAmount: 50000
   goldAmountImage: {fileID: 5018296635158132233}
   goldAmountText: {fileID: 6850081324359568110}
   btnNum: 3
@@ -2312,7 +2312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 284bd59eda3c651438e67bd383310551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuyBtnOfGold
-  goldAmount: 300
+  goldAmount: 1000
   goldAmountImage: {fileID: 6408524427033704400}
   goldAmountText: {fileID: 5309872375556817121}
   btnNum: 0
@@ -2814,7 +2814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 284bd59eda3c651438e67bd383310551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuyBtnOfGold
-  goldAmount: 2700
+  goldAmount: 10000
   goldAmountImage: {fileID: 4180210423992133900}
   goldAmountText: {fileID: 683485831943975338}
   btnNum: 2
@@ -4236,7 +4236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 284bd59eda3c651438e67bd383310551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuyBtnOfGold
-  goldAmount: 900
+  goldAmount: 5000
   goldAmountImage: {fileID: 2963377627318720327}
   goldAmountText: {fileID: 4973965701860224872}
   btnNum: 1
