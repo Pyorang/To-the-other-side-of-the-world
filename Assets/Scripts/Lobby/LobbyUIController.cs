@@ -67,6 +67,7 @@ public class LobbyUIController : MonoBehaviour
 
         var uiData = new BaseUIData();
         UIManager.Instance.OpenUI<SettingsUI>(uiData);
+        AudioManager.Instance.Play(AudioType.SFX, "ui_openUI_button_click");
     }
 
     public void OnClickMissionShopButton()
@@ -75,11 +76,14 @@ public class LobbyUIController : MonoBehaviour
 
         var uiData = new BaseUIData();
         UIManager.Instance.OpenUI<MissionShopUI>(uiData);
+        AudioManager.Instance.Play(AudioType.SFX, "ui_openUI_button_click");
     }
 
     public void OnClickStartButton()
     {
         Debug.Log($"{GetType()}::{nameof(OnClickStartButton)}");
+        AudioManager.Instance.Play(AudioType.SFX, "ui_start_button_click");
+        AudioManager.Instance.Stop(AudioType.BGM);
         SceneLoader.Instance.LoadScene(ESceneType.InGame);
         
     }

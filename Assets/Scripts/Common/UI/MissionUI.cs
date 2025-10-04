@@ -73,6 +73,8 @@ public class MissionUI : MonoBehaviour
 
     public void OnClickRewardButton()
     {
+        AudioManager.Instance.Play(AudioType.SFX, "ui_button_click");
+
         UserDataManager.Instance.GetUserData<UserAchievementData>().clearedAchievements.Add(missionData.ID);
         UserDataManager.Instance.GetUserData<UserCurrencyData>().Gold += missionData.RewardGold;
         RewardButton.interactable = false;

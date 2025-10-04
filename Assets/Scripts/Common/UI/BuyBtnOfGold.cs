@@ -8,7 +8,6 @@ public class BuyBtnOfGoldData : BaseUIData
     // 대신 임시로 정해놓은 변수임
     // 원래는 public GameData GameData { get; set; }이런식으로 설정하는게 맞음
     public int GoldAmount { get; set; }
-    public string GoldAmountText { get; set; }
     public Image GoldAmountImage { get; set; }
 
 }
@@ -21,7 +20,12 @@ public class BuyBtnOfGold : MonoBehaviour
     [SerializeField] private Image goldAmountImage;
     [SerializeField] private TextMeshProUGUI goldAmountText;
     [SerializeField] private int btnNum;
-    
+
+    private void Awake()
+    {
+        goldAmountText.text = goldAmount.ToString();
+    }
+
     public void UpdateData()
     {
         // 각 버튼 마다 구매할 골드 양을 개발자가 변경하면 ui에 업데이트 하는 함수
@@ -35,10 +39,10 @@ public class BuyBtnOfGold : MonoBehaviour
             BuyBtnOfGoldData = new BuyBtnOfGoldData()
             {
                 GoldAmount = goldAmount,
-                GoldAmountText = goldAmountText.text,
                 GoldAmountImage = goldAmountImage
             }
         };
+        AudioManager.Instance.Play(AudioType.SFX, "ui_openUI_button_click");
         UIManager.Instance.OpenUI<ConfirmBuyUI>(data);
     }
 }
