@@ -211,4 +211,20 @@ public class UserAchievementData : IUserData
 
         SaveData();
     }
+
+    public void ResetDailyMissionData()
+    {
+        TotalDailyMissionCleared = 0;
+        GotExtraDailyMissionReward = false;
+
+        TotalDayGameAccessed += 1;
+
+        // 일일미션 클리어 정보 초기화
+        clearedAchievements.RemoveWhere(id => id.StartsWith("DM_"));
+
+        /////////////////////////////
+        // 일일미션 관련 변수 초기화 //
+        /////////////////////////////
+
+    }
 }

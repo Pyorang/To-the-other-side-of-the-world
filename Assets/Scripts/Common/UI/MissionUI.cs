@@ -9,6 +9,7 @@ public class MissionUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI[] MissonNameText;
     [SerializeField] private TextMeshProUGUI[] MissionDescText;
     [SerializeField] private TextMeshProUGUI RewardAmountText;
+    [SerializeField] private GameObject GetRewardMarker;
 
     private AchievementModel missionData;
     [SerializeField] private Button RewardButton;
@@ -32,10 +33,13 @@ public class MissionUI : MonoBehaviour
 
         if (UserDataManager.Instance.GetUserData<UserAchievementData>().clearedAchievements.Contains(missionData.ID))
         {
+            GetRewardMarker.SetActive(true);
             RewardButton.interactable = false;
         }
         else
         {
+            GetRewardMarker.SetActive(false);
+
             if (missionData.TargetValue <= UserDataManager.Instance.GetUserData<UserAchievementData>().progress[missionData.ID])
                 RewardButton.interactable = true;
             else
@@ -78,6 +82,7 @@ public class MissionUI : MonoBehaviour
         UserDataManager.Instance.GetUserData<UserAchievementData>().clearedAchievements.Add(missionData.ID);
         UserDataManager.Instance.GetUserData<UserCurrencyData>().Gold += missionData.RewardGold;
         RewardButton.interactable = false;
+        GetRewardMarker.SetActive(true);
         UserDataManager.Instance.SaveUserData();
     }
 }
