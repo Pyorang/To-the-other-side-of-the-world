@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PickAx : SingletonBehaviour<PickAx>
 {
-    [SerializeField] private Animator animator;
+    [SerializeField] Animator animator;
 
     protected override void Init()
     {
@@ -28,5 +28,10 @@ public class PickAx : SingletonBehaviour<PickAx>
         yield return new WaitForSeconds(length);
 
         this.gameObject.SetActive(false);
+    }
+
+    public Animator GetAnimator()
+    {
+        return animator;
     }
 }

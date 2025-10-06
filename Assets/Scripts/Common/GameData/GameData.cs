@@ -26,3 +26,16 @@ public class CharacterModel
     public int Price;
 }
 #endregion
+
+#region BlockProbability
+[Serializable]
+public class BlockProbabailtyModel
+{
+    public int StartStage;
+    public int EndStage;
+    public int CommonBlock;
+    public int ExplosionBlock;
+    public int EnhancedBlock;
+    public int GasBlock;
+}
+#endregion

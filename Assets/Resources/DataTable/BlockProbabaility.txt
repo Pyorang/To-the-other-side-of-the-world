@@ -1,0 +1,36 @@
+{
+  "data": [
+    {
+      "StartStage": 1,
+      "EndStage" : 10,
+      "CommonBlock": 65,
+      "ExplosionBlock": 25,
+      "EnhancedBlock": 10,
+      "GasBlock": 0
+    },
+    {
+      "StartStage": 11,
+      "EndStage" : 50,
+      "CommonBlock": 60,
+      "ExplosionBlock": 25,
+      "EnhancedBlock": 10,
+      "GasBlock": 5
+    },
+    {
+      "StartStage": 51,
+      "EndStage" : 150,
+      "CommonBlock": 40,
+      "ExplosionBlock": 25,
+      "EnhancedBlock": 25,
+      "GasBlock": 10
+    },
+    {
+      "StartStage": 151,
+      "EndStage" : 2147483647,
+      "CommonBlock": 35,
+      "ExplosionBlock": 25,
+      "EnhancedBlock": 25,
+      "GasBlock": 15
+    }
+  ]
+}
