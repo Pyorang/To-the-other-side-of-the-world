@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
+  serializedVersion: 3
   tags: []
   layers:
   - Default
@@ -41,3 +41,44 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BackGround
+    uniqueID: 2584646101
+    locked: 0
+  - name: B10
+    uniqueID: 569509373
+    locked: 0
+  - name: B9
+    uniqueID: 192811271
+    locked: 0
+  - name: B8
+    uniqueID: 1562809409
+    locked: 0
+  - name: B7
+    uniqueID: 2856214811
+    locked: 0
+  - name: B6
+    uniqueID: 2780440125
+    locked: 0
+  - name: B5
+    uniqueID: 926805933
+    locked: 0
+  - name: B4
+    uniqueID: 697192413
+    locked: 0
+  - name: B3
+    uniqueID: 2483875611
+    locked: 0
+  - name: B2
+    uniqueID: 1575476021
+    locked: 0
+  - name: B1
+    uniqueID: 2293341787
+    locked: 0
+  - name: Blocks
+    uniqueID: 1573357913
+    locked: 0
+  - name: PickAx
+    uniqueID: 4057893083
+    locked: 0
+  m_RenderingLayers:
+  - Default

@@ -13,6 +13,7 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
     // NOTE : GameData를 담아올 수 있는 컨테이너들 추가
     private AchievementModel[] _achievments;
     private CharacterModel[] _characters;
+    private BlockProbabailtyModel[] _blockProbabailtyModels;
 
     protected override void Init()
     {
@@ -21,6 +22,7 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
         // NOTE: 컨테이너들에 GameData들 불러오기
         _achievments = LoadDataFromJson<AchievementModel>("Achievement");
         _characters = LoadDataFromJson<CharacterModel>("Character");
+        _blockProbabailtyModels = LoadDataFromJson<BlockProbabailtyModel>("BlockProbabaility");
     }
 
     public AchievementModel GetAchievementData(string id)
@@ -40,6 +42,28 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
     public CharacterModel[] GetAllCharacterModelData()
     {
         return _characters;
+    }
+
+    public BlockType GetRandomBlock(int floorNumber)
+    {
+        for(int i = 0; i< _blockProbabailtyModels.Length; i++)
+        {
+            if (_blockProbabailtyModels[i].StartStage <= floorNumber && floorNumber <= _blockProbabailtyModels[i].EndStage)
+            {
+                int randomNumber = Random.Range(1, 101);
+
+                if (randomNumber - _blockProbabailtyModels[i].CommonBlock <= 0)
+                    return BlockType.CommonBlock;
+                else if (randomNumber - _blockProbabailtyModels[i].CommonBlock - _blockProbabailtyModels[i]. ExplosionBlock <= 0)
+                    return BlockType.ExplosionBlock;
+                else if (randomNumber - _blockProbabailtyModels[i].CommonBlock - _blockProbabailtyModels[i].ExplosionBlock - _blockProbabailtyModels[i].EnhancedBlock <= 0)
+                    return BlockType.EnhancedBlock;
+                else
+                    return BlockType.GasBlock;
+            }
+        }
+
+        return BlockType.CommonBlock;   
     }
 
     private const string DATA_PATH = "DataTable";
