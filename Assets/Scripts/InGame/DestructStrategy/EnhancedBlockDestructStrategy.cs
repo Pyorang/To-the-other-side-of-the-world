@@ -4,6 +4,9 @@ public class EnhancedBlockDestructStrategy : IDestructStrategy
 {
     public void Destruct(Block block)
     {
-        // Enhanced destruction logic, e.g., play an animation, spawn particles, etc.
+        block.gameObject.SetActive(false);
+        GameManager.Instance.CheckCurrentStageClear();
+        UserDataManager.Instance.GetUserData<UserAchievementData>().IncreaseProgress("TotalBlocksDestroyed", 1);
+        UserDataManager.Instance.GetUserData<UserAchievementData>().IncreaseProgress("TotalEnhancedBlocksDestroyed", 1);
     }
 }

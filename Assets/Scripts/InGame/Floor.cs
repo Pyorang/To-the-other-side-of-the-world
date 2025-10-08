@@ -4,27 +4,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
+using UnityEngine.UI;
 
 [Serializable]
-public class RowTransform
+public class RowBlock
 {
-    public Transform[] rowTransform;
+    public Block[] rowBlock;
 }
 
 public class Floor : MonoBehaviour
 {
     private static readonly int FloorLength = 5;
-    private Block[ , ] Blocks = new Block[FloorLength, FloorLength];
-    [SerializeField] private RowTransform[] InstantiateLocations = new RowTransform[FloorLength];
-
-    [Header("블록 할당")]
-    private IObjectPool<Block> BlockPool;
-    [SerializeField] private GameObject BlockPrefab;
-
-    private void Awake()
-    {
-        BlockPool = new ObjectPool<Block>(CreateBlock, GetBlock, ReleaseBlock, DestroyBlock, maxSize: 25);
-    } 
+    [SerializeField] private RowBlock[] Blocks = new RowBlock[FloorLength];
 
     private void Start()
     {
@@ -33,44 +24,54 @@ public class Floor : MonoBehaviour
 
     public void ResetStage()
     {
-
-        int row = 0;
-        int col = 0;
-
-        foreach(var colArray in InstantiateLocations)
+        foreach(var colBlock in Blocks)
         {
-            foreach(var spawnPoint in colArray.rowTransform)
+            foreach(var rowBlock in colBlock.rowBlock)
             {
-                Block SpawnBlock;
-
+                rowBlock.blockDurability = 1;
+                rowBlock.gameObject.SetActive(true);
                 BlockType blockType = DataTableManager.Instance.GetRandomBlock(GameManager.Instance.currentStage);
-                SpawnBlock = BlockPool.Get();
-
-                SpawnBlock.SetBlockType(blockType);
-                SpawnBlock.gameObject.transform.position = spawnPoint.position;
-                SpawnBlock.gameObject.GetComponent<SpriteRenderer>().sortingOrder = FloorLength * col + row;
-                Blocks[col, row] = SpawnBlock;
-                row++;
+                rowBlock.SetBlockType(blockType);
             }
-            row = 0;
-            col++;
         }
     }
 
     public void DestroyLeftBlocks()
     {
-        for (int i = 0; i < FloorLength; i++)
+        foreach(var colBlock in Blocks)
         {
-            for (int j = 0; j < FloorLength; j++)
+            foreach(var rowBlock in colBlock.rowBlock)
             {
-                if (Blocks[i, j] != null)
+                if (rowBlock.gameObject.activeSelf == true)
                 {
-                    BlockPool.Release(Blocks[i, j]);
+                    rowBlock.gameObject.SetActive(false);
                 }
             }
         }
     }
 
+    public Block[] GetNearBlocks(Block block)
+    {
+        for (int i = 0; i < FloorLength; i++)
+        {
+            for (int j = 0; j < FloorLength; j++)
+            {
+                if (Blocks[i].rowBlock[j] == block)
+                {
+                    Block[] nearBlocks = new Block[4];
+                    nearBlocks[0] = (i > 0) ? Blocks[i - 1].rowBlock[j] : null; // Up
+                    nearBlocks[1] = (i < FloorLength - 1) ? Blocks[i + 1].rowBlock[j] : null; // Down
+                    nearBlocks[2] = (j > 0) ? Blocks[i].rowBlock[j - 1] : null; // Left
+                    nearBlocks[3] = (j < FloorLength - 1) ? Blocks[i].rowBlock[j + 1] : null; // Right
+                    return nearBlocks;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    #region 스테이지 클리어 관련 메서드
     public void ProcessStageClear()
     {
         if(CheckStageClear())
@@ -84,10 +85,13 @@ public class Floor : MonoBehaviour
     {
         foreach(var block in Blocks)
         {
-            if (block == null)
-                continue;
-            if (!(block.GetBlockType() == BlockType.ExplosionBlock || block.GetBlockType() == BlockType.GasBlock))
-                return false;
+            foreach(var rowBlock in block.rowBlock)
+            {
+                if (rowBlock.gameObject.activeSelf == false)
+                    continue;
+                if (!(rowBlock.GetBlockType() == BlockType.ExplosionBlock || rowBlock.GetBlockType() == BlockType.GasBlock))
+                    return false;
+            }
         }
 
         DestroyLeftBlocks();
@@ -100,43 +104,6 @@ public class Floor : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         ResetStage();
-    }
-
-    #region 오브젝트 풀링 관련 메서드
-    private Block CreateBlock()
-    {
-        Block block = Instantiate(BlockPrefab).GetComponent<Block>();
-        block.SetManagedPool(BlockPool);
-        return block;
-    }
-
-    private void GetBlock(Block block)
-    {
-        block.gameObject.SetActive(true);
-    }
-
-    private void ReleaseBlock(Block block)
-    {
-        block.gameObject.SetActive(false);
-        block.hasDestroyed = false;
-        block.blockDurability = 1;
-
-        for (int i = 0; i< FloorLength; i++)
-        {
-            for(int j = 0; j< FloorLength; j++)
-            {
-                if(Blocks[i,j] == block)
-                {
-                    Blocks[i, j] = null;
-                    return;
-                }
-            }
-        }
-    }
-
-    private void DestroyBlock(Block block)
-    {
-        Destroy(block.gameObject);
     }
     #endregion
 }
