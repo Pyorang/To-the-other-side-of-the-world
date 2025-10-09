@@ -16,4 +16,15 @@ public class GameManager : SingletonBehaviour<GameManager>
     {
         floor.ProcessStageClear();
     }
+
+    public void ProcessGameOver()
+    {
+        UserDataManager.Instance.SaveUserData();
+        Debug.Log("Game Over");
+    }
+
+    public Floor GetFloor()
+    {
+        return floor;
+    }
 }

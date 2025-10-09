@@ -94,7 +94,7 @@
       "Description": "폭탄 블럭 누적 10개 파괴하기",
       "TargetValue": 10,
       "RewardGold": 500,
-      "RelatedVariable": "TotalBombBlocksDestroyed"
+      "RelatedVariable": "TotalExplosionBlocksDestroyed"
     },
     {
       "ID": "CM_10",
@@ -102,7 +102,7 @@
       "Description": "폭탄 블럭 누적 50개 파괴하기",
       "TargetValue": 50,
       "RewardGold": 1000,
-      "RelatedVariable": "TotalBombBlocksDestroyed"
+      "RelatedVariable": "TotalExplosionBlocksDestroyed"
     },
     {
       "ID": "CM_11",
@@ -110,7 +110,7 @@
       "Description": "폭탄 블럭 누적 100개 파괴하기",
       "TargetValue": 100,
       "RewardGold": 2000,
-      "RelatedVariable": "TotalBombBlocksDestroyed"
+      "RelatedVariable": "TotalExplosionBlocksDestroyed"
     },
     {
       "ID": "CM_12",

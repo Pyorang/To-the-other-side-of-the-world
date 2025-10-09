@@ -4,7 +4,8 @@ public class GasBlockDestructStrategy : IDestructStrategy
 {
     public void Destruct(Block block)
     {
-        Debug.Log("GasBlockDestructStrategy Destructed");
-        // Implement gas block specific destruction logic here
+        block.gameObject.SetActive(false);
+        GameManager.Instance.ProcessGameOver();
+        UserDataManager.Instance.GetUserData<UserAchievementData>().IncreaseProgress("TotalBlocksDestroyed", 1);
     }
 }

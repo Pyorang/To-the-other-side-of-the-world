@@ -19,19 +19,15 @@ public interface IDestructStrategy
 
 public class Block : MonoBehaviour, IPointerDownHandler
 {
-    public bool hasDestroyed {get; set;} = false;
     public int blockDurability = 1;
 
     [SerializeField] private BlockType blockType;
     private IDestructStrategy destructStrategy;
 
-    public IObjectPool<Block> _ManagedPool;
-
     public BlockType GetBlockType() { return blockType; }
-
-    public void SetManagedPool(IObjectPool<Block> Pool)
+    public IDestructStrategy GetDestructStrategy()
     {
-        _ManagedPool = Pool;
+        return destructStrategy;
     }
 
     public void SetBlockType(BlockType blocktype)
@@ -76,18 +72,17 @@ public class Block : MonoBehaviour, IPointerDownHandler
     public void OnPointerDown(PointerEventData eventData)
     {
 
-        if (!hasDestroyed)
+        if (blockDurability > 0)
         {
-            if (PickAx.Instance.gameObject.activeSelf)
+            if(PickAx.Instance.gameObject.activeSelf)
                 PickAx.Instance.gameObject.SetActive(false);
 
             blockDurability--;
 
-            if (blockDurability <= 0)
-                hasDestroyed = true;
-
             SetPickAxActive();
-            StartCoroutine(WaitForAnimation());
+
+            if(blockDurability <= 0)
+                StartCoroutine(DestructProcess());
         }
     }
 
@@ -99,10 +94,10 @@ public class Block : MonoBehaviour, IPointerDownHandler
         PickAx.Instance.gameObject.SetActive(true);
     }
 
-    private IEnumerator WaitForAnimation()
+    private IEnumerator DestructProcess()
     {
         yield return new WaitForSeconds(PickAx.Instance.GetAnimator().GetCurrentAnimatorStateInfo(0).length);
-
+         
         destructStrategy.Destruct(this);
     }
 }

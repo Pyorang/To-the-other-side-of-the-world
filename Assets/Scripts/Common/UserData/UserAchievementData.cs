@@ -23,7 +23,7 @@ public class UserAchievementSaveData
     public bool GotExtraDailyMissionReward;
     public int MaxStageReached;
     public int TotalBlocksDestroyed;
-    public int TotalBombBlocksDestroyed;
+    public int TotalExplosionBlocksDestroyed;
     public int TotalEnhancedBlocksDestroyed;
     public int TotalCharactersAcquired;
     public int dwarf_200_floor_challenge;
@@ -51,7 +51,7 @@ public class UserAchievementData : IUserData
 
 
     public int TotalBlocksDestroyed { get; set; }
-    public int TotalBombBlocksDestroyed { get; set; }
+    public int TotalExplosionBlocksDestroyed { get; set; }
     public int TotalEnhancedBlocksDestroyed { get; set; }
     
     public int TotalCharactersAcquired { get; set; }
@@ -71,7 +71,7 @@ public class UserAchievementData : IUserData
         GotExtraDailyMissionReward = false;
         MaxStageReached = 0;
         TotalBlocksDestroyed = 0;
-        TotalBombBlocksDestroyed = 0;
+        TotalExplosionBlocksDestroyed = 0;
         TotalEnhancedBlocksDestroyed = 0;
         TotalCharactersAcquired = 0;
         dwarf_200_floor_challenge = 0;
@@ -105,7 +105,7 @@ public class UserAchievementData : IUserData
             saveData.GotExtraDailyMissionReward = this.GotExtraDailyMissionReward;
             saveData.MaxStageReached = this.MaxStageReached;
             saveData.TotalBlocksDestroyed = this.TotalBlocksDestroyed;
-            saveData.TotalBombBlocksDestroyed = this.TotalBombBlocksDestroyed;
+            saveData.TotalExplosionBlocksDestroyed = this.TotalExplosionBlocksDestroyed;
             saveData.TotalEnhancedBlocksDestroyed = this.TotalEnhancedBlocksDestroyed;
             saveData.TotalCharactersAcquired = this.TotalCharactersAcquired;
             saveData.dwarf_200_floor_challenge = this.dwarf_200_floor_challenge;
@@ -158,7 +158,7 @@ public class UserAchievementData : IUserData
                 this.GotExtraDailyMissionReward = loadedData.GotExtraDailyMissionReward;
                 this.MaxStageReached = loadedData.MaxStageReached;
                 this.TotalBlocksDestroyed = loadedData.TotalBlocksDestroyed;
-                this.TotalBombBlocksDestroyed = loadedData.TotalBombBlocksDestroyed;
+                this.TotalExplosionBlocksDestroyed = loadedData.TotalExplosionBlocksDestroyed;
                 this.TotalEnhancedBlocksDestroyed = loadedData.TotalEnhancedBlocksDestroyed;
                 this.TotalCharactersAcquired = loadedData.TotalCharactersAcquired;
                 this.dwarf_200_floor_challenge = loadedData.dwarf_200_floor_challenge;
