@@ -1334,6 +1334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   CanvasTransform: {fileID: 2770976865027738483}
+  TimeBarHandleImage: {fileID: 8604172260188224684}
 --- !u!1 &4092343587159502227
 GameObject:
   m_ObjectHideFlags: 0
