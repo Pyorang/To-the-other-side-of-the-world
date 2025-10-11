@@ -14,6 +14,9 @@ public class BlockDictionaryUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI blockDescription;
     [SerializeField] private TextMeshProUGUI blockName;
 
+    // 블록도감을 다시 활성화 할 때 첫 버튼이 눌린 채로 나오기 위해 사용되는 변수
+    private BlockInfoBtn firstBtn;
+
     // 클릭한 버튼을 표시하기 위한 요소
     private Image clickedBtnImage;
     private readonly Color clickedColor = new Color(1, 1, 1, 0);
@@ -25,21 +28,31 @@ public class BlockDictionaryUI : MonoBehaviour
         {
             var blockInfoBtnObj = Instantiate(_blockInfoBtnPrefab, _contentPosition.transform);
             var blockInfoBtn = blockInfoBtnObj.GetComponent<BlockInfoBtn>();
-            blockInfoBtn.setDescription.AddListener((blockInfoData, btnImage) => OnClickShowBlockInfo(blockInfoData, btnImage));
+            blockInfoBtn.setDescription.AddListener((id, btnImage) => OnClickShowBlockInfo(id, btnImage));
             blockInfoBtn.SetContent(blockData.ID);
 
 
-            // 블록 사전을 처음 열 때 첫 번째 버튼이 눌려있는 채로 시작하기 때문에, 눌려있는 버튼 이미지를 저장함
+            // 블록 사전을 처음 열 때 첫 번째 버튼이 눌려있는 채로 시작하기 위한 작업
             if (blockData.ID == "B_1")
-            clickedBtnImage = blockInfoBtn.blockTypeColorImage;
+            {
+                firstBtn = blockInfoBtn;
+                firstBtn.OnClickShowDescription();
+            }
+            
         }
     }
 
-    public void OnClickShowBlockInfo(BlockInfoModel blockInfoData, Image btnImage)
+    private void OnEnable()
+    {
+        firstBtn.OnClickShowDescription();
+    }
+
+    public void OnClickShowBlockInfo(string id, Image btnImage)
     {
         AudioManager.Instance.Play(AudioType.SFX, "ui_button_click");
         Debug.Log("블록 세부 설명 출력");
 
+        BlockInfoModel blockInfoData = DataTableManager.Instance.GetBlockInfoData(id);
         if (clickedBtnImage != null)
         {
             clickedBtnImage.color = unClickedColor;
