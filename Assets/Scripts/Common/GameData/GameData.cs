@@ -39,3 +39,14 @@ public class BlockProbabailtyModel
     public int GasBlock;
 }
 #endregion
+
+#region BlockInfo
+[Serializable]
+public class BlockInfoModel
+{
+    public string ID;
+    public string Name;
+    public string Description;
+    public string Type;
+}
+#endregion

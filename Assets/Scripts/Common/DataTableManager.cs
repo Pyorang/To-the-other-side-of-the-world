@@ -14,6 +14,7 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
     private AchievementModel[] _achievments;
     private CharacterModel[] _characters;
     private BlockProbabailtyModel[] _blockProbabailtyModels;
+    private BlockInfoModel[] _blockInfos;
 
     protected override void Init()
     {
@@ -23,6 +24,7 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
         _achievments = LoadDataFromJson<AchievementModel>("Achievement");
         _characters = LoadDataFromJson<CharacterModel>("Character");
         _blockProbabailtyModels = LoadDataFromJson<BlockProbabailtyModel>("BlockProbabaility");
+        _blockInfos = LoadDataFromJson<BlockInfoModel>("BlockInfo");
     }
 
     public AchievementModel GetAchievementData(string id)
@@ -42,6 +44,15 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
     public CharacterModel[] GetAllCharacterModelData()
     {
         return _characters;
+    }
+
+    public BlockInfoModel GetBlockInfoData(string id)
+    {
+        return _blockInfos.Where(block => block.ID == id).FirstOrDefault();
+    }
+    public BlockInfoModel[] GetAllBlockInfoData()
+    {
+        return _blockInfos;
     }
 
     public BlockType GetRandomBlock(int floorNumber)
