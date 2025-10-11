@@ -5,10 +5,10 @@ using UnityEngine.Events;
 
 public class BlockInfoBtn : MonoBehaviour
 {
-    [Header("버튼 요소")]
     public Image blockTypeColorImage;
     [SerializeField] private Image blockImage;
 
+    [HideInInspector]
     public UnityEvent<string, Image> setDescription;
 
     private string id;

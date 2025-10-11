@@ -8,7 +8,7 @@ public class BlockDictionaryUI : MonoBehaviour
     [SerializeField] private GameObject _contentPosition;
     [SerializeField] private GameObject _blockInfoBtnPrefab;
 
-    [Header("블록 세부설명 요소")]
+    [Header("Block Description UI")]
     [SerializeField] private Image blockTypeImage; // 블록이 위험한 블록인지 아닌지에 따라 배경 색이 빨간색 <-> 회색으로 변경
     [SerializeField] private Image blockImage;
     [SerializeField] private TextMeshProUGUI blockDescription;
