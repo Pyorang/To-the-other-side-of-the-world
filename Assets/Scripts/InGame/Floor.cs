@@ -104,6 +104,7 @@ public class Floor : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         ResetStage();
+        BackGround.Instance.MoveImageDown();
     }
     #endregion
 }
