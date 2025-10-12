@@ -6,8 +6,8 @@ using System.Collections.Generic;
 
 public class MissionUI : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI[] MissonNameText;
-    [SerializeField] private TextMeshProUGUI[] MissionDescText;
+    [SerializeField] private TextMeshProUGUI MissionNameText;
+    [SerializeField] private TextMeshProUGUI MissionDescText;
     [SerializeField] private TextMeshProUGUI RewardAmountText;
     [SerializeField] private GameObject GetRewardMarker;
 
@@ -49,10 +49,11 @@ public class MissionUI : MonoBehaviour
 
     public void SetMissionName(AchievementModel missionData)
     {
-        foreach (var text in MissonNameText)
+        MissionNameText.text = missionData.Name;
+        /*foreach (var text in MissonNameText)
         {
             text.text = missionData.Name;
-        }
+        }*/
     }
 
     public void SetMissionDesc(AchievementModel missionData)
@@ -64,10 +65,12 @@ public class MissionUI : MonoBehaviour
         }
 
         string showProgress = " (" + Math.Min(UserDataManager.Instance.GetUserData<UserAchievementData>().progress[missionData.ID], missionData.TargetValue) + "/" + missionData.TargetValue + ")";
-        foreach (var text in MissionDescText)
+
+        MissionDescText.text = missionData.Description + showProgress;
+        /*foreach (var text in MissionDescText)
         {
             text.text = missionData.Description + showProgress;
-        }
+        }*/
     }
 
     public void SetRewardAmount(AchievementModel missionData)

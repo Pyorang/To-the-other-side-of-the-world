@@ -276,7 +276,6 @@ GameObject:
   - component: {fileID: 4010039361688060280}
   - component: {fileID: 3325364041937551101}
   - component: {fileID: 5152699668746158853}
-  - component: {fileID: 3429543464112458314}
   - component: {fileID: 7419681336700664053}
   m_Layer: 5
   m_Name: Background
@@ -349,23 +348,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.25
---- !u!111 &3429543464112458314
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2937988245719667823}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Animation: {fileID: 7400000, guid: 8ff381c5d9c3ab749b4b158c6ededf6d, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 8ff381c5d9c3ab749b4b158c6ededf6d, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_UpdateMode: 0
-  m_CullingType: 0
 --- !u!95 &7419681336700664053
 Animator:
   serializedVersion: 7
@@ -1187,7 +1169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebcfb6ecb6d34c243a3cdb32c5175097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MissionShopUI
-  AnimOnOpen: {fileID: 3429543464112458314}
+  AnimOnOpen: {fileID: 0}
   uis:
   - {fileID: 8312571253722434435}
   - {fileID: 2028360131765778796}
@@ -1285,12 +1267,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5518830558067692430, guid: d0ac045584eb4134ea37ab77a43b04a7, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 41b7395f22b0b9c4b931c2cdbd99718d, type: 2}
     - target: {fileID: 7532383700449760984, guid: d0ac045584eb4134ea37ab77a43b04a7, type: 3}
       propertyPath: m_Name
       value: ShopUI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3966167097860942020, guid: d0ac045584eb4134ea37ab77a43b04a7, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0ac045584eb4134ea37ab77a43b04a7, type: 3}
@@ -1347,6 +1334,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5307604121740691404, guid: 26222b66287ea9244aaedb555e3e9ed9, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 41b7395f22b0b9c4b931c2cdbd99718d, type: 2}
     - target: {fileID: 6094503008302275630, guid: 26222b66287ea9244aaedb555e3e9ed9, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1444,7 +1435,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1188242131404407889, guid: 26222b66287ea9244aaedb555e3e9ed9, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26222b66287ea9244aaedb555e3e9ed9, type: 3}
@@ -1470,6 +1462,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DaliyMIssionUI
       objectReference: {fileID: 0}
+    - target: {fileID: 5704225085399658208, guid: 7ed5b786c0848164ab5155a6aed66019, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 41b7395f22b0b9c4b931c2cdbd99718d, type: 2}
     - target: {fileID: 6314154342516051347, guid: 7ed5b786c0848164ab5155a6aed66019, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1567,7 +1563,8 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3647608662549821473, guid: 7ed5b786c0848164ab5155a6aed66019, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ed5b786c0848164ab5155a6aed66019, type: 3}

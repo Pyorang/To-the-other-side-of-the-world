@@ -11,6 +11,7 @@ public class InGameUIController : MonoBehaviour
         string choosedCharID = UserDataManager.Instance.GetUserData<UserCharacterData>().CharacterID_InUse;
 
         TimeBarHandleImage.sprite = Resources.Load<Sprite>($"Textures/HandleImages/{choosedCharID}");
+        TimeBarHandleImage.SetNativeSize();
     }
 
     public void OnClickPauseBtn()
