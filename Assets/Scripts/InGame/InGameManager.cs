@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class InGameManager : SingletonBehaviour<InGameManager>
 {
+    public int currentStage = 1;
+
+    [SerializeField] private Floor floor;
+
     public InGameUIController InGameUIController;
 
     protected override void Init()
@@ -23,5 +27,21 @@ public class InGameManager : SingletonBehaviour<InGameManager>
         UIManager.Instance.CurrencyUI.SetActive(false);
         AudioManager.Instance.Play(AudioType.BGM, "InGame");
 
+    }
+
+    public void CheckCurrentStageClear()
+    {
+        floor.ProcessStageClear();
+    }
+
+    public void ProcessGameOver()
+    {
+        UserDataManager.Instance.SaveUserData();
+        Debug.Log("Game Over");
+    }
+
+    public Floor GetFloor()
+    {
+        return floor;
     }
 }

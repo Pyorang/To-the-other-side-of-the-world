@@ -6,7 +6,7 @@ public class CommonBlockDestructStrategy : IDestructStrategy
     {
 
         block.gameObject.SetActive(false);
-        GameManager.Instance.CheckCurrentStageClear();
+        InGameManager.Instance.CheckCurrentStageClear();
         UserDataManager.Instance.GetUserData<UserAchievementData>().IncreaseProgress("TotalBlocksDestroyed", 1);
     }
 }

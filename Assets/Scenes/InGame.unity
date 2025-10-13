@@ -245,6 +245,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ac34d26692ee25408476d74c6a372c9, type: 3}
+--- !u!114 &296522541 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3733920855770025892, guid: 8ac34d26692ee25408476d74c6a372c9, type: 3}
+  m_PrefabInstance: {fileID: 296522540}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2535fd556eb3fee4b8bedf0814e9955e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &399229458
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,6 +434,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: InGameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4489241197055684886, guid: 8afa6a4cf58202043ad3bf12c88906fd, type: 3}
+      propertyPath: floor
+      value: 
+      objectReference: {fileID: 815583023}
+    - target: {fileID: 4489241197055684886, guid: 8afa6a4cf58202043ad3bf12c88906fd, type: 3}
+      propertyPath: InGameUIController
+      value: 
+      objectReference: {fileID: 296522541}
     - target: {fileID: 8178287300700264903, guid: 8afa6a4cf58202043ad3bf12c88906fd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.08197
