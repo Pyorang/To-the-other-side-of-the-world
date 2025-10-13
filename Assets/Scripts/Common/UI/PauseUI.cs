@@ -27,7 +27,6 @@ public class PauseUI : SettingsUI
 
     public void OnClickOpenDict()
     {
-        AudioManager.Instance.Play(AudioType.SFX, "ui_openUI_button_click");
         DictUI.SetActive(true);
     }
 
