@@ -30,7 +30,7 @@ public class Floor : MonoBehaviour
             {
                 rowBlock.blockDurability = 1;
                 rowBlock.gameObject.SetActive(true);
-                BlockType blockType = DataTableManager.Instance.GetRandomBlock(GameManager.Instance.currentStage);
+                BlockType blockType = DataTableManager.Instance.GetRandomBlock(InGameManager.Instance.currentStage);
                 rowBlock.SetBlockType(blockType);
             }
         }
@@ -76,7 +76,7 @@ public class Floor : MonoBehaviour
     {
         if(CheckStageClear())
         {
-            GameManager.Instance.currentStage++;
+            InGameManager.Instance.currentStage++;
             StartCoroutine(AdjustNextStage());
         }
     }

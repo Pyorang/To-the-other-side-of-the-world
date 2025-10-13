@@ -6,7 +6,7 @@ public class ExplosionBlockDestructStrategy : IDestructStrategy
     {
         block.gameObject.SetActive(false);
 
-        foreach (var nearBlock in GameManager.Instance.GetFloor().GetNearBlocks(block))
+        foreach (var nearBlock in InGameManager.Instance.GetFloor().GetNearBlocks(block))
         {
             if(nearBlock != null && nearBlock.gameObject.activeSelf != false)
             {
