@@ -198,52 +198,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &503582607
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 503582609}
-  - component: {fileID: 503582608}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &503582608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 503582607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81d3ef21672529647bfc9be68af1a238, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  currentStage: 1
-  floor: {fileID: 671027646}
---- !u!4 &503582609
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 503582607}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.6984, y: -5.31561, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &598069545
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,17 +378,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1055133211}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &671027646 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8294757029931785020, guid: 8143a19063a44d042a6f399b75e87239, type: 3}
-  m_PrefabInstance: {fileID: 1021156478}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d427eebf45e6e874c9b62963478ac18b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Floor
 --- !u!1001 &1021156478
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -848,4 +791,3 @@ SceneRoots:
   - {fileID: 1390401717}
   - {fileID: 3229156629501327884}
   - {fileID: 1055133211}
-  - {fileID: 503582609}
