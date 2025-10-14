@@ -8,6 +8,9 @@ public class InGameManager : SingletonBehaviour<InGameManager>
 
     public InGameUIController InGameUIController;
 
+    public float playTimeLimit = 20f;
+    private float timeLeft;
+
     protected override void Init()
     {
         IsDestroyOnLoad = true;
@@ -27,6 +30,13 @@ public class InGameManager : SingletonBehaviour<InGameManager>
         UIManager.Instance.CurrencyUI.SetActive(false);
         AudioManager.Instance.Play(AudioType.BGM, "InGame");
 
+        timeLeft = playTimeLimit;
+
+    }
+
+    private void Update()
+    {
+        CheckPlayTime();
     }
 
     public void CheckCurrentStageClear()
@@ -43,5 +53,19 @@ public class InGameManager : SingletonBehaviour<InGameManager>
     public Floor GetFloor()
     {
         return floor;
+    }
+
+    public void CheckPlayTime()
+    {
+        timeLeft -= Time.deltaTime;
+        InGameUIController.UpdateTimer(timeLeft);
+
+        if (timeLeft <= 0)
+        {
+            Debug.Log("Time Over");
+            InGameUIController.ShowGameOverUI();
+            // 게임 종료 UI 출력 및 게임 조작 불가 기능 구현
+        }
+            
     }
 }

@@ -565,6 +565,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   CanvasTransform: {fileID: 2770976865027738483}
   TimeBarHandleImage: {fileID: 8604172260188224684}
+  timerBar: {fileID: 0}
 --- !u!1 &4062471988752651816
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,7 +684,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 1570211987211252370}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -1269,7 +1270,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 3478420362041165016}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
