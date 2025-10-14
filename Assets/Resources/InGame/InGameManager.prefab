@@ -44,4 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9f7254622537ff4e8baac6a65c4a04a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  currentStage: 1
+  floor: {fileID: 0}
   InGameUIController: {fileID: 0}
+  playTimeLimit: 30

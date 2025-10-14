@@ -58,7 +58,7 @@ public class InGameManager : SingletonBehaviour<InGameManager>
     public void CheckPlayTime()
     {
         timeLeft -= Time.deltaTime;
-        InGameUIController.UpdateTimer(timeLeft);
+        InGameUIController.UpdateTimerUI(timeLeft);
 
         if (timeLeft <= 0)
         {

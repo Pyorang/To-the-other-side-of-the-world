@@ -8,6 +8,8 @@ public class InGameUIController : MonoBehaviour
     [SerializeField] private Image TimeBarHandleImage;
     [SerializeField] private Slider timerBar;
     [SerializeField] private GameObject gameOverUI;
+
+    private bool isPlayingWarningSound = false;
     public void init()
     {
         string choosedCharID = UserDataManager.Instance.GetUserData<UserCharacterData>().CharacterID_InUse;
@@ -29,13 +31,22 @@ public class InGameUIController : MonoBehaviour
         /// ////////////////////////////
     }
 
-    public void UpdateTimer(float timeLeft)
+    public void UpdateTimerUI(float timeLeft)
     {
-        timerBar.value = timeLeft / InGameManager.Instance.playTimeLimit;
+        float value = timeLeft / InGameManager.Instance.playTimeLimit;
+        timerBar.value = value;
+
+        if (value <= 0.2f && isPlayingWarningSound == false)
+        {
+            AudioManager.Instance.Play(AudioType.SFX, "ui_time_warning");
+            isPlayingWarningSound = true;
+        }
+        TimeBarHandleImage.GetComponent<Animator>().SetFloat("sliderValue", timerBar.value);
     }
 
     public void ShowGameOverUI()
     {
+        AudioManager.Instance.Stop(AudioType.SFX);
         gameOverUI.SetActive(true);
     }
 
