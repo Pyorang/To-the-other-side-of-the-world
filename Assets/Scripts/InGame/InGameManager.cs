@@ -1,5 +1,12 @@
 using UnityEngine;
 
+public enum GameState
+{
+    Playing,
+    Pause,
+    GameOver
+}
+
 public class InGameManager : SingletonBehaviour<InGameManager>
 {
     public int currentStage = 1;
@@ -7,6 +14,11 @@ public class InGameManager : SingletonBehaviour<InGameManager>
     [SerializeField] private Floor floor;
 
     public InGameUIController InGameUIController;
+
+    static public readonly float playTimeLimit = 20f;
+    private float timeLeft;
+
+    public GameState GameState;
 
     protected override void Init()
     {
@@ -27,6 +39,14 @@ public class InGameManager : SingletonBehaviour<InGameManager>
         UIManager.Instance.CurrencyUI.SetActive(false);
         AudioManager.Instance.Play(AudioType.BGM, "InGame");
 
+        GameState = GameState.Playing;
+        timeLeft = playTimeLimit;
+
+    }
+
+    private void Update()
+    {
+        CheckPlayTime();
     }
 
     public void CheckCurrentStageClear()
@@ -37,11 +57,33 @@ public class InGameManager : SingletonBehaviour<InGameManager>
     public void ProcessGameOver()
     {
         UserDataManager.Instance.SaveUserData();
+        GameState = GameState.GameOver;
+        InGameUIController.ShowGameOverUI();
         Debug.Log("Game Over");
     }
 
     public Floor GetFloor()
     {
         return floor;
+    }
+
+    public void CheckPlayTime()
+    {
+        if (GameState != GameState.Playing)
+            return;
+        timeLeft -= Time.deltaTime;
+        InGameUIController.UpdateTimerUI(timeLeft);
+
+        if (timeLeft <= 0)
+        {
+            ProcessGameOver();    
+        }
+            
+    }
+
+    public void AddBonusTime(float time)
+    {
+        timeLeft += time;
+        InGameUIController.UpdateTimerUI(timeLeft);
     }
 }

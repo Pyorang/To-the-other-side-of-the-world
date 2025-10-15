@@ -6,6 +6,7 @@ public class PauseUI : SettingsUI
 
     private void OnEnable()
     {
+        InGameManager.Instance.GameState = GameState.Pause;
         DictUI.SetActive(false);
     }
 
@@ -38,9 +39,7 @@ public class PauseUI : SettingsUI
 
     public override void OnClickCloseButton()
     {
-        //////////////////////////////////
-        ///// Game Pause Unfreeze Code ////////
-        //////////////////////////////////
+        InGameManager.Instance.GameState = GameState.Playing;
         base.OnClickCloseButton();
     }
 }

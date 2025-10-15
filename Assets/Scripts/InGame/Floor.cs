@@ -17,6 +17,8 @@ public class Floor : MonoBehaviour
     private static readonly int FloorLength = 5;
     [SerializeField] private RowBlock[] Blocks = new RowBlock[FloorLength];
 
+    private static readonly float StageClearBonusTime = 5f;
+
     private void Start()
     {
         ResetStage();
@@ -77,6 +79,7 @@ public class Floor : MonoBehaviour
         if(CheckStageClear())
         {
             InGameManager.Instance.currentStage++;
+            InGameManager.Instance.AddBonusTime(StageClearBonusTime);
             StartCoroutine(AdjustNextStage());
         }
     }

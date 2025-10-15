@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5267298444247569413}
   - component: {fileID: 3668386020045678519}
   - component: {fileID: 4029969902814267010}
+  - component: {fileID: 6864440652445948678}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -75,6 +76,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6864440652445948678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208840958837262637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 1, g: 0, b: 0.60355186, a: 1}
+  m_EffectDistance: {x: 10, y: 10}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1480178838736985993
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,6 +581,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   CanvasTransform: {fileID: 2770976865027738483}
   TimeBarHandleImage: {fileID: 8604172260188224684}
+  timerBar: {fileID: 0}
+  gameOverUI: {fileID: 0}
 --- !u!1 &4062471988752651816
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,7 +701,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 1570211987211252370}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -1117,6 +1135,7 @@ GameObject:
   - component: {fileID: 132799099976886059}
   - component: {fileID: 8576222830664930142}
   - component: {fileID: 8604172260188224684}
+  - component: {fileID: 6952467842276440255}
   m_Layer: 5
   m_Name: HandleImage
   m_TagString: Untagged
@@ -1181,6 +1200,28 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &6952467842276440255
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8191280143181097932}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 27436e2795e51a341b36eed98b21ebce, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8710350500528493200
 GameObject:
   m_ObjectHideFlags: 0
@@ -1269,7 +1310,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 3478420362041165016}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
