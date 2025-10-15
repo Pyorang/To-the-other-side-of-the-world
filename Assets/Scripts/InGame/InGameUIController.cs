@@ -33,7 +33,7 @@ public class InGameUIController : MonoBehaviour
 
     public void UpdateTimerUI(float timeLeft)
     {
-        float value = timeLeft / InGameManager.Instance.playTimeLimit;
+        float value = timeLeft / InGameManager.playTimeLimit;
         timerBar.value = value;
 
         if (value <= 0.2f && isPlayingWarningSound == false)
@@ -41,6 +41,14 @@ public class InGameUIController : MonoBehaviour
             AudioManager.Instance.Play(AudioType.SFX, "ui_time_warning");
             isPlayingWarningSound = true;
         }
+
+        if (isPlayingWarningSound && value > 0.2f)
+        {
+            AudioManager.Instance.Stop(AudioType.SFX);
+            isPlayingWarningSound = false;
+        }
+            
+
         TimeBarHandleImage.GetComponent<Animator>().SetFloat("sliderValue", timerBar.value);
     }
 

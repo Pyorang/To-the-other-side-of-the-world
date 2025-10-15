@@ -1,5 +1,12 @@
 using UnityEngine;
 
+public enum GameState
+{
+    Playing,
+    Pause,
+    GameOver
+}
+
 public class InGameManager : SingletonBehaviour<InGameManager>
 {
     public int currentStage = 1;
@@ -8,8 +15,10 @@ public class InGameManager : SingletonBehaviour<InGameManager>
 
     public InGameUIController InGameUIController;
 
-    public float playTimeLimit = 20f;
+    static public readonly float playTimeLimit = 20f;
     private float timeLeft;
+
+    public GameState GameState;
 
     protected override void Init()
     {
@@ -30,6 +39,7 @@ public class InGameManager : SingletonBehaviour<InGameManager>
         UIManager.Instance.CurrencyUI.SetActive(false);
         AudioManager.Instance.Play(AudioType.BGM, "InGame");
 
+        GameState = GameState.Playing;
         timeLeft = playTimeLimit;
 
     }
@@ -47,6 +57,8 @@ public class InGameManager : SingletonBehaviour<InGameManager>
     public void ProcessGameOver()
     {
         UserDataManager.Instance.SaveUserData();
+        GameState = GameState.GameOver;
+        InGameUIController.ShowGameOverUI();
         Debug.Log("Game Over");
     }
 
@@ -57,15 +69,21 @@ public class InGameManager : SingletonBehaviour<InGameManager>
 
     public void CheckPlayTime()
     {
+        if (GameState != GameState.Playing)
+            return;
         timeLeft -= Time.deltaTime;
         InGameUIController.UpdateTimerUI(timeLeft);
 
         if (timeLeft <= 0)
         {
-            Debug.Log("Time Over");
-            InGameUIController.ShowGameOverUI();
-            // 게임 종료 UI 출력 및 게임 조작 불가 기능 구현
+            ProcessGameOver();    
         }
             
+    }
+
+    public void AddBonusTime(float time)
+    {
+        timeLeft += time;
+        InGameUIController.UpdateTimerUI(timeLeft);
     }
 }

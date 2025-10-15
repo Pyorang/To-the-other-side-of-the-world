@@ -71,6 +71,8 @@ public class Block : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (InGameManager.Instance.GameState != GameState.Playing)
+            return;
 
         if (blockDurability > 0)
         {
