@@ -1,17 +1,31 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class InGameUIController : MonoBehaviour
 {
     public Transform CanvasTransform;
 
     [SerializeField] private Image TimeBarHandleImage;
+
+    [Header("Start Cutscene Object")]
+    [SerializeField] private GameObject InGameUI;
+    [SerializeField] private GameObject StartCutsceneUI;
+    [SerializeField] private TextMeshProUGUI countText;
+    [SerializeField] private Animator FadeInUpAnim;
+    [SerializeField] private Animator FadeInDownAnim;
+
+    private readonly int maxCount = 3;
+
     public void init()
     {
         string choosedCharID = UserDataManager.Instance.GetUserData<UserCharacterData>().CharacterID_InUse;
 
         TimeBarHandleImage.sprite = Resources.Load<Sprite>($"Textures/HandleImages/{choosedCharID}");
         TimeBarHandleImage.SetNativeSize();
+
+        StartCoroutine(StartCutScene());
     }
 
     public void OnClickPauseBtn()
@@ -23,5 +37,43 @@ public class InGameUIController : MonoBehaviour
         //////////////////////////////////
         /// Game Pause Code /////////////
         /// ////////////////////////////
+    }
+
+    public IEnumerator StartCutScene()
+    {
+        //InGameManager.Instance.GameState = GameState.Pause;
+
+        StartCutsceneUI.SetActive(true);
+        InGameUI.SetActive(false);
+
+        countText.color = Color.blue;
+
+        for (int count = maxCount; count>1; count--)
+        {
+            countText.text = count.ToString();
+            countText.GetComponent<Animator>().Play("Count");
+            AudioManager.Instance.Play(AudioType.SFX, "ui_count");
+            yield return new WaitForSeconds(1f);
+        }
+
+        countText.text = "1";
+        countText.color = Color.red;
+        FadeInUpAnim.Play("FadeIn", -1, 0f);
+        FadeInDownAnim.Play("FadeIn", -1, 0f);
+        AudioManager.Instance.Play(AudioType.SFX, "ui_count");
+
+        yield return new WaitForSeconds(1f);
+
+        countText.text = "Start!";
+        AudioManager.Instance.Play(AudioType.SFX, "ui_count");
+
+        yield return new WaitForSeconds(0.5f);
+
+        // 게임 시작 SFX 재생
+        //InGameManager.Instance.GameState = GameState.Playing;
+        StartCutsceneUI.SetActive(false);
+        InGameUI.SetActive(true);
+        AudioManager.Instance.Play(AudioType.BGM, "InGame");
+
     }
 }
