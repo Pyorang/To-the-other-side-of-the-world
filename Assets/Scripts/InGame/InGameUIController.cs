@@ -20,7 +20,7 @@ public class InGameUIController : MonoBehaviour
 
     private readonly int maxCount = 3;
 
-    private bool isPlayingWarningSound = false;
+    public bool isPlayingWarningSound = false;
     public void init()
     {
         string choosedCharID = UserDataManager.Instance.GetUserData<UserCharacterData>().CharacterID_InUse;
