@@ -21,6 +21,7 @@ public class PauseUI : SettingsUI
     public void OnClickReStartBtn()
     {
         Debug.Log("게임을 재시작합니다.");
+        AudioManager.Instance.StopAll();
         var frontUI = UIManager.Instance.GetFrontUI();
         if (frontUI != null) frontUI.Close();
         SceneLoader.Instance.ReloadScene();

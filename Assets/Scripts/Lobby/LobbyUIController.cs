@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using TMPro;
 
 public class LobbyUIController : MonoBehaviour
 {
@@ -11,6 +12,14 @@ public class LobbyUIController : MonoBehaviour
     [SerializeField] private Image ChoosedCharImage;
     private bool isSetNativeSize = false;
 
+    [Header("Loading Objects")]
+    [SerializeField] private Transform Fade;
+    [SerializeField] private GameObject Loading;
+    [SerializeField] private Slider _progressBar;
+    [SerializeField] private TextMeshProUGUI _progressBarText;
+    [SerializeField] private float FadeSpeed = 1f;
+
+
     public void init()
     {
         UIManager.Instance.CurrencyUI.SetActive(true);
@@ -20,8 +29,10 @@ public class LobbyUIController : MonoBehaviour
         UserDataManager.Instance.GetUserData<UserCharacterData>().ChangeCharAction = SetChoosedCharAnimAndSize;
 ;
 
-    Debug.Log(UserDataManager.Instance.GetUserData<UserCharacterData>().CharacterID_InUse + "_AnimAct");
+        Debug.Log(UserDataManager.Instance.GetUserData<UserCharacterData>().CharacterID_InUse + "_AnimAct");
 
+        Loading.SetActive(false);
+        Fade.localScale = new Vector3(1, 0, 1);
     }
 
     private void Update()
@@ -84,8 +95,8 @@ public class LobbyUIController : MonoBehaviour
         Debug.Log($"{GetType()}::{nameof(OnClickStartButton)}");
         AudioManager.Instance.Play(AudioType.SFX, "ui_start_button_click");
         AudioManager.Instance.Stop(AudioType.BGM);
-        SceneLoader.Instance.LoadScene(ESceneType.InGame);
-        
+
+        StartCoroutine(LoadingSequence());
     }
 
     public void SetChoosedCharAnimAndSize()
@@ -103,6 +114,49 @@ public class LobbyUIController : MonoBehaviour
         yield return null;
 
         ChoosedCharImage.SetNativeSize();
+
+    }
+
+    public IEnumerator LoadingSequence()
+    {
+        UIManager.Instance.CurrencyUI.SetActive(false);
+        var loadingOperation = SceneLoader.Instance.LoadSceneAsync(ESceneType.InGame);
+        if (loadingOperation == null)
+        {
+            yield break;
+        }
+        loadingOperation.allowSceneActivation = false;
+
+        float value = Fade.localScale.y;
+        while (value <= 1)
+        {
+            value += Time.deltaTime * FadeSpeed;
+            Fade.localScale = new Vector3(1, value, 1);
+            yield return null;
+        }
+
+        Loading.SetActive(true);
+
+        _progressBar.value = 0.5f;
+        _progressBarText.text = $"{(int)(_progressBar.value * 100.0f)}%";
+        yield return new WaitForSeconds(0.5f);
+
+        while (true)
+        {
+            if (loadingOperation.isDone)
+                break;
+
+            _progressBar.value = loadingOperation.progress;
+            _progressBarText.text = $"{(int)(_progressBar.value * 100.0f)}%";
+
+            if (_progressBar.value >= 0.9f)
+            {
+                loadingOperation.allowSceneActivation = true;
+            }
+
+            yield return null;
+        }
+
 
     }
 }

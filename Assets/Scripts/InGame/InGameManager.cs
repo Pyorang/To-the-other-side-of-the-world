@@ -37,9 +37,8 @@ public class InGameManager : SingletonBehaviour<InGameManager>
 
         InGameUIController.init();
         UIManager.Instance.CurrencyUI.SetActive(false);
-        AudioManager.Instance.Play(AudioType.BGM, "InGame");
 
-        GameState = GameState.Playing;
+        GameState = GameState.Pause;
         timeLeft = playTimeLimit;
 
     }
@@ -83,6 +82,14 @@ public class InGameManager : SingletonBehaviour<InGameManager>
 
     public void AddBonusTime(float time)
     {
+        if (GameState != GameState.Playing) return;
+        if (InGameUIController.isPlayingWarningSound)
+        {
+            AudioManager.Instance.Stop(AudioType.SFX);
+            InGameUIController.isPlayingWarningSound = false;
+        }
+
+        AudioManager.Instance.Play(AudioType.SFX, "ingame_time_bonus");
         timeLeft += time;
         InGameUIController.UpdateTimerUI(timeLeft);
     }

@@ -102,10 +102,13 @@ public class Floor : MonoBehaviour
     }
 
     private IEnumerator AdjustNextStage()
-    {
+    {   
         //NOTE : 스테이지 초기화하는 시간으로 재설정해야함. 임의로 설정한 값
-        yield return new WaitForSeconds(2f);
-
+        yield return new WaitForSeconds(1f);
+        while (InGameManager.Instance.GameState != GameState.Playing)
+        {
+            yield return null;
+        }
         ResetStage();
         BackGround.Instance.MoveImageDown();
     }
