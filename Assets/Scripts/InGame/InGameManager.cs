@@ -37,9 +37,8 @@ public class InGameManager : SingletonBehaviour<InGameManager>
 
         InGameUIController.init();
         UIManager.Instance.CurrencyUI.SetActive(false);
-        AudioManager.Instance.Play(AudioType.BGM, "InGame");
 
-        GameState = GameState.Playing;
+        GameState = GameState.Pause;
         timeLeft = playTimeLimit;
 
     }
