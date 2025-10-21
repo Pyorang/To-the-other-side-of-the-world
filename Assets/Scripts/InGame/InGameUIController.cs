@@ -10,6 +10,7 @@ public class InGameUIController : MonoBehaviour
     [SerializeField] private Image TimeBarHandleImage;
     [SerializeField] private Slider timerBar;
     [SerializeField] private GameObject gameOverUI;
+    [SerializeField] private TextMeshProUGUI gameResultText;
 
     [Header("Start Cutscene Object")]
     [SerializeField] private GameObject InGameUI;
@@ -18,17 +19,34 @@ public class InGameUIController : MonoBehaviour
     [SerializeField] private Animator FadeInUpAnim;
     [SerializeField] private Animator FadeInDownAnim;
 
-    private readonly int maxCount = 3;
+    [Space]
+    [SerializeField] private TextMeshProUGUI stageText;
 
+    private readonly int maxCount = 3;
     public bool isPlayingWarningSound = false;
+
     public void init()
     {
         string choosedCharID = UserDataManager.Instance.GetUserData<UserCharacterData>().CharacterID_InUse;
         TimeBarHandleImage.sprite = Resources.Load<Sprite>($"Textures/HandleImages/{choosedCharID}");
         TimeBarHandleImage.SetNativeSize();
+
+        UpdateStageText();
+        InGameManager.OnGameStageCleared += UpdateStageText;
+
         gameOverUI.SetActive(false);
 
         StartCoroutine(StartCutScene());
+    }
+
+    public void OnDestroy()
+    {
+        InGameManager.OnGameStageCleared -= UpdateStageText;
+    }
+
+    public void UpdateStageText()
+    {
+        stageText.text = $"{InGameManager.Instance.currentStage}";
     }
 
     public void OnClickPauseBtn()
@@ -62,6 +80,7 @@ public class InGameUIController : MonoBehaviour
     public void ShowGameOverUI()
     {
         AudioManager.Instance.Stop(AudioType.SFX);
+        gameResultText.text = $"°á°ú : {InGameManager.Instance.currentStage}Ãþ";
         gameOverUI.SetActive(true);
     }
 

@@ -362,6 +362,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor
       objectReference: {fileID: 0}
+    - target: {fileID: 606169266406276651, guid: 8143a19063a44d042a6f399b75e87239, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3989314285018590392, guid: 8143a19063a44d042a6f399b75e87239, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -530,6 +534,10 @@ PrefabInstance:
     - target: {fileID: 2293149681771697236, guid: 5ac80df1f9cf6984581864849c65800b, type: 3}
       propertyPath: m_Name
       value: Below Floors
+      objectReference: {fileID: 0}
+    - target: {fileID: 2293149681771697236, guid: 5ac80df1f9cf6984581864849c65800b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5230133621418049429, guid: 5ac80df1f9cf6984581864849c65800b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -707,6 +715,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BackGround Image
       objectReference: {fileID: 0}
+    - target: {fileID: 8763269729631719787, guid: d2a1e9b6dd723ae46af25c6aef43187a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -763,6 +775,10 @@ PrefabInstance:
     - target: {fileID: 3699006997898767765, guid: 8ac34d26692ee25408476d74c6a372c9, type: 3}
       propertyPath: m_Name
       value: InGameUIController
+      objectReference: {fileID: 0}
+    - target: {fileID: 7653918130514867252, guid: 8ac34d26692ee25408476d74c6a372c9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -82,8 +82,9 @@ public class Block : MonoBehaviour, IPointerDownHandler
             blockDurability--;
 
             SetPickAxActive();
+            AudioManager.Instance.Play(AudioType.SFX ,"mining");
 
-            if(blockDurability <= 0)
+            if (blockDurability <= 0)
                 StartCoroutine(DestructProcess());
         }
     }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public enum GameState
@@ -11,14 +12,16 @@ public class InGameManager : SingletonBehaviour<InGameManager>
 {
     public int currentStage = 1;
 
-    [SerializeField] private Floor floor;
-
-    public InGameUIController InGameUIController;
-
-    static public readonly float playTimeLimit = 20f;
     private float timeLeft;
+    static public readonly float playTimeLimit = 30f;
 
     public GameState GameState;
+
+    [Space]
+    [SerializeField] private Floor floor;
+    [SerializeField] private InGameUIController InGameUIController;
+
+    public static Action OnGameStageCleared;
 
     protected override void Init()
     {
@@ -91,6 +94,8 @@ public class InGameManager : SingletonBehaviour<InGameManager>
 
         AudioManager.Instance.Play(AudioType.SFX, "ingame_time_bonus");
         timeLeft += time;
+        if(timeLeft > playTimeLimit)
+            timeLeft = playTimeLimit;
         InGameUIController.UpdateTimerUI(timeLeft);
     }
 }

@@ -103,6 +103,7 @@ public class LobbyUIController : MonoBehaviour
     {
         StartCoroutine(ISetChoosedCharAnimAndSize());
     }
+
     private IEnumerator ISetChoosedCharAnimAndSize()
     {
         string choosedCharID = UserDataManager.Instance.GetUserData<UserCharacterData>().CharacterID_InUse;
