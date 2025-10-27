@@ -14,7 +14,7 @@ public class CharacterSaveData
 
 public class UserCharacterData : IUserData
 {
-    public HashSet<string> acuiredChatacter = new HashSet<string>();
+    public HashSet<string> acquiredChatacter = new HashSet<string>();
 
     public string CharacterID_InUse { get; set; }
 
@@ -31,9 +31,9 @@ public class UserCharacterData : IUserData
 
     public void AddAcuiredCharacter(string characterID)
     {
-        if (!acuiredChatacter.Contains(characterID))
+        if (!acquiredChatacter.Contains(characterID))
         {
-            acuiredChatacter.Add(characterID);
+            acquiredChatacter.Add(characterID);
         }
     }
 
@@ -50,10 +50,10 @@ public class UserCharacterData : IUserData
             string json = File.ReadAllText(savePath);
             CharacterSaveData data = JsonUtility.FromJson<CharacterSaveData>(json);
 
-            acuiredChatacter.Clear();
+            acquiredChatacter.Clear();
             foreach (var id in data.acquiredCharacters)
             {
-                acuiredChatacter.Add(id);
+                acquiredChatacter.Add(id);
             }
             CharacterID_InUse = data.characterIdInUse;
             return true;
@@ -71,7 +71,7 @@ public class UserCharacterData : IUserData
         {
             CharacterSaveData data = new CharacterSaveData
             {
-                acquiredCharacters = new List<string>(acuiredChatacter),
+                acquiredCharacters = new List<string>(acquiredChatacter),
                 characterIdInUse = CharacterID_InUse
             };
 
@@ -89,6 +89,11 @@ public class UserCharacterData : IUserData
     public void SetDefaultData()
     {
         CharacterID_InUse = "CH_1";
-        acuiredChatacter.Add("CH_1");
+        acquiredChatacter.Add("CH_1");
+    }
+
+    public bool IsSkillUnlockedInUseChar()
+    {
+        return DataTableManager.Instance.GetCharacterData(CharacterID_InUse).IsActive;
     }
 }

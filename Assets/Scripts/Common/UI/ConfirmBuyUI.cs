@@ -78,7 +78,7 @@ public class ConfirmBuyUI : BaseUI
                 Debug.Log($"ID : {ConfirmBuyUIData.BuyBtnOfCharData.CharacterModel.ID} 캐릭터 구매 완료");
                 
                 userCharacterData.AddAcuiredCharacter(ConfirmBuyUIData.BuyBtnOfCharData.CharacterModel.ID);
-                Debug.Log($"현재 보유중인 캐릭터 수 : {userCharacterData.acuiredChatacter.Count}");
+                Debug.Log($"현재 보유중인 캐릭터 수 : {userCharacterData.acquiredChatacter.Count}");
                 UserDataManager.Instance.GetUserData<UserCharacterData>().SoldOut.Invoke();
 
                 UserDataManager.Instance.GetUserData<UserCurrencyData>().Gold -= BuyBtnOfCharData.CharacterModel.Price;

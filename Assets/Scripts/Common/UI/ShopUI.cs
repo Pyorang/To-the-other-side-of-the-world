@@ -65,8 +65,8 @@ public class ShopUI : BaseUI
 
         maxPageIndex = _characterModel.Length / 2;
 
-        Debug.Log($"현재 보유한 캐릭터 수 : {_userCharacterData.acuiredChatacter.Count}");
-        foreach (var Id in _userCharacterData.acuiredChatacter)
+        Debug.Log($"현재 보유한 캐릭터 수 : {_userCharacterData.acquiredChatacter.Count}");
+        foreach (var Id in _userCharacterData.acquiredChatacter)
         {
             Debug.Log($"보유 캐릭터 : {Id}");
         }
@@ -189,7 +189,7 @@ public class ShopUI : BaseUI
 
             leftCSPanel.characterPrice.text = "선택중";
         }
-        else if (_userCharacterData.acuiredChatacter.Contains(_characterModel[index].ID))
+        else if (_userCharacterData.acquiredChatacter.Contains(_characterModel[index].ID))
         {
             leftCSPanel.characterBuyBtn.interactable = true;
             leftCSPanel.soldOutMarker.SetActive(true);
@@ -214,7 +214,7 @@ public class ShopUI : BaseUI
 
             rightCSPanel.characterPrice.text = "선택중";
         }
-        else if (_userCharacterData.acuiredChatacter.Contains(_characterModel[index + 1].ID))
+        else if (_userCharacterData.acquiredChatacter.Contains(_characterModel[index + 1].ID))
         {
             rightCSPanel.characterBuyBtn.interactable = true;
             rightCSPanel.soldOutMarker.SetActive(true);

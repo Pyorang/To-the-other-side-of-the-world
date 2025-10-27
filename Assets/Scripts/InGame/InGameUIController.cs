@@ -7,20 +7,32 @@ public class InGameUIController : MonoBehaviour
 {
     public Transform CanvasTransform;
 
+    [Header("Timer")]
+    [Space]
     [SerializeField] private Image TimeBarHandleImage;
     [SerializeField] private Slider timerBar;
-    [SerializeField] private GameObject gameOverUI;
-    [SerializeField] private TextMeshProUGUI gameResultText;
+
+    [Header("Stage Text")]
+    [Space]
+    [SerializeField] private TextMeshProUGUI stageText;
+
+    [Header("Character Skill")]
+    [Space]
+    [SerializeField] private Button skillButton;
+    [SerializeField] private Image skillCoolDownImage;
 
     [Header("Start Cutscene Object")]
+    [Space]
     [SerializeField] private GameObject InGameUI;
     [SerializeField] private GameObject StartCutsceneUI;
     [SerializeField] private TextMeshProUGUI countText;
     [SerializeField] private Animator FadeInUpAnim;
     [SerializeField] private Animator FadeInDownAnim;
 
+    [Header("GameOVerUI")]
     [Space]
-    [SerializeField] private TextMeshProUGUI stageText;
+    [SerializeField] private GameObject gameOverUI;
+    [SerializeField] private TextMeshProUGUI gameResultText;
 
     private readonly int maxCount = 3;
     public bool isPlayingWarningSound = false;
@@ -32,11 +44,24 @@ public class InGameUIController : MonoBehaviour
         TimeBarHandleImage.SetNativeSize();
 
         UpdateStageText();
+        SetSkillButtonActive();
         InGameManager.OnGameStageCleared += UpdateStageText;
 
         gameOverUI.SetActive(false);
 
         StartCoroutine(StartCutScene());
+    }
+
+    public void SetSkillButtonActive()
+    {
+        skillButton.image.sprite = Resources.Load<Sprite>($"Textures/SkillIcons/{UserDataManager.Instance.GetUserData<UserCharacterData>().CharacterID_InUse}");
+        skillCoolDownImage.sprite = Resources.Load<Sprite>($"Textures/SkillIcons/{UserDataManager.Instance.GetUserData<UserCharacterData>().CharacterID_InUse}");
+
+        if (UserDataManager.Instance.GetUserData<UserCharacterData>().IsSkillUnlockedInUseChar() == true)
+            skillButton.interactable = true;
+
+        else
+            skillButton.interactable = false;
     }
 
     public void OnDestroy()
@@ -117,6 +142,10 @@ public class InGameUIController : MonoBehaviour
         StartCutsceneUI.SetActive(false);
         InGameUI.SetActive(true);
         AudioManager.Instance.Play(AudioType.BGM, "InGame");
+    }
 
+    public void OnClickSkillButton()
+    {
+        InGameManager.Instance.skillStrategy.UseSkill(); 
     }
 }

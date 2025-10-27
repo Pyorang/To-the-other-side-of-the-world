@@ -16,6 +16,7 @@ public class InGameManager : SingletonBehaviour<InGameManager>
     static public readonly float playTimeLimit = 30f;
 
     public GameState GameState;
+    public ISkillStrategy skillStrategy;
 
     [Space]
     [SerializeField] private Floor floor;
@@ -40,15 +41,30 @@ public class InGameManager : SingletonBehaviour<InGameManager>
 
         InGameUIController.init();
         UIManager.Instance.CurrencyUI.SetActive(false);
+        EquipCharacterSkill();
 
         GameState = GameState.Pause;
         timeLeft = playTimeLimit;
-
     }
 
     private void Update()
     {
         CheckPlayTime();
+    }
+
+    public void EquipCharacterSkill()
+    {
+        string CharacterInUse = UserDataManager.Instance.GetUserData<UserCharacterData>().CharacterID_InUse;
+        string ChacterNum = CharacterInUse.Substring(CharacterInUse.Length - 1);
+
+        string skillClassName = "Skill_" + ChacterNum + "Strategy";
+        Type skillType = Type.GetType(skillClassName);
+
+        if(skillType != null)
+        {
+            object skillInstance = Activator.CreateInstance(skillType);
+            skillStrategy = skillInstance as ISkillStrategy;
+        }
     }
 
     public void CheckCurrentStageClear()
