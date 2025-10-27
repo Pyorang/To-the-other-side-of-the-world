@@ -12,11 +12,6 @@ public enum BlockType
     GasBlock,
 }
 
-public interface IDestructStrategy
-{
-    void Destruct(Block block);
-}
-
 public class Block : MonoBehaviour, IPointerDownHandler
 {
     public int blockDurability = 1;
@@ -79,7 +74,7 @@ public class Block : MonoBehaviour, IPointerDownHandler
             if(PickAx.Instance.gameObject.activeSelf)
                 PickAx.Instance.gameObject.SetActive(false);
 
-            blockDurability--;
+            blockDurability -= 1 * InGameManager.Instance.CharacterPowerLevel;
 
             SetPickAxActive();
             AudioManager.Instance.Play(AudioType.SFX ,"mining");

@@ -1,5 +1,10 @@
 using UnityEngine;
 
+public interface IDestructStrategy
+{
+    void Destruct(Block block);
+}
+
 public class CommonBlockDestructStrategy : IDestructStrategy
 {
     public void Destruct(Block block)

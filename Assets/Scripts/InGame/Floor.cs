@@ -73,6 +73,21 @@ public class Floor : MonoBehaviour
         return null;
     }
 
+    public void ChangeAllBlocksToCommonBlock()
+    {
+        foreach (var colBlock in Blocks)
+        {
+            foreach (var rowBlock in colBlock.rowBlock)
+            {
+                if (rowBlock.gameObject.activeSelf == true)
+                {
+                    rowBlock.blockDurability = 1;
+                    rowBlock.SetBlockType(BlockType.CommonBlock);
+                }
+            }
+        }
+    }
+
     #region 스테이지 클리어 관련 메서드
     public void ProcessStageClear()
     {

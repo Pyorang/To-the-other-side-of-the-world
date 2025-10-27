@@ -102,6 +102,20 @@ public class InGameUIController : MonoBehaviour
         TimeBarHandleImage.GetComponent<Animator>().SetFloat("sliderValue", timerBar.value);
     }
 
+    public void UpdateSkillCoolTimeImage(int currentCoolTime, int skillCoolTime)
+    {
+        skillCoolDownImage.fillAmount = (float)currentCoolTime / skillCoolTime;
+
+        if(currentCoolTime == 0)
+        {
+            skillButton.interactable = true;
+        }
+        else
+        {
+            skillButton.interactable = false;
+        }
+    }
+
     public void ShowGameOverUI()
     {
         AudioManager.Instance.Stop(AudioType.SFX);

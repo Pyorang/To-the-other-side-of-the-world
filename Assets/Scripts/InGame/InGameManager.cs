@@ -11,6 +11,7 @@ public enum GameState
 public class InGameManager : SingletonBehaviour<InGameManager>
 {
     public int currentStage = 1;
+    public int CharacterPowerLevel = 1;
 
     private float timeLeft;
     static public readonly float playTimeLimit = 30f;
@@ -65,6 +66,11 @@ public class InGameManager : SingletonBehaviour<InGameManager>
             object skillInstance = Activator.CreateInstance(skillType);
             skillStrategy = skillInstance as ISkillStrategy;
         }
+    }
+
+    public void UpdateSkillCoolTime(int currentCoolTime, int skillCoolTime)
+    {
+        InGameUIController.UpdateSkillCoolTimeImage(currentCoolTime, skillCoolTime);
     }
 
     public void CheckCurrentStageClear()

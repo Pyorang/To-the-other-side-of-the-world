@@ -2,8 +2,13 @@ using UnityEngine;
 
 public class Skill_4Strategy : ISkillStrategy
 {
+    public Skill_4Strategy()
+    {
+        UseSkill();
+    }
+
     public void UseSkill()
     {
-        Debug.Log("스킬 사용4");
+        InGameManager.Instance.CharacterPowerLevel *= 2;
     }
 }
