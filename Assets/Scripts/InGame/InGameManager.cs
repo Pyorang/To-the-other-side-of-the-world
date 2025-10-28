@@ -53,6 +53,11 @@ public class InGameManager : SingletonBehaviour<InGameManager>
         CheckPlayTime();
     }
 
+    private void OnDestroy()
+    {
+        UnequipCharacterSkill();
+    }
+
     public void EquipCharacterSkill()
     {
         string CharacterInUse = UserDataManager.Instance.GetUserData<UserCharacterData>().CharacterID_InUse;
@@ -66,6 +71,11 @@ public class InGameManager : SingletonBehaviour<InGameManager>
             object skillInstance = Activator.CreateInstance(skillType);
             skillStrategy = skillInstance as ISkillStrategy;
         }
+    }
+    
+    public void UnequipCharacterSkill()
+    {
+        skillStrategy.UnequipCharacterSkill();
     }
 
     public void UpdateSkillCoolTime(int currentCoolTime, int skillCoolTime)

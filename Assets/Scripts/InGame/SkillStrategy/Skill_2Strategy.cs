@@ -11,7 +11,7 @@ public class Skill_2Strategy : ISkillStrategy
         InGameManager.OnGameStageCleared += CoolTimeReduce;
     }
 
-    ~Skill_2Strategy()
+    public void UnequipCharacterSkill()
     {
         InGameManager.OnGameStageCleared -= CoolTimeReduce;
     }
