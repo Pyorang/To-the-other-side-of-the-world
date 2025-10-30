@@ -13,8 +13,11 @@ public class PauseUI : SettingsUI
     public void OnClickExitBtn()
     {
         Debug.Log("게임 플레이를 종료합니다.");
+        AudioManager.Instance.StopAll();
+
         var frontUI = UIManager.Instance.GetFrontUI();
         if (frontUI != null) frontUI.Close();
+
         SceneLoader.Instance.LoadSceneAsync(ESceneType.Lobby);
     }
 
@@ -22,8 +25,10 @@ public class PauseUI : SettingsUI
     {
         Debug.Log("게임을 재시작합니다.");
         AudioManager.Instance.StopAll();
+
         var frontUI = UIManager.Instance.GetFrontUI();
         if (frontUI != null) frontUI.Close();
+
         SceneLoader.Instance.ReloadScene();
     }
 
