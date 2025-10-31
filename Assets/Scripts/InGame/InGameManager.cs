@@ -12,6 +12,7 @@ public class InGameManager : SingletonBehaviour<InGameManager>
 {
     public int currentStage = 1;
     public int CharacterPowerLevel = 1;
+    public bool HasAutoShield = false;
 
     private float timeLeft;
     static public readonly float playTimeLimit = 30f;
@@ -112,7 +113,6 @@ public class InGameManager : SingletonBehaviour<InGameManager>
         {
             ProcessGameOver();    
         }
-            
     }
 
     public void AddBonusTime(float time)
