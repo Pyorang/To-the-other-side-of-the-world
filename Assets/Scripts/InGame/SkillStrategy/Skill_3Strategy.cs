@@ -8,7 +8,7 @@ public class Skill_3Strategy : ISkillStrategy, IAutoUseSkill
     public Skill_3Strategy()
     {
         InGameManager.OnGameStageCleared += CoolTimeReduce;
-        InGameManager.Instance.HasAutoShield = true;
+        InGameManager.Instance.ActivatePassive("Shield");
     }
 
     public void UnequipCharacterSkill()
@@ -40,7 +40,7 @@ public class Skill_3Strategy : ISkillStrategy, IAutoUseSkill
 
     public void MakeAutoShield()
     {
-        InGameManager.Instance.HasAutoShield = true;
+        InGameManager.Instance.ActivatePassive("Shield");
     }
 
     public void SetCoolTime()

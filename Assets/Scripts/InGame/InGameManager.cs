@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public enum GameState
@@ -131,9 +132,15 @@ public class InGameManager : SingletonBehaviour<InGameManager>
         InGameUIController.UpdateTimerUI(timeLeft);
     }
 
-    public void ActivateShield()
+    public void DeActivatePassive(string skillName)
+    {
+        HasAutoShield = false;
+        InGameUIController.DeActivateSkillEffect("DeActivate"+skillName);
+    }
+
+    public void ActivatePassive(string skillName)
     {
         HasAutoShield = true;
-        //InGameUIController
+        InGameUIController.ActivateSkillEffect("DeActivate"+skillName);
     }
 }
