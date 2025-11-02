@@ -130,4 +130,10 @@ public class InGameManager : SingletonBehaviour<InGameManager>
             timeLeft = playTimeLimit;
         InGameUIController.UpdateTimerUI(timeLeft);
     }
+
+    public void ActivateShield()
+    {
+        HasAutoShield = true;
+        //InGameUIController
+    }
 }
