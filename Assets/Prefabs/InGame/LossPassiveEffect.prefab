@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8712769127833247440}
   - component: {fileID: 902177184398487702}
   m_Layer: 5
-  m_Name: LossPassiveEffect2
+  m_Name: LossPassiveEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
