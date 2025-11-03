@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public enum GameState
@@ -129,5 +130,17 @@ public class InGameManager : SingletonBehaviour<InGameManager>
         if(timeLeft > playTimeLimit)
             timeLeft = playTimeLimit;
         InGameUIController.UpdateTimerUI(timeLeft);
+    }
+
+    public void DeActivatePassive(string skillName)
+    {
+        HasAutoShield = false;
+        InGameUIController.DeActivateSkillEffect("DeActivate"+skillName);
+    }
+
+    public void ActivatePassive(string skillName)
+    {
+        HasAutoShield = true;
+        InGameUIController.ActivateSkillEffect("Activate"+skillName);
     }
 }

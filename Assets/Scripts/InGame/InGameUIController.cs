@@ -21,6 +21,9 @@ public class InGameUIController : MonoBehaviour
     [SerializeField] private Button skillButton;
     [SerializeField] private Image skillCoolDownImage;
 
+    [SerializeField] private GameObject _skillAnimObj;
+    [SerializeField] private GameObject _skillIConEffect;
+
     [Header("Start Cutscene Object")]
     [Space]
     [SerializeField] private GameObject InGameUI;
@@ -47,6 +50,7 @@ public class InGameUIController : MonoBehaviour
         SetSkillButtonActive();
         InGameManager.OnGameStageCleared += UpdateStageText;
 
+        _skillAnimObj.SetActive(false);
         gameOverUI.SetActive(false);
 
         StartCoroutine(StartCutScene());
@@ -161,5 +165,31 @@ public class InGameUIController : MonoBehaviour
     public void OnClickSkillButton()
     {
         InGameManager.Instance.skillStrategy.UseSkill(); 
+    }
+
+    public IEnumerator ShowSkillAnimation(string animName)
+    {
+        _skillAnimObj.SetActive(true);
+
+        Animator anim = _skillAnimObj.GetComponent<Animator>();
+        anim.Play(animName);
+        float animDuration = anim.GetCurrentAnimatorStateInfo(0).length;
+        AudioManager.Instance.Play(AudioType.SFX, "breakShield");
+
+
+        yield return new WaitForSeconds(animDuration);
+        _skillAnimObj.SetActive(false);
+    }
+
+    public void DeActivateSkillEffect(string animName)
+    {
+        _skillIConEffect.SetActive(false);
+
+        StartCoroutine(ShowSkillAnimation(animName));
+    }
+
+    public void ActivateSkillEffect(string animName)
+    {
+        _skillIConEffect.SetActive(true);
     }
 }

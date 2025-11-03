@@ -8,7 +8,7 @@ public class GasBlockDestructStrategy : IDestructStrategy
         if (InGameManager.Instance.HasAutoShield)
         {
             // 실드 깨지는 애니메이션 추가
-            InGameManager.Instance.HasAutoShield = false;
+            InGameManager.Instance.DeActivatePassive("Shield");
             if (InGameManager.Instance.skillStrategy is IAutoUseSkill autoUseSkillStrategy)
             {
                 autoUseSkillStrategy.SetCoolTime();
