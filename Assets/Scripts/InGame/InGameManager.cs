@@ -141,6 +141,6 @@ public class InGameManager : SingletonBehaviour<InGameManager>
     public void ActivatePassive(string skillName)
     {
         HasAutoShield = true;
-        InGameUIController.ActivateSkillEffect("DeActivate"+skillName);
+        InGameUIController.ActivateSkillEffect("Activate"+skillName);
     }
 }
