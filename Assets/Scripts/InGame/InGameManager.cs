@@ -132,15 +132,33 @@ public class InGameManager : SingletonBehaviour<InGameManager>
         InGameUIController.UpdateTimerUI(timeLeft);
     }
 
-    public void DeActivatePassive(string skillName)
+    /*public void DisablePassive()
     {
-        HasAutoShield = false;
-        InGameUIController.DeActivateSkillEffect("DeActivate"+skillName);
+        string choosedCharID = UserDataManager.Instance.GetUserData<UserCharacterData>().CharacterID_InUse;
+        switch (choosedCharID)
+        {
+            case "CH_3":
+                HasAutoShield = false;
+                break;
+            default:
+                break;
+        }
+        InGameUIController.ShowSkillEffect(choosedCharID, true, true);
+    }*/
+
+    public void SetPassiveEnabled(bool isEnabled)
+    {
+        string choosedCharID = UserDataManager.Instance.GetUserData<UserCharacterData>().CharacterID_InUse;
+        switch (choosedCharID) 
+        {
+            case "CH_3":
+                HasAutoShield = !isEnabled;
+                break;
+            default:
+                break;
+        }
+
+        InGameUIController.ShowSkillEffect(isEnabled);
     }
 
-    public void ActivatePassive(string skillName)
-    {
-        HasAutoShield = true;
-        InGameUIController.ActivateSkillEffect("Activate"+skillName);
-    }
 }
