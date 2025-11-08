@@ -177,7 +177,7 @@ public class InGameUIController : MonoBehaviour
 
     public void OnClickSkillButton()
     {
-        
+        InGameManager.Instance.skillStrategy.UseSkill();
         ShowSkillEffect(isEnabled: true);
     }
 
@@ -205,7 +205,7 @@ public class InGameUIController : MonoBehaviour
 
         //yield return new WaitForSeconds(animDuration);
         _skillAnimObj.SetActive(false);
-        InGameManager.Instance.skillStrategy.UseSkill();
+        
     }
 
     public void ShowSkillEffect(bool isEnabled)
