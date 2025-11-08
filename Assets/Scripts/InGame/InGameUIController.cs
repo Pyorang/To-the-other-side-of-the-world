@@ -177,7 +177,7 @@ public class InGameUIController : MonoBehaviour
 
     public void OnClickSkillButton()
     {
-        InGameManager.Instance.skillStrategy.UseSkill();
+        
         ShowSkillEffect(isEnabled: true);
     }
 
@@ -188,17 +188,24 @@ public class InGameUIController : MonoBehaviour
         _skillAnimObj.SetActive(true);
 
         Animator anim = _skillAnimObj.GetComponent<Animator>();
-        anim.Play(choosedCharID+"_Skill_Anim");
-        AudioManager.Instance.Play(AudioType.SFX, choosedCharID + "_Skill_SFX");
-        while (anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
+
+        if (choosedCharID == "CH_2" || choosedCharID == "CH_3")
         {
-            yield return null;
+            anim.Play(choosedCharID + "_Skill_Anim");
+            AudioManager.Instance.Play(AudioType.SFX, choosedCharID + "_Skill_SFX");
+            while (anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
+            {
+                yield return null;
+            }
         }
+            
+        
         //float animDuration = anim.GetCurrentAnimatorStateInfo(0).length;
 
 
         //yield return new WaitForSeconds(animDuration);
         _skillAnimObj.SetActive(false);
+        InGameManager.Instance.skillStrategy.UseSkill();
     }
 
     public void ShowSkillEffect(bool isEnabled)
