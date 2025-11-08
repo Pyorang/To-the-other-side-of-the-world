@@ -6,6 +6,8 @@ using TMPro;
 public class InGameUIController : MonoBehaviour
 {
     public Transform CanvasTransform;
+    public Transform InGameUITransform;
+    public Transform MainCameraTransform;
 
     [Header("Timer")]
     [Space]
@@ -49,6 +51,15 @@ public class InGameUIController : MonoBehaviour
         UpdateStageText();
         SetSkillButtonActive();
         InGameManager.OnGameStageCleared += UpdateStageText;
+
+        /*if (_skillAnimObj != null)
+        {
+            Destroy(_skillAnimObj);
+            _skillAnimObj = null;
+        }
+            
+        GameObject skillAnimPrefab = Resources.Load<GameObject>($"InGame/SkillEffectObj/{choosedCharID}");
+        _skillAnimObj = Instantiate(skillAnimPrefab, InGameUITransform);*/
 
         _skillAnimObj.SetActive(false);
         gameOverUI.SetActive(false);
@@ -196,5 +207,29 @@ public class InGameUIController : MonoBehaviour
 
         if (isEnabled == true)
             StartCoroutine(ShowSkillAnimation());
+    }
+
+    public void ShakeScreen(float shakeTime, float shakeradius)
+    {
+        StopCoroutine(ShakeCamera(shakeTime, shakeradius));
+        StartCoroutine(ShakeCamera(shakeTime, shakeradius));
+    }
+
+    private IEnumerator ShakeCamera(float shakeTime, float shakeradius)
+    {
+        float time = shakeTime;
+        Vector3 startPosition = MainCameraTransform.position;
+
+        while (time <= 0)
+        {
+            float x = Random.Range(-shakeradius, shakeradius);
+            MainCameraTransform.position = startPosition + new Vector3(x, 0, 0);
+
+            time -= Time.deltaTime;
+            yield return null;
+        }
+
+        MainCameraTransform.position = startPosition;
+        
     }
 }

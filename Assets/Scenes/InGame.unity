@@ -5706,7 +5706,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8835236153224722953, guid: a062856cd75641f47b4a1192925bede4, type: 3}
       propertyPath: m_Name
-      value: SkillAnimation
+      value: LossPassiveEffect2
       objectReference: {fileID: 0}
     - target: {fileID: 8835236153224722953, guid: a062856cd75641f47b4a1192925bede4, type: 3}
       propertyPath: m_IsActive
