@@ -86,7 +86,7 @@ public class Block : MonoBehaviour, IPointerDownHandler
 
     public void SetPickAxActive()
     {
-        //AudioManager.Instance.PlaySound("PickAxSound");
+        CameraShaker.s_instance.StartShake();
         Vector3 targetPosition = transform.position;
         PickAx.Instance.transform.position = targetPosition;
         PickAx.Instance.gameObject.SetActive(true);
