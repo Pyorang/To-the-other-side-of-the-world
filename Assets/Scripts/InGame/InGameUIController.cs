@@ -6,6 +6,8 @@ using TMPro;
 public class InGameUIController : MonoBehaviour
 {
     public Transform CanvasTransform;
+    public Transform InGameUITransform;
+    public Transform MainCameraTransform;
 
     [Header("Timer")]
     [Space]
@@ -32,7 +34,7 @@ public class InGameUIController : MonoBehaviour
     [SerializeField] private Animator FadeInUpAnim;
     [SerializeField] private Animator FadeInDownAnim;
 
-    [Header("GameOVerUI")]
+    [Header("GameOverUI")]
     [Space]
     [SerializeField] private GameObject gameOverUI;
     [SerializeField] private TextMeshProUGUI gameResultText;
@@ -49,6 +51,15 @@ public class InGameUIController : MonoBehaviour
         UpdateStageText();
         SetSkillButtonActive();
         InGameManager.OnGameStageCleared += UpdateStageText;
+
+        /*if (_skillAnimObj != null)
+        {
+            Destroy(_skillAnimObj);
+            _skillAnimObj = null;
+        }
+            
+        GameObject skillAnimPrefab = Resources.Load<GameObject>($"InGame/SkillEffectObj/{choosedCharID}");
+        _skillAnimObj = Instantiate(skillAnimPrefab, InGameUITransform);*/
 
         _skillAnimObj.SetActive(false);
         gameOverUI.SetActive(false);
@@ -113,10 +124,12 @@ public class InGameUIController : MonoBehaviour
         if(currentCoolTime == 0)
         {
             skillButton.interactable = true;
+            _skillIConEffect.SetActive(true);
         }
         else
         {
             skillButton.interactable = false;
+            _skillIConEffect.SetActive(false);
         }
     }
 
@@ -164,32 +177,66 @@ public class InGameUIController : MonoBehaviour
 
     public void OnClickSkillButton()
     {
-        InGameManager.Instance.skillStrategy.UseSkill(); 
+        InGameManager.Instance.skillStrategy.UseSkill();
+        ShowSkillEffect(isEnabled: true);
     }
 
-    public IEnumerator ShowSkillAnimation(string animName)
+    public IEnumerator ShowSkillAnimation()
     {
+        string choosedCharID = UserDataManager.Instance.GetUserData<UserCharacterData>().CharacterID_InUse;
+        Debug.Log("현재 캐릭터 ID : " + choosedCharID);
         _skillAnimObj.SetActive(true);
 
         Animator anim = _skillAnimObj.GetComponent<Animator>();
-        anim.Play(animName);
-        float animDuration = anim.GetCurrentAnimatorStateInfo(0).length;
-        AudioManager.Instance.Play(AudioType.SFX, "breakShield");
+
+        if (choosedCharID == "CH_2" || choosedCharID == "CH_3")
+        {
+            anim.Play(choosedCharID + "_Skill_Anim");
+            AudioManager.Instance.Play(AudioType.SFX, choosedCharID + "_Skill_SFX");
+            while (anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
+            {
+                yield return null;
+            }
+        }
+            
+        
+        //float animDuration = anim.GetCurrentAnimatorStateInfo(0).length;
 
 
-        yield return new WaitForSeconds(animDuration);
+        //yield return new WaitForSeconds(animDuration);
         _skillAnimObj.SetActive(false);
+        
     }
 
-    public void DeActivateSkillEffect(string animName)
+    public void ShowSkillEffect(bool isEnabled)
     {
-        _skillIConEffect.SetActive(false);
+        _skillIConEffect.SetActive(!isEnabled);
 
-        StartCoroutine(ShowSkillAnimation(animName));
+        if (isEnabled == true)
+            StartCoroutine(ShowSkillAnimation());
     }
 
-    public void ActivateSkillEffect(string animName)
+    public void ShakeScreen(float shakeTime, float shakeradius)
     {
-        _skillIConEffect.SetActive(true);
+        StopCoroutine(ShakeCamera(shakeTime, shakeradius));
+        StartCoroutine(ShakeCamera(shakeTime, shakeradius));
+    }
+
+    private IEnumerator ShakeCamera(float shakeTime, float shakeradius)
+    {
+        float time = shakeTime;
+        Vector3 startPosition = MainCameraTransform.position;
+
+        while (time <= 0)
+        {
+            float x = Random.Range(-shakeradius, shakeradius);
+            MainCameraTransform.position = startPosition + new Vector3(x, 0, 0);
+
+            time -= Time.deltaTime;
+            yield return null;
+        }
+
+        MainCameraTransform.position = startPosition;
+        
     }
 }

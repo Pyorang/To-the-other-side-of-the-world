@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: f8afda893fad5e84ca99596741ec15a1
+guid: a0d4f9db2e8ecc945803eac55b859371
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7169779277387185911
-    second: Sparkles_01_1_0
+      213: -2235281089859533044
+    second: pixil-layer-0_0
+  - first:
+      213: 4277722295256151292
+    second: pixil-layer-0_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,40 +99,49 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sparkles_01_1_0
+      name: pixil-layer-0_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 128
+        width: 540
+        height: 960
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 901416dfbb3df7c90800000000000000
-      internalID: -7169779277387185911
+      spriteID: c0746c911bfaaf0e0800000000000000
+      internalID: -2235281089859533044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixil-layer-0_1
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 0
+        width: 108
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf4f28063c58d5b30800000000000000
+      internalID: 4277722295256151292
       vertices: []
       indices: 
       edges: []
@@ -138,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 216a184861addbc489a9c3b85ad2966a
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Sparkles_01_1_0: -7169779277387185911
+      pixil-layer-0_0: -2235281089859533044
+      pixil-layer-0_1: 4277722295256151292
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
