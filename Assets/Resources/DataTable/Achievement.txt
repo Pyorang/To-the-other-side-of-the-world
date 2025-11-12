@@ -135,54 +135,6 @@
       "TargetValue": 100,
       "RewardGold": 2000,
       "RelatedVariable": "TotalEnhancedBlocksDestroyed"
-    },
-    {
-      "ID": "CM_15",
-      "Name": "숙련된 광부",
-      "Description": "‘드워프’로 최고 200층 클리어",
-      "TargetValue": 200,
-      "RewardGold": 3000,
-      "RelatedVariable": "dwarf_200_floor_challenge"
-    },
-    {
-      "ID": "CM_16",
-      "Name": "과학이 아니라 마법이라고요!",
-      "Description": "‘대지 마법사’로 특수 블럭을 일반 블록을 변환 ",
-      "TargetValue": 1000,
-      "RewardGold": 3000,
-      "RelatedVariable": "earth_mage_block_conversion"
-    },
-    {
-      "ID": "CM_17",
-      "Name": "아픈건 싫으니까 방어력에 올인하려고 합니다.",
-      "Description": "‘테이머’로 한판에 보호막 8개 이상 소진하기",
-      "TargetValue": 8,
-      "RewardGold": 3000,
-      "RelatedVariable": "tamer_shield_consumption"
-    },
-    {
-      "ID": "CM_18",
-      "Name": "기초적인 임플란트?",
-      "Description": "‘고대 드워프’로 강화 블럭 파괴하기",
-      "TargetValue": 5000,
-      "RewardGold": 3000,
-      "RelatedVariable": "ancient_dwarf_block_destruction"
-    },
-    {
-      "ID": "CM_19",
-      "Name": "게임 그렇게 하는 거 아닌데..",
-      "Description": "10층 이내로 게임 오버",
-      "TargetValue": 5,
-      "RewardGold": 500,
-      "RelatedVariable": "low_stage_game_over"
-    },
-    {
-      "ID": "CM_20",
-      "Name": "잘못 눌렀나?",
-      "Description": "탭 한 번으로 한 층 클리어하기",
-      "TargetValue": 5,
-      "RewardGold": 2000,
-      "RelatedVariable": "one_tap_stage_clear"
     }
   ]
 }
