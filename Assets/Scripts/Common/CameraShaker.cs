@@ -13,7 +13,7 @@ public class CameraShaker : MonoBehaviour
     [SerializeField] private float _shakeDuration = 0.5f;
     [SerializeField] private float _vibrateMultiplier = 1.0f;
 
-    private void Start()
+    private void Awake()
     {
         if (s_instance == null)
         {
@@ -38,7 +38,7 @@ public class CameraShaker : MonoBehaviour
                 StopShake();
                 return;
             }
-            _shakeVector = new Vector3(_vibrateMultiplier * Random.Range(0, 1f), _camera.transform.position.y, _camera.transform.position.z);
+            _shakeVector = new Vector3(_vibrateMultiplier * Random.Range(0, 1f), _vibrateMultiplier * Random.Range(0, 1f), _camera.transform.position.z);
             _camera.transform.position = _shakeVector;
         }
     }
@@ -58,5 +58,10 @@ public class CameraShaker : MonoBehaviour
         _isShaking = false;
         _camera.transform.position = _startPosition;
         _currentDuration = 0;
+    }
+
+    public void ChangeVibratePower(float multiplier)
+    {
+        _vibrateMultiplier *= multiplier;
     }
 }

@@ -10,5 +10,7 @@ public class Skill_4Strategy : ISkillStrategy
     public void UseSkill()
     {
         InGameManager.Instance.CharacterPowerLevel *= 2;
+        PickAx.Instance.ChangePickAxe();
+        CameraShaker.s_instance.ChangeVibratePower(3f);
     }
 }
